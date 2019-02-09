@@ -1458,7 +1458,7 @@ public class Order extends UdoDomainObject2<Order> implements Stateful {
         return this;
     }
 
-    @Persistent(mappedBy = "ordr", dependentElement = "false")
+    @Persistent(mappedBy = "ordr", dependentElement = "true")
     @Getter @Setter
     private SortedSet<OrderAttribute> attributes = new TreeSet<OrderAttribute>();
 
