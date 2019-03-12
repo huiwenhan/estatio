@@ -12,6 +12,7 @@ import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.services.title.TitleService;
 
 import org.estatio.module.capex.dom.invoice.IncomingInvoice;
+import org.estatio.module.capex.dom.invoice.approval.IncomingInvoiceApprovalStateTransition;
 import org.estatio.module.capex.dom.invoice.approval.IncomingInvoiceApprovalStateTransitionType;
 import org.estatio.module.capex.dom.payment.PaymentBatch;
 import org.estatio.module.capex.dom.payment.PaymentLine;
@@ -34,7 +35,8 @@ public class IncomingInvoice_reject extends IncomingInvoice_triggerAbstract {
     }
 
     public static class ActionDomainEvent
-            extends IncomingInvoice_triggerAbstract.ActionDomainEvent<IncomingInvoice_reject> {}
+            extends IncomingInvoice_triggerAbstract.ActionDomainEvent<IncomingInvoice_reject> {
+    }
 
     @Action(
             domainEvent = IncomingInvoice_next.ActionDomainEvent.class,
@@ -54,7 +56,10 @@ public class IncomingInvoice_reject extends IncomingInvoice_triggerAbstract {
             paymentBatch.removeLineFor(incomingInvoice);
         }
 
-        trigger(personToAssignNextTo, reason, reason);
+        final IncomingInvoiceApprovalStateTransition transition = trigger(personToAssignNextTo, reason, reason);
+        if (transition.getTask() != null)
+            transition.getTask().setToHighestPriority();
+
         return objectToReturn();
     }
 
@@ -73,7 +78,7 @@ public class IncomingInvoice_reject extends IncomingInvoice_triggerAbstract {
         for (PaymentLine paymentLine : paymentLines) {
             final PaymentBatch paymentBatch = paymentLine.getBatch();
             final PaymentBatchApprovalState state = paymentBatch.getApprovalState();
-            if(state != PaymentBatchApprovalState.NEW && state != PaymentBatchApprovalState.DISCARDED) {
+            if (state != PaymentBatchApprovalState.NEW && state != PaymentBatchApprovalState.DISCARDED) {
                 return String.format("Invoice is in batch %s", titleService.titleOf(paymentBatch));
             }
         }

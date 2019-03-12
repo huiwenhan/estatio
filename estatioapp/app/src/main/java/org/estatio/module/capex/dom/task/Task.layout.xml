@@ -51,6 +51,7 @@
                                     <cpt:action id="completeIncomingInvoice">
                                         <cpt:named>Complete</cpt:named>
                                     </cpt:action>
+                                    <cpt:action id="suspend"/>
                                     <cpt:action id="approveIncomingInvoice">
                                         <cpt:named>Approve</cpt:named>
                                     </cpt:action>
@@ -99,6 +100,10 @@
                                     <cpt:action id="reprioritizeAbsolute">
                                         <cpt:named>To date</cpt:named>
                                     </cpt:action>
+                                </cpt:property>
+                                
+                                <cpt:property id="note">
+                                    <cpt:action id="editNote"/>
                                 </cpt:property>
                             </cpt:fieldSet>
                         </bs3:col>

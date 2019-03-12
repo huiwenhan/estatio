@@ -15,30 +15,26 @@ import org.estatio.module.capex.dom.invoice.approval.IncomingInvoiceApprovalStat
  * this follows a common pattern applicable for all domain objects that have an associated state transition machine.
  */
 @Mixin(method = "act")
-public class IncomingInvoice_markAsPaidByIbpManual extends IncomingInvoice_triggerAbstract {
+public class IncomingInvoice_suspend extends IncomingInvoice_triggerAbstract {
 
     private final IncomingInvoice incomingInvoice;
 
-    public IncomingInvoice_markAsPaidByIbpManual(IncomingInvoice incomingInvoice) {
-        super(incomingInvoice, IncomingInvoiceApprovalStateTransitionType.PAY_BY_IBP_MANUAL);
+    public IncomingInvoice_suspend(IncomingInvoice incomingInvoice) {
+        super(incomingInvoice, IncomingInvoiceApprovalStateTransitionType.SUSPEND);
         this.incomingInvoice = incomingInvoice;
     }
 
     public static class ActionDomainEvent
-            extends IncomingInvoice_triggerAbstract.ActionDomainEvent<IncomingInvoice_markAsPaidByIbpManual> {}
+            extends IncomingInvoice_triggerAbstract.ActionDomainEvent<IncomingInvoice_suspend> {}
 
     @Action(
-            domainEvent = IncomingInvoice_next.ActionDomainEvent.class,
+            domainEvent = ActionDomainEvent.class,
             semantics = SemanticsOf.IDEMPOTENT
     )
-    @ActionLayout(cssClassFa = "fa-check")
-    public Object act(
+    @ActionLayout(cssClassFa = "fa-flag-checkered")
+    public IncomingInvoice act(
             @Nullable final String comment) {
-        trigger(comment, comment);
-        return objectToReturn();
-    }
-
-    protected Object objectToReturn() {
+        trigger(comment, null);
         return getDomainObject();
     }
 
@@ -49,6 +45,5 @@ public class IncomingInvoice_markAsPaidByIbpManual extends IncomingInvoice_trigg
     public String disableAct() {
         return reasonGuardNotSatisified();
     }
-
 
 }

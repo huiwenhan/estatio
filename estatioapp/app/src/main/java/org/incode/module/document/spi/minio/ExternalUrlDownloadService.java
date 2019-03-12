@@ -1,10 +1,10 @@
 package org.incode.module.document.spi.minio;
 
-import java.io.IOException;
+import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import org.apache.isis.applib.ApplicationException;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.Programmatic;
@@ -14,13 +14,38 @@ import org.apache.isis.applib.value.Blob;
 import org.apache.isis.applib.value.Clob;
 
 import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.minio.dopserver.dom.BlobClobDownloadService;
+import org.incode.module.minio.miniodownloader.MinioDownloadClient;
 
 @DomainService(
         nature = NatureOfService.DOMAIN,
         objectType = "incodeDocuments.ExternalUrlDownloadService"
 )
 public class ExternalUrlDownloadService {
+
+    private MinioDownloadClient minioDownloadClient;
+
+    @PostConstruct
+    public void init(final Map<String,String> properties) {
+        minioDownloadClient = new MinioDownloadClient();
+        minioDownloadClient.setUrl(read(properties, "estatio.minio.url", "http://minio.int.ecpnv.com:9000"));
+        minioDownloadClient.setAccessKey(read(properties, "estatio.minio.accessKey", "minio"));
+        minioDownloadClient.setSecretKey(read(properties, "estatio.minio.secretKey", "minio123"));
+        minioDownloadClient.setBackoffNumAttempts(readInt(properties, "estatio.minio.backoffNumAttempts", 5));
+        minioDownloadClient.setBackoffSleepMillis(readInt(properties, "estatio.minio.backoffSleepMillis", 200));
+
+        minioDownloadClient.init();
+    }
+
+    private static String read(final Map<String, String> properties, final String key, final String fallback) {
+        final String value = properties.get(key);
+        return value != null ? value : fallback;
+    }
+
+    private static int readInt(
+            final Map<String, String> properties, final String key, final int fallback) {
+        final String value = properties.get(key);
+        return value != null ? Integer.parseInt(value) : fallback;
+    }
 
     @Programmatic
     public Blob downloadAsBlob(final Document document) {
@@ -31,16 +56,14 @@ public class ExternalUrlDownloadService {
 
     @Programmatic
     public Blob downloadAsBlob(final String documentName, final String externalUrl) {
-        try {
-            return blobClobDownloadService.downloadBlob(documentName, externalUrl);
 
-        } catch (ApplicationException ex) {
-            messageService.warnUser(ex.getTranslatableMessage(), ex.getTranslationContext());
-            return null;
-        } catch (IOException e) {
+        try {
+            return minioDownloadClient.downloadBlob(documentName, externalUrl);
+
+        } catch (Exception e) {
             messageService.warnUser(
                     TranslatableString.tr(
-                            "Could not download external URL: {url}",
+                            "Could not download blob from external URL: {url}",
                             "url", externalUrl),
                     ExternalUrlDownloadService.class, "download");
             return null;
@@ -57,22 +80,17 @@ public class ExternalUrlDownloadService {
     @Programmatic
     public Clob downloadAsClob(final String documentName, final String externalUrl) {
         try {
-            return blobClobDownloadService.downloadClob(documentName, externalUrl);
-        } catch (ApplicationException ex) {
-            messageService.warnUser(ex.getTranslatableMessage(), ex.getTranslationContext());
-            return null;
-        } catch (IOException e) {
+            return minioDownloadClient.downloadClob(documentName, externalUrl);
+        } catch (Exception e) {
             messageService.warnUser(
                     TranslatableString.tr(
-                            "Could not download external URL: {url}",
+                            "Could not download clob from external URL: {url}",
                             "url", externalUrl),
                     ExternalUrlDownloadService.class, "downloadExternalUrlAsClob");
             return null;
         }
     }
 
-    @Inject
-    BlobClobDownloadService blobClobDownloadService;
     @Inject
     MessageService2 messageService;
 
