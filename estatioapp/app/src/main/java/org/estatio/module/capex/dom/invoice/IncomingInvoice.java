@@ -54,6 +54,7 @@ import org.apache.isis.schema.utils.jaxbadapters.PersistentEntityAdapter;
 
 import org.incode.module.base.dom.valuetypes.LocalDateInterval;
 import org.incode.module.document.dom.impl.docs.Document;
+import org.incode.module.document.dom.impl.docs.DocumentAbstract;
 
 import org.estatio.module.asset.dom.FixedAsset;
 import org.estatio.module.asset.dom.Property;
@@ -81,6 +82,7 @@ import org.estatio.module.capex.dom.state.StateTransition;
 import org.estatio.module.capex.dom.state.StateTransitionService;
 import org.estatio.module.capex.dom.state.StateTransitionType;
 import org.estatio.module.capex.dom.state.Stateful;
+import org.estatio.module.capex.dom.util.CountryUtil;
 import org.estatio.module.capex.dom.util.PeriodUtil;
 import org.estatio.module.charge.dom.Applicability;
 import org.estatio.module.charge.dom.Charge;
@@ -309,8 +311,7 @@ public class IncomingInvoice extends Invoice<IncomingInvoice> implements SellerB
     public String title() {
         final TitleBuffer buf = new TitleBuffer();
 
-        final Optional<Document> document = lookupAttachedPdfService.lookupIncomingInvoicePdfFrom(this);
-        document.ifPresent(d -> buf.append(d.getName()));
+        buf.append(getBarcode());
 
         final Party seller = getSeller();
         if (seller != null) {
@@ -333,7 +334,7 @@ public class IncomingInvoice extends Invoice<IncomingInvoice> implements SellerB
             final IncomingInvoiceType incomingInvoiceType,
             final Party seller,
             final @Nullable Boolean createRoleIfRequired,
-            final BankAccount bankAccount,
+            final @Nullable BankAccount bankAccount,
             final String invoiceNumber,
             final LocalDate dateReceived,
             final LocalDate invoiceDate,
@@ -381,11 +382,17 @@ public class IncomingInvoice extends Invoice<IncomingInvoice> implements SellerB
             return sellerValidation;
         }
 
+        if (bankAccount != null && !bankAccount.getOwner().equals(seller))
+            return "Bank account needs to be updated when supplier changes"; // default returns current bank account, if supplier is updated without bank account then block
+
+        if (paymentMethod == PaymentMethod.BANK_TRANSFER && bankAccount == null)
+            return "Bank account is mandatory if payment method is set to bank transfer";
+
         return validateChangePaymentMethod(paymentMethod);
     }
 
     public boolean hideCompleteInvoice() {
-        if (isItalian())
+        if (CountryUtil.isItalian(this))
             return true;
 
         Optional<Document> documentIfAny = lookupAttachedPdfService.lookupIncomingInvoicePdfFrom(this);
@@ -453,7 +460,7 @@ public class IncomingInvoice extends Invoice<IncomingInvoice> implements SellerB
     @Action(semantics = SemanticsOf.IDEMPOTENT)
     @ActionLayout(named = "Complete Invoice Item", promptStyle = PromptStyle.DIALOG_SIDEBAR)
     public IncomingInvoice completeInvoiceItemWithBudgetItem(
-            final OrderItem orderItem,
+            final @Nullable OrderItem orderItem,
             final String description,
             final BigDecimal netAmount,
             final BigDecimal vatAmount,
@@ -521,7 +528,7 @@ public class IncomingInvoice extends Invoice<IncomingInvoice> implements SellerB
     }
 
     public boolean hideCompleteInvoiceItemWithBudgetItem() {
-        if (isItalian())
+        if (CountryUtil.isItalian(this))
             return true;
 
         return getType() != IncomingInvoiceType.SERVICE_CHARGES && getType() != IncomingInvoiceType.ITA_RECOVERABLE;
@@ -534,7 +541,7 @@ public class IncomingInvoice extends Invoice<IncomingInvoice> implements SellerB
     @Action(semantics = SemanticsOf.IDEMPOTENT)
     @ActionLayout(named = "Complete Invoice Item", promptStyle = PromptStyle.DIALOG_SIDEBAR)
     public IncomingInvoice completeInvoiceItemWithProject(
-            final OrderItem orderItem,
+            final @Nullable OrderItem orderItem,
             final String description,
             final BigDecimal netAmount,
             final BigDecimal vatAmount,
@@ -610,7 +617,7 @@ public class IncomingInvoice extends Invoice<IncomingInvoice> implements SellerB
     }
 
     public boolean hideCompleteInvoiceItemWithProject() {
-        if (isItalian())
+        if (CountryUtil.isItalian(this))
             return true;
 
         return getType() != IncomingInvoiceType.CAPEX;
@@ -623,7 +630,7 @@ public class IncomingInvoice extends Invoice<IncomingInvoice> implements SellerB
     @Action(semantics = SemanticsOf.IDEMPOTENT)
     @ActionLayout(named = "Complete Invoice Item", promptStyle = PromptStyle.DIALOG_SIDEBAR)
     public IncomingInvoice completeInvoiceItem(
-            final OrderItem orderItem,
+            final @Nullable OrderItem orderItem,
             final String description,
             final BigDecimal netAmount,
             final BigDecimal vatAmount,
@@ -675,7 +682,7 @@ public class IncomingInvoice extends Invoice<IncomingInvoice> implements SellerB
     }
 
     public boolean hideCompleteInvoiceItem() {
-        if (isItalian())
+        if (CountryUtil.isItalian(this))
             return true;
 
         return getType() == IncomingInvoiceType.SERVICE_CHARGES || getType() == IncomingInvoiceType.ITA_RECOVERABLE || getType() == IncomingInvoiceType.CAPEX;
@@ -1437,7 +1444,7 @@ public class IncomingInvoice extends Invoice<IncomingInvoice> implements SellerB
     }
 
     public String disableEditProperty() {
-        return isItalian() ? "Editing is disabled" : "Property can only be edited by recategorising invoice";
+        return CountryUtil.isItalian(this) ? "Editing is disabled" : "Property can only be edited by recategorising invoice";
     }
 
     /**
@@ -1529,7 +1536,6 @@ public class IncomingInvoice extends Invoice<IncomingInvoice> implements SellerB
         super.setPaymentMethod(invalidateApprovalIfDiffer(getPaymentMethod(), paymentMethod));
     }
 
-    @org.apache.isis.applib.annotation.Property(hidden = Where.ALL_TABLES)
     @javax.jdo.annotations.Column(scale = 2, allowsNull = "true")
     @Getter @Setter
     private BigDecimal netAmount;
@@ -1631,7 +1637,7 @@ public class IncomingInvoice extends Invoice<IncomingInvoice> implements SellerB
     }
 
     public String disableEditBuyer() {
-        return isItalian() ? "Editing is disabled" : "Buyer is not editable; discard invoice and rescan document with appropriate barcode instead";
+        return CountryUtil.isItalian(this) ? "Editing is disabled" : "Buyer is not editable; discard invoice and rescan document with appropriate barcode instead";
     }
 
     @Action(semantics = SemanticsOf.IDEMPOTENT)
@@ -1892,7 +1898,7 @@ public class IncomingInvoice extends Invoice<IncomingInvoice> implements SellerB
                 return this;
             if (incomingInvoice.getType() == null)
                 return this;
-            if (incomingInvoice.isItalian())
+            if (CountryUtil.isItalian(incomingInvoice))
                 return this; //ECP-896 Italian invoice of type CAPEX do not require a property
 
             String message;
@@ -2037,7 +2043,7 @@ public class IncomingInvoice extends Invoice<IncomingInvoice> implements SellerB
 
     }
 
-    @Programmatic
+    @PropertyLayout(hidden = Where.OBJECT_FORMS)
     public String getDescriptionSummary() {
         StringBuffer summary = new StringBuffer();
         boolean first = true;
@@ -2092,18 +2098,18 @@ public class IncomingInvoice extends Invoice<IncomingInvoice> implements SellerB
         return summary.toString();
     }
 
-    @Programmatic
-    public boolean isItalian() {
-        final String atPath = getApplicationTenancyPath();
-        return atPath != null && atPath.startsWith("/ITA");
-    }
-
     @Override
     public int compareTo(final IncomingInvoice other) {
         return ComparisonChain.start()
                 .compare(getSeller(), other.getSeller())
                 .compare(getInvoiceNumber(), other.getInvoiceNumber())
                 .result();
+    }
+
+    @PropertyLayout(hidden = Where.OBJECT_FORMS)
+    public String getBarcode() {
+        final Optional<Document> document = lookupAttachedPdfService.lookupIncomingInvoicePdfFrom(this);
+        return document.map(DocumentAbstract::getName).orElse(null);
     }
 
     //region > notification
@@ -2137,7 +2143,7 @@ public class IncomingInvoice extends Invoice<IncomingInvoice> implements SellerB
     }
 
     public boolean hideNotification() {
-        return getNotification() == null;
+        return CountryUtil.isItalian(this) || getNotification() == null;
     }
 
     @Programmatic
@@ -2152,7 +2158,7 @@ public class IncomingInvoice extends Invoice<IncomingInvoice> implements SellerB
                 .filter(orderItemInvoiceItemLink -> {
                     IncomingInvoiceType orderItemType = orderItemInvoiceItemLink.getOrderItem().getOrdr().getType();
                     IncomingInvoiceType invoiceItemType = orderItemInvoiceItemLink.getInvoiceItem().getIncomingInvoiceType();
-                    return !orderItemType.equals(invoiceItemType);
+                    return (orderItemType != null && invoiceItemType != null) && !orderItemType.equals(invoiceItemType);
                 })
                 .forEach(link -> sj.add(String.format("an invoice item of type %s is linked to an order item of type %s",
                         link.getInvoiceItem().getIncomingInvoiceType().toString(),

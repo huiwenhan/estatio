@@ -63,6 +63,7 @@ import org.incode.module.base.dom.valuetypes.LocalDateInterval;
 import org.incode.module.country.dom.impl.Country;
 import org.incode.module.document.dom.api.DocumentService;
 import org.incode.module.document.dom.impl.docs.Document;
+import org.incode.module.document.dom.impl.docs.DocumentAbstract;
 import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
 import org.incode.module.document.dom.impl.types.DocumentType;
 import org.incode.module.document.dom.impl.types.DocumentTypeRepository;
@@ -106,6 +107,7 @@ import org.estatio.module.tax.dom.Tax;
 
 import lombok.Getter;
 import lombok.Setter;
+import static org.estatio.module.capex.dom.util.CountryUtil.isItalian;
 
 @PersistenceCapable(
         identityType = IdentityType.DATASTORE,
@@ -251,8 +253,7 @@ public class Order extends UdoDomainObject2<Order> implements Stateful {
 
         final TitleBuffer buf = new TitleBuffer();
 
-        final Optional<Document> document = lookupAttachedPdfService.lookupOrderPdfFrom(this);
-        document.ifPresent(d -> buf.append(d.getName()));
+        buf.append(getBarcode());
 
         final Party seller = getSeller();
         if (seller != null) {
@@ -485,6 +486,9 @@ public class Order extends UdoDomainObject2<Order> implements Stateful {
             final String period) {
         if (project != null && project.isParentProject())
             return "Parent project is not allowed";
+
+        if (project != null && getType() != IncomingInvoiceType.CAPEX)
+            return "Project can only be added to orders of type CAPEX";
 
         return period != null ? PeriodUtil.reasonInvalidPeriod(period) : null;
     }
@@ -1267,6 +1271,12 @@ public class Order extends UdoDomainObject2<Order> implements Stateful {
         }
     }
 
+    @PropertyLayout(hidden = Where.OBJECT_FORMS)
+    public String getBarcode() {
+        final Optional<Document> document = lookupAttachedPdfService.lookupOrderPdfFrom(this);
+        return document.map(DocumentAbstract::getName).orElse(null);
+    }
+
     //region > notification
 
     @Property(editing = Editing.DISABLED)
@@ -1289,7 +1299,7 @@ public class Order extends UdoDomainObject2<Order> implements Stateful {
     }
 
     public boolean hideNotification() {
-        return getNotification() == null;
+        return isItalian(this) || getNotification() == null;
     }
 
     String doubleOrderCheck() {
