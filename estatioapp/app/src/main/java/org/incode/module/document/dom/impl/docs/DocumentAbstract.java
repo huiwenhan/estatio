@@ -39,6 +39,8 @@ import org.incode.module.document.DocumentModule;
 import org.incode.module.document.dom.impl.types.DocumentType;
 import org.incode.module.document.dom.types.AtPathType;
 
+import org.estatio.module.invoice.dom.DocumentTypeData;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -91,6 +93,7 @@ public abstract class DocumentAbstract<T extends DocumentAbstract> implements Co
             final DocumentType type,
             final String atPath) {
         this.type = type;
+        this.typeData = DocumentTypeData.reverseLookup(type);
         this.atPath = atPath;
         this.sort = DocumentSort.EMPTY;
     }
@@ -102,11 +105,18 @@ public abstract class DocumentAbstract<T extends DocumentAbstract> implements Co
     @Getter @Setter
     @Column(allowsNull = "false", name = "typeId")
     @Property(
-            domainEvent = TypeDomainEvent.class,
             editing = Editing.DISABLED
     )
     private DocumentType type;
     //endregion
+
+    @Getter @Setter
+    @Column(allowsNull = "false")
+    @Property(
+            domainEvent = TypeDomainEvent.class,
+            editing = Editing.DISABLED
+    )
+    private DocumentTypeData typeData;
 
     //region > atPath (property)
     public static class AtPathDomainEvent extends PropertyDomainEvent<String> { }
