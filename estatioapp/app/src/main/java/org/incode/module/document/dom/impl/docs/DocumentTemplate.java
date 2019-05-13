@@ -41,7 +41,6 @@ import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.annotation.Where;
 import org.apache.isis.applib.services.background.BackgroundService2;
-import org.apache.isis.applib.services.factory.FactoryService;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 import org.apache.isis.applib.services.registry.ServiceRegistry2;
 import org.apache.isis.applib.services.xactn.TransactionService;
@@ -528,55 +527,6 @@ public class DocumentTemplate
         @Inject
         ApplicabilityRepository applicabilityRepository;
 
-    }
-
-    //endregion
-
-    //region > notApplicable (action)
-    /**
-     * TODO: remove once moved over to using DocumentTypeData and DocumentTemplateData
-     */
-    @Mixin
-    public static class _notApplicable {
-
-        private final DocumentTemplate documentTemplate;
-
-        public _notApplicable(final DocumentTemplate documentTemplate) {
-            this.documentTemplate = documentTemplate;
-        }
-
-        public static class NotApplicableDomainEvent extends DocumentTemplate.ActionDomainEvent {
-        }
-
-        @Action(
-                domainEvent = NotApplicableDomainEvent.class,
-                semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE
-        )
-        @ActionLayout(
-                cssClassFa = "fa-minus"
-        )
-        @MemberOrder(name = "appliesTo", sequence = "2")
-        public DocumentTemplate $$(final Applicability applicability) {
-            applicabilityRepository.delete(applicability);
-            return this.documentTemplate;
-        }
-
-        public TranslatableString disable$$() {
-            final TranslatableString tr = factoryService.mixin(_applicable.class, documentTemplate).disable$$();
-            if(tr != null) {
-                return tr;
-            }
-            return choices0$$().isEmpty() ? TranslatableString.tr("No applicabilities to remove") : null;
-        }
-
-        public SortedSet<Applicability> choices0$$() {
-            return documentTemplate.getAppliesTo();
-        }
-
-        @Inject
-        ApplicabilityRepository applicabilityRepository;
-        @Inject
-        FactoryService factoryService;
     }
 
     //endregion
