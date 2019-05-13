@@ -1,6 +1,7 @@
 package org.incode.platform.dom.document.integtests.dom.document.dom.spiimpl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -15,6 +16,8 @@ import org.incode.module.document.dom.impl.types.DocumentTypeRepository;
 import org.incode.module.document.dom.spi.DocumentAttachmentAdvisor;
 import org.incode.platform.dom.document.integtests.dom.document.fixture.seed.DocumentTypeAndTemplatesApplicableForDemoObjectFixture;
 
+import org.estatio.module.invoice.dom.DocumentTypeData;
+
 @DomainService(nature = NatureOfService.DOMAIN)
 public class DocumentAttachmentAdvisorForDemo implements DocumentAttachmentAdvisor {
 
@@ -28,6 +31,16 @@ public class DocumentAttachmentAdvisorForDemo implements DocumentAttachmentAdvis
         return documentTypes;
     }
 
+    @Override
+    public List<DocumentTypeData> documentTypeDataChoicesFor(final Document document) {
+        final List<DocumentType> documentTypes = Lists.newArrayList();
+        append(DocumentTypeAndTemplatesApplicableForDemoObjectFixture.DOC_TYPE_REF_TAX_RECEIPT, documentTypes);
+        append(DocumentTypeAndTemplatesApplicableForDemoObjectFixture.DOC_TYPE_REF_SUPPLIER_RECEIPT, documentTypes);
+        return documentTypes.stream()
+                .map(DocumentTypeData::reverseLookup)
+                .collect(Collectors.toList());
+    }
+
     private void append(final String docTypeRef, final List<DocumentType> documentTypes) {
         final DocumentType documentType = documentTypeRepository
                 .findByReference(docTypeRef);
@@ -37,6 +50,11 @@ public class DocumentAttachmentAdvisorForDemo implements DocumentAttachmentAdvis
     @Override
     public DocumentType documentTypeDefaultFor(final Document document) {
         return documentTypeChoicesFor(document).get(0);
+    }
+
+    @Override
+    public DocumentTypeData documentTypeDataDefaultFor(final Document document) {
+        return documentTypeDataChoicesFor(document).get(0);
     }
 
     @Override

@@ -89,7 +89,7 @@ public class DemoObjectWithNote_and_DemoInvoice_create3 extends FixtureScript {
         final Blob blob = loadPdf(resourceName);
         try {
             final Document_attachSupportingPdf attachPdf = mixin(Document_attachSupportingPdf.class, document);
-            return wrap(attachPdf).exec(attachPdf.default0Exec(), blob, null, attachPdf.default3Exec());
+            return wrap(attachPdf).exec(attachPdf.default0Exec(), attachPdf.default1Exec(), blob, null, attachPdf.default4Exec());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
