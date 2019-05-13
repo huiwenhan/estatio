@@ -328,7 +328,7 @@ public class DocumentTemplate
             final String subjectText,
             final RenderingStrategy subjectRenderingStrategy) {
         super(type, typeData, atPath);
-        init(type, date, atPath, fileSuffix, previewOnly, contentRenderingStrategy, subjectText, subjectRenderingStrategy);
+        init(type, typeData, date, atPath, fileSuffix, previewOnly, contentRenderingStrategy, subjectText, subjectRenderingStrategy);
         modifyBlob(blob);
     }
 
@@ -344,7 +344,7 @@ public class DocumentTemplate
             final String subjectText,
             final RenderingStrategy subjectRenderingStrategy) {
         super(type, typeData, atPath);
-        init(type, date, atPath, fileSuffix, previewOnly, contentRenderingStrategy, subjectText, subjectRenderingStrategy);
+        init(type, typeData, date, atPath, fileSuffix, previewOnly, contentRenderingStrategy, subjectText, subjectRenderingStrategy);
         setTextData(name, mimeType, text);
     }
 
@@ -360,12 +360,13 @@ public class DocumentTemplate
             final String subjectText,
             final RenderingStrategy subjectRenderingStrategy) {
         super(type, typeData, atPath);
-        init(type, date, atPath, fileSuffix, previewOnly, contentRenderingStrategy, subjectText, subjectRenderingStrategy);
+        init(type, typeData, date, atPath, fileSuffix, previewOnly, contentRenderingStrategy, subjectText, subjectRenderingStrategy);
         modifyClob(clob);
     }
 
     private void init(
             final DocumentType type,
+            final DocumentTypeData typeData,
             final LocalDate date,
             final String atPath,
             final String fileSuffix,
