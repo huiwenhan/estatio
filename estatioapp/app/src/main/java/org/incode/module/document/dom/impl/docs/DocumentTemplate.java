@@ -82,7 +82,6 @@ import org.incode.module.document.dom.types.AtPathType;
 import org.incode.module.document.dom.types.FqcnType;
 
 import org.estatio.module.invoice.dom.DocumentTemplateData;
-import org.estatio.module.invoice.dom.DocumentTypeApi;
 import org.estatio.module.invoice.dom.DocumentTypeData;
 import org.estatio.module.invoice.dom.RenderingStrategyData;
 
@@ -384,11 +383,6 @@ public class DocumentTemplate
     //endregion
 
 
-
-    @Programmatic
-    public DocumentTypeApi getTypeApi() {
-        return getTypeData();
-    }
 
     @Programmatic
     public RenderingStrategyData getContentRenderingStrategyData() {
