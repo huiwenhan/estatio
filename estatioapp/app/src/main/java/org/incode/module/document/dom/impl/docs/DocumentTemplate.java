@@ -297,8 +297,6 @@ public class DocumentTemplate
     private String atPathCopy;
     //endregion
 
-
-
     @Programmatic
     public RenderingStrategyData getContentRenderingStrategyData() {
         return templateData.getContentRenderingStrategy();
@@ -310,44 +308,20 @@ public class DocumentTemplate
     }
 
 
-    //region > date (property)
-    public static class DateDomainEvent extends DocumentTemplate.PropertyDomainEvent<LocalDate> { }
     @Getter @Setter
     @Column(allowsNull = "false")
-    @Property(
-            domainEvent = DateDomainEvent.class,
-            editing = Editing.DISABLED
-    )
+    @Property(editing = Editing.DISABLED)
     private LocalDate date;
-    //endregion
 
-
-    //region > contentRenderingStrategy (property)
-    public static class RenderingStrategyDomainEvent extends PropertyDomainEvent<RenderingStrategy> { }
     @Getter @Setter
     @Column(allowsNull = "false", name = "contentRenderStrategyId")
-    @Property(
-            domainEvent = RenderingStrategyDomainEvent.class,
-            editing = Editing.DISABLED
-    )
+    @Property(editing = Editing.DISABLED)
     private RenderingStrategy contentRenderingStrategy;
 
-    //endregion
-
-    //region > fileSuffix (property)
-    public static class FileSuffixDomainEvent extends PropertyDomainEvent<String> { }
     @Getter @Setter
     @Column(allowsNull = "false", length = FileSuffixType.Meta.MAX_LEN)
-    @Property(
-            domainEvent = FileSuffixDomainEvent.class,
-            editing = Editing.DISABLED
-    )
+    @Property(editing = Editing.DISABLED)
     private String fileSuffix;
-    //endregion
-
-
-    //region > nameText (persisted property)
-    public static class NameTextDomainEvent extends PropertyDomainEvent<Clob> { }
 
     /**
      * Used to determine the name of the {@link Document#getName() name} of the rendered {@link Document}.
@@ -356,53 +330,29 @@ public class DocumentTemplate
     @javax.jdo.annotations.Column(allowsNull = "false", length = NameTextType.Meta.MAX_LEN)
     @Property(
             notPersisted = true, // exclude from auditing
-            domainEvent = NameTextDomainEvent.class,
             editing = Editing.DISABLED
     )
     private String nameText;
-    //endregion
 
-    //region > nameRenderingStrategy (property)
-    public static class NameRenderingStrategyDomainEvent extends PropertyDomainEvent<RenderingStrategy> { }
     @Getter @Setter
     @Column(allowsNull = "false", name = "nameRenderStrategyId")
-    @Property(
-            domainEvent = NameRenderingStrategyDomainEvent.class,
-            editing = Editing.DISABLED
-    )
+    @Property(editing = Editing.DISABLED)
     private RenderingStrategy nameRenderingStrategy;
-
-    //endregion
-
-    //region > PreviewOnly (property)
-    public static class PreviewOnlyDomainEvent extends RenderingStrategy.PropertyDomainEvent<Boolean> { }
 
     /**
      * Whether this template can only be previewed (not used to also create a document).
      */
     @Getter @Setter
     @Column(allowsNull = "false")
-    @Property(
-            domainEvent = PreviewOnlyDomainEvent.class,
-            editing = Editing.DISABLED
-    )
+    @Property(editing = Editing.DISABLED)
     private boolean previewOnly;
-    //endregion
 
-
-    //region > applicabilities (collection)
-    public static class ApplicabilitiesDomainEvent extends DocumentType.CollectionDomainEvent<Applicability> {
-    }
 
     @javax.jdo.annotations.Persistent(mappedBy = "documentTemplate", dependentElement = "true")
-    @Collection(
-            domainEvent = ApplicabilitiesDomainEvent.class,
-            editing = Editing.DISABLED
-    )
+    @Collection(editing = Editing.DISABLED)
     @Getter @Setter
     private SortedSet<Applicability> appliesTo = new TreeSet<>();
 
-    //endregion
 
     //region > applicable (action)
 
@@ -519,16 +469,13 @@ public class DocumentTemplate
             return null;
         }
 
-
         @Inject
         RendererModelFactoryClassNameService rendererModelFactoryClassNameService;
         @Inject
         AttachmentAdvisorClassNameService attachmentAdvisorClassNameService;
         @Inject
         ApplicabilityRepository applicabilityRepository;
-
     }
-
     //endregion
 
 
@@ -571,14 +518,11 @@ public class DocumentTemplate
                 document);
         return paperclipSpecs;
     }
-
     //endregion
 
 
 
-
     //region > preview, previewUrl (programmatic)
-
 
     @Programmatic
     public URL previewUrl(final Object rendererModel) throws IOException {
