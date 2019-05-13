@@ -83,7 +83,6 @@ import org.incode.module.document.dom.types.FqcnType;
 
 import org.estatio.module.invoice.dom.DocumentTemplateApi;
 import org.estatio.module.invoice.dom.DocumentTemplateData;
-import org.estatio.module.invoice.dom.DocumentTypeApi;
 import org.estatio.module.invoice.dom.DocumentTypeData;
 import org.estatio.module.invoice.dom.RenderingStrategyApi;
 import org.estatio.module.invoice.dom.RenderingStrategyData;
@@ -183,33 +182,6 @@ public class DocumentTemplate
         extends DocumentAbstract<DocumentTemplate>
         implements DocumentTemplateApi {
 
-    enum Toggle {
-        DATA {
-            @Override public DocumentTemplateApi getTemplateApi(final DocumentTemplate documentTemplate) {
-                return documentTemplate.templateData;
-            }
-
-            @Override public DocumentTypeApi getTypeApi(final DocumentTemplate documentTemplate) {
-                return documentTemplate.getTypeData();
-            }
-
-            @Override public RenderingStrategyApi getContentRenderingStrategyApi(final DocumentTemplate documentTemplate) {
-                return documentTemplate.getContentRenderingStrategyData();
-            }
-
-            @Override public RenderingStrategyApi getNameRenderingStrategyApi(final DocumentTemplate documentTemplate) {
-                return documentTemplate.getNameRenderingStrategyData();
-            }
-        };
-
-        public abstract DocumentTemplateApi getTemplateApi(final DocumentTemplate documentTemplate);
-
-        public abstract DocumentTypeApi getTypeApi(final DocumentTemplate documentTemplate);
-
-        public abstract RenderingStrategyApi getContentRenderingStrategyApi(final DocumentTemplate documentTemplate);
-
-        public abstract RenderingStrategyApi getNameRenderingStrategyApi(final DocumentTemplate documentTemplate);
-    }
 
     //region > ui event classes
     public static class TitleUiEvent extends DocumentModule.TitleUiEvent<DocumentTemplate>{}
@@ -416,13 +388,13 @@ public class DocumentTemplate
 
     @Programmatic
     public DocumentTemplateApi getTemplateApi() {
-        return Toggle.DATA.getTemplateApi(this);
+        return getTemplateData();
     }
 
 
     @Programmatic
     public DocumentTypeApi getTypeApi() {
-        return Toggle.DATA.getTypeApi(this);
+        return getTypeData();
     }
 
     @Programmatic
@@ -432,7 +404,7 @@ public class DocumentTemplate
 
     @Programmatic
     public RenderingStrategyApi getContentRenderingStrategyApi() {
-        return Toggle.DATA.getContentRenderingStrategyApi(this);
+        return getContentRenderingStrategyData();
     }
 
     @Programmatic
@@ -442,7 +414,7 @@ public class DocumentTemplate
 
     @Programmatic
     public RenderingStrategyApi getNameRenderingStrategyApi() {
-        return Toggle.DATA.getNameRenderingStrategyApi(this);
+        return getNameRenderingStrategyData();
     }
 
     //region > date (property)
