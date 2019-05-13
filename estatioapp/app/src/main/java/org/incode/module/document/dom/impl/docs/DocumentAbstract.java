@@ -101,74 +101,37 @@ public abstract class DocumentAbstract<T extends DocumentAbstract> implements Co
     //endregion
 
 
-    //region > type (property)
-    public static class TypeDomainEvent extends PropertyDomainEvent<DocumentType> { }
     @Getter @Setter
     @Column(allowsNull = "false", name = "typeId")
-    @Property(
-            editing = Editing.DISABLED
-    )
+    @Property(editing = Editing.DISABLED)
     private DocumentType type;
-    //endregion
 
     @Getter @Setter
     @Column(allowsNull = "false", length = DocumentType.ReferenceType.Meta.MAX_LEN)
-    @Property(
-            domainEvent = TypeDomainEvent.class,
-            editing = Editing.DISABLED
-    )
+    @Property(editing = Editing.DISABLED)
     private DocumentTypeData typeData;
 
-    //region > atPath (property)
-    public static class AtPathDomainEvent extends PropertyDomainEvent<String> { }
     @Getter @Setter
     @Column(allowsNull = "false", length = AtPathType.Meta.MAX_LEN)
-    @Property(
-            domainEvent = AtPathDomainEvent.class,
-            editing = Editing.DISABLED
-    )
-    @PropertyLayout(
-            named = "Application tenancy"
-    )
+    @Property(editing = Editing.DISABLED)
+    @PropertyLayout(named = "Application tenancy")
     private String atPath;
-    //endregion
 
-
-    //region > name (property)
-    public static class NameDomainEvent extends PropertyDomainEvent<String> { }
     @Getter @Setter
     @Column(allowsNull = "false", length = NameType.Meta.MAX_LEN)
-    @Property(
-            domainEvent = NameDomainEvent.class,
-            editing = Editing.DISABLED
-    )
+    @Property(editing = Editing.DISABLED)
     private String name;
-    //endregion
 
-    //region > mimeType (property)
-    public static class MimeTypeDomainEvent extends PropertyDomainEvent<String> { }
     @Getter @Setter
     @Column(allowsNull = "false", length = MimeTypeType.Meta.MAX_LEN)
-    @Property(
-            domainEvent = MimeTypeDomainEvent.class,
-            editing = Editing.DISABLED
-    )
+    @Property(editing = Editing.DISABLED)
     private String mimeType;
-    //endregion
 
-    //region > sort (property)
-    public static class SortDomainEvent extends PropertyDomainEvent<DocumentSort> { }
     @Getter @Setter
     @Column(allowsNull = "false")
-    @Property(
-            domainEvent = SortDomainEvent.class,
-            editing = Editing.DISABLED
-    )
+    @Property(editing = Editing.DISABLED)
     private DocumentSort sort;
-    //endregion
 
-
-    //region > blobBytes (persisted property, hidden)
     @Getter @Setter
     @javax.jdo.annotations.Persistent(defaultFetchGroup="false")
     @javax.jdo.annotations.Column(allowsNull = "true", name = "blob_bytes", jdbcType = "BLOB", sqlType = "BLOB")
@@ -177,7 +140,6 @@ public abstract class DocumentAbstract<T extends DocumentAbstract> implements Co
             hidden = Where.EVERYWHERE
     )
     private byte[] blobBytes;
-    //endregion
 
     //region > blob (derived property)
     public static class BlobDomainEvent extends PropertyDomainEvent<Blob> { }
@@ -196,6 +158,7 @@ public abstract class DocumentAbstract<T extends DocumentAbstract> implements Co
 
         return new Blob(getName(), getMimeType(), asBytes());
     }
+
     @Programmatic
     public void modifyBlob(Blob blob) {
         setName(blob.getName());
@@ -208,16 +171,11 @@ public abstract class DocumentAbstract<T extends DocumentAbstract> implements Co
     }
     //endregion
 
-    //region > clobChars (persisted property, hidden)
     @Getter @Setter
     @javax.jdo.annotations.Persistent(defaultFetchGroup="false")
     @javax.jdo.annotations.Column(allowsNull = "true", name = "clob_chars", jdbcType = "CLOB", sqlType = "CLOB")
-    @Property(
-            notPersisted = true, // exclude from auditing
-            hidden = Where.EVERYWHERE
-    )
+    @Property(notPersisted = true, hidden = Where.EVERYWHERE)
     private String clobChars;
-    //endregion
 
     //region > clob (derived property)
     public static class ClobDomainEvent extends PropertyDomainEvent<Clob> { }
@@ -254,6 +212,7 @@ public abstract class DocumentAbstract<T extends DocumentAbstract> implements Co
 
         return new Clob(getName(), getMimeType(), asChars());
     }
+
     @Programmatic
     public void modifyClob(Clob clob) {
         setName(clob.getName());
@@ -268,15 +227,14 @@ public abstract class DocumentAbstract<T extends DocumentAbstract> implements Co
     //endregion
 
     //region > text (persisted property)
-    public static class TextDomainEvent extends PropertyDomainEvent<Clob> { }
     @Getter @Setter
     @javax.jdo.annotations.Column(allowsNull = "true", length = TextType.Meta.MAX_LEN)
-    @Property(
-            notPersisted = true, // exclude from auditing
-            domainEvent = TextDomainEvent.class,
-            editing = Editing.DISABLED
-    )
+    @Property(notPersisted = true, editing = Editing.DISABLED)
     private String text;
+
+    public boolean hideText() {
+        return getSort() != DocumentSort.TEXT;
+    }
 
     @Programmatic
     public void setTextData(String name, String mimeType, String text) {
@@ -286,9 +244,6 @@ public abstract class DocumentAbstract<T extends DocumentAbstract> implements Co
         setSort(DocumentSort.TEXT);
     }
 
-    public boolean hideText() {
-        return getSort() != DocumentSort.TEXT;
-    }
     //endregion
 
 
