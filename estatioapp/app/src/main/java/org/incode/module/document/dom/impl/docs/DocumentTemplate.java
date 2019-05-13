@@ -403,11 +403,6 @@ public class DocumentTemplate
     }
 
     @Programmatic
-    public RenderingStrategyApi getContentRenderingStrategyApi() {
-        return getContentRenderingStrategyData();
-    }
-
-    @Programmatic
     public RenderingStrategyData getNameRenderingStrategyData() {
         return templateData.getNameRenderingStrategy();
     }
@@ -796,7 +791,7 @@ public class DocumentTemplate
         final DocumentNature inputNature = templateData.getContentRenderingStrategy().getInputNature();
         final DocumentNature outputNature = templateData.getContentRenderingStrategy().getOutputNature();
 
-        final Renderer renderer = getContentRenderingStrategyApi().newRenderer(
+        final Renderer renderer = getContentRenderingStrategyData().newRenderer(
                 classService, serviceRegistry2);
         switch (inputNature){
         case BYTES:
@@ -906,7 +901,7 @@ public class DocumentTemplate
             final Object contentDataModel) {
         final String documentName = determineDocumentName(contentDataModel);
         document.setName(documentName);
-        final RenderingStrategyApi renderingStrategy = getContentRenderingStrategyApi();
+        final RenderingStrategyApi renderingStrategy = getContentRenderingStrategyData();
         final String variant = "content";
         try {
 
