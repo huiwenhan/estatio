@@ -61,11 +61,7 @@
                     <bs3:row>
                         <bs3:col span="12">
                             <cpt:fieldSet name="Rendering" id="contentRendering">
-                                <cpt:property id="contentRenderingStrategy" hidden="ALL_TABLES">
-                                    <cpt:action id="changeContentRenderingStrategy">
-                                        <cpt:named>Change</cpt:named>
-                                    </cpt:action>
-                                </cpt:property>
+                                <cpt:property id="contentRenderingStrategy" hidden="ALL_TABLES"/>
                             </cpt:fieldSet>
                             <cpt:fieldSet name="Template" id="contentTemplate">
                                 <cpt:property id="sort"/>
