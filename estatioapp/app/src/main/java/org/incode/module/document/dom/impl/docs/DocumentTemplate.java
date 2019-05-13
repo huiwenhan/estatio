@@ -617,19 +617,6 @@ public class DocumentTemplate
         return getTemplateData().newAttachmentAdvisor(domainClass, classService, serviceRegistry2);
     }
 
-    @Programmatic
-    public AttachmentAdvisor newAttachmentAdvisor(
-            final Class<?> domainClass,
-            final ClassService classService,
-            final ServiceRegistry2 serviceRegistry2) {
-
-        final Optional<Applicability> applicability = applicableTo(domainClass);
-        return applicability.map(Applicability::getAttachmentAdvisorClassName)
-                .map(classService::instantiate)
-                .map(AttachmentAdvisor.class::cast)
-                .map(serviceRegistry2::injectServicesInto)
-                .orElse(null);
-    }
 
     @Programmatic
     public Object newRendererModel(final Object domainObject) {
