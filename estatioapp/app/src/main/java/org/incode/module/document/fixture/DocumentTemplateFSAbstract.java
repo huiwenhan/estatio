@@ -11,7 +11,6 @@ import org.apache.isis.applib.value.Clob;
 
 import org.incode.module.document.dom.impl.docs.DocumentTemplate;
 import org.incode.module.document.dom.impl.docs.DocumentTemplateRepository;
-import org.incode.module.document.dom.impl.rendering.RenderingStrategy;
 import org.incode.module.document.dom.impl.types.DocumentType;
 import org.incode.module.document.dom.impl.types.DocumentTypeRepository;
 
@@ -56,7 +55,6 @@ public abstract class DocumentTemplateFSAbstract extends FixtureScript {
             final String mimeType,
             final String contentText,
             final String nameText,
-            final RenderingStrategy nameRenderingStrategy,
             final ExecutionContext executionContext) {
 
         DocumentTemplate documentTemplate = documentTemplateRepository
@@ -68,7 +66,6 @@ public abstract class DocumentTemplateFSAbstract extends FixtureScript {
             documentTemplate.setMimeType(mimeType);
             documentTemplate.setText(contentText);
             documentTemplate.setNameText(nameText);
-            documentTemplate.setNameRenderingStrategy(nameRenderingStrategy);
         } else {
             documentTemplate =
                     documentTemplateRepository.createText(
@@ -76,7 +73,7 @@ public abstract class DocumentTemplateFSAbstract extends FixtureScript {
                             fileSuffix, previewOnly,
                             name, mimeType,
                             contentText,
-                            nameText, nameRenderingStrategy);
+                            nameText);
         }
         return executionContext.addResult(this, documentTemplate);
     }
@@ -89,7 +86,7 @@ public abstract class DocumentTemplateFSAbstract extends FixtureScript {
             final String fileSuffix,
             final boolean previewOnly,
             final Clob clob,
-            final String nameText, final RenderingStrategy nameRenderingStrategy,
+            final String nameText,
             ExecutionContext executionContext) {
 
         DocumentTemplate documentTemplate = documentTemplateRepository
@@ -100,13 +97,12 @@ public abstract class DocumentTemplateFSAbstract extends FixtureScript {
             documentTemplate.setPreviewOnly(previewOnly);
             documentTemplate.modifyClob(clob);
             documentTemplate.setNameText(nameText);
-            documentTemplate.setNameRenderingStrategy(nameRenderingStrategy);
         } else {
             documentTemplate =
                     documentTemplateRepository.createClob(
                             documentType, typeData, date, atPath,
                             fileSuffix, previewOnly, clob,
-                            nameText, nameRenderingStrategy);
+                            nameText);
         }
         return executionContext.addResult(this, documentTemplate);
     }
@@ -120,7 +116,6 @@ public abstract class DocumentTemplateFSAbstract extends FixtureScript {
             final boolean previewOnly,
             final Blob blob,
             final String nameText,
-            final RenderingStrategy nameRenderingStrategy,
             ExecutionContext executionContext) {
 
         DocumentTemplate documentTemplate = documentTemplateRepository
@@ -130,13 +125,12 @@ public abstract class DocumentTemplateFSAbstract extends FixtureScript {
             documentTemplate.setPreviewOnly(previewOnly);
             documentTemplate.modifyBlob(blob);
             documentTemplate.setNameText(nameText);
-            documentTemplate.setNameRenderingStrategy(nameRenderingStrategy);
         } else {
             documentTemplate =
                     documentTemplateRepository.createBlob(
                             documentType, typeData, date, atPath,
                             fileSuffix, previewOnly, blob,
-                            nameText, nameRenderingStrategy);
+                            nameText);
         }
 
         return executionContext.addResult(this, documentTemplate);

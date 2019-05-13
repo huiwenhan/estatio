@@ -111,7 +111,7 @@ public class DocumentTemplateFSForOrderConfirm extends DocumentTemplateFSAbstrac
                 ".docx",
                 false,
                 contentBlob,
-                nameChars, fmkRenderingStrategy,
+                nameChars,
                 ec);
 
         mixin(DocumentTemplate._applicable.class, documentTemplate).applicable(

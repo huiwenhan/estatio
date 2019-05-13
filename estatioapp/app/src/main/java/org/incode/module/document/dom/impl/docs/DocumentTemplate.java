@@ -61,7 +61,6 @@ import org.incode.module.document.dom.impl.renderers.RendererFromCharsToBytes;
 import org.incode.module.document.dom.impl.renderers.RendererFromCharsToBytesWithPreviewToUrl;
 import org.incode.module.document.dom.impl.renderers.RendererFromCharsToChars;
 import org.incode.module.document.dom.impl.renderers.RendererFromCharsToCharsWithPreviewToUrl;
-import org.incode.module.document.dom.impl.rendering.RenderingStrategy;
 import org.incode.module.document.dom.impl.types.DocumentType;
 import org.incode.module.document.dom.services.ClassNameViewModel;
 import org.incode.module.document.dom.services.ClassService;
@@ -200,9 +199,8 @@ public class DocumentTemplate
             final String fileSuffix,
             final boolean previewOnly,
             final Blob blob,
-            final String subjectText,
-            final RenderingStrategy subjectRenderingStrategy) {
-        this(type, typeData, date, atPath, fileSuffix, previewOnly, subjectText, subjectRenderingStrategy);
+            final String subjectText) {
+        this(type, typeData, date, atPath, fileSuffix, previewOnly, subjectText);
         modifyBlob(blob);
     }
 
@@ -214,9 +212,8 @@ public class DocumentTemplate
             final String fileSuffix,
             final boolean previewOnly,
             final String name, final String mimeType, final String text,
-            final String subjectText,
-            final RenderingStrategy subjectRenderingStrategy) {
-        this(type, typeData, date, atPath, fileSuffix, previewOnly, subjectText, subjectRenderingStrategy);
+            final String subjectText) {
+        this(type, typeData, date, atPath, fileSuffix, previewOnly, subjectText);
         setTextData(name, mimeType, text);
     }
 
@@ -228,9 +225,8 @@ public class DocumentTemplate
             final String fileSuffix,
             final boolean previewOnly,
             final Clob clob,
-            final String subjectText,
-            final RenderingStrategy subjectRenderingStrategy) {
-        this(type, typeData, date, atPath, fileSuffix, previewOnly, subjectText, subjectRenderingStrategy);
+            final String subjectText) {
+        this(type, typeData, date, atPath, fileSuffix, previewOnly, subjectText);
         modifyClob(clob);
     }
 
@@ -241,8 +237,7 @@ public class DocumentTemplate
             final String atPath,
             final String fileSuffix,
             final boolean previewOnly,
-            final String nameText,
-            final RenderingStrategy nameRenderingStrategy) {
+            final String nameText) {
         super(type, typeData, atPath);
 
         this.typeCopy = type;
@@ -253,7 +248,6 @@ public class DocumentTemplate
         this.fileSuffix = stripLeadingDotAndLowerCase(fileSuffix);
         this.previewOnly = previewOnly;
         this.nameText = nameText;
-        this.nameRenderingStrategy = nameRenderingStrategy;
     }
 
     static String stripLeadingDotAndLowerCase(final String fileSuffix) {
@@ -323,11 +317,6 @@ public class DocumentTemplate
             editing = Editing.DISABLED
     )
     private String nameText;
-
-    @Getter @Setter
-    @Column(allowsNull = "false", name = "nameRenderStrategyId")
-    @Property(editing = Editing.DISABLED)
-    private RenderingStrategy nameRenderingStrategy;
 
     /**
      * Whether this template can only be previewed (not used to also create a document).
