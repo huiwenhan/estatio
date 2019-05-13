@@ -286,10 +286,6 @@ public class DocumentTemplate
     )
     private DocumentType typeCopy;
 
-    public DocumentType getTypeCopy() {
-        return typeCopy;
-    }
-
     //endregion
 
     //region > atPathCopy (derived property, persisted)
@@ -340,9 +336,6 @@ public class DocumentTemplate
     )
     private RenderingStrategy contentRenderingStrategy;
 
-    public RenderingStrategy getContentRenderingStrategy() {
-        return contentRenderingStrategy;
-    }
     //endregion
 
     //region > fileSuffix (property)
@@ -383,9 +376,6 @@ public class DocumentTemplate
     )
     private RenderingStrategy nameRenderingStrategy;
 
-    public RenderingStrategy getNameRenderingStrategy() {
-        return nameRenderingStrategy;
-    }
     //endregion
 
     //region > PreviewOnly (property)
