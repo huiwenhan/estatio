@@ -611,19 +611,6 @@ public class DocumentTemplate
         return getTemplateData().newRenderModelFactory(domainClass, classService, serviceRegistry2);
     }
 
-    public RendererModelFactory newRenderModelFactory(
-            final Class<?> domainClass,
-            final ClassService classService,
-            final ServiceRegistry2 serviceRegistry2) {
-
-        final Optional<Applicability> applicability = applicableTo(domainClass);
-        return applicability.map(Applicability::getRendererModelFactoryClassName)
-                .map(classService::instantiate)
-                .map(RendererModelFactory.class::cast)
-                .map(serviceRegistry2::injectServicesInto)
-                .orElse(null);
-    }
-
     @Programmatic
     public AttachmentAdvisor newAttachmentAdvisor(final Object domainObject) {
         final Class<?> domainClass = domainObject.getClass();
