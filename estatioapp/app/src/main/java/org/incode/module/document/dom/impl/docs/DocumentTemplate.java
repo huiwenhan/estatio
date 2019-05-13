@@ -584,13 +584,6 @@ public class DocumentTemplate
 
     //region > appliesTo, newRendererModelFactory + newRendererModel, newAttachmentAdvisor + newAttachmentAdvice
 
-    private boolean applies(
-            final Applicability applicability,
-            final Class<?> domainObjectClass) {
-        final Class<?> load = classService.load(applicability.getDomainClassName());
-        return load.isAssignableFrom(domainObjectClass);
-    }
-
     private RendererModelFactory newRendererModelFactory(final Object domainObject) {
         final Class<?> domainClass = domainObject.getClass();
         return getTemplateData().newRenderModelFactory(domainClass, classService, serviceRegistry2);
