@@ -83,6 +83,7 @@ import org.incode.module.document.dom.types.FqcnType;
 
 import org.estatio.module.invoice.dom.DocumentTemplateApi;
 import org.estatio.module.invoice.dom.DocumentTemplateData;
+import org.estatio.module.invoice.dom.DocumentTypeApi;
 import org.estatio.module.invoice.dom.DocumentTypeData;
 import org.estatio.module.invoice.dom.RenderingStrategyApi;
 import org.estatio.module.invoice.dom.RenderingStrategyData;
@@ -411,10 +412,6 @@ public class DocumentTemplate
         return templateData.getNameRenderingStrategy();
     }
 
-    @Programmatic
-    public RenderingStrategyApi getNameRenderingStrategyApi() {
-        return getNameRenderingStrategyData();
-    }
 
     //region > date (property)
     public static class DateDomainEvent extends DocumentTemplate.PropertyDomainEvent<LocalDate> { }
@@ -877,7 +874,7 @@ public class DocumentTemplate
 
         // subject
         final RendererFromCharsToChars nameRenderer =
-                (RendererFromCharsToChars) getNameRenderingStrategyApi().newRenderer(
+                (RendererFromCharsToChars) getNameRenderingStrategyData().newRenderer(
                         classService, serviceRegistry2);
         String renderedDocumentName;
         try {
