@@ -85,7 +85,6 @@ import org.estatio.module.invoice.dom.DocumentTemplateApi;
 import org.estatio.module.invoice.dom.DocumentTemplateData;
 import org.estatio.module.invoice.dom.DocumentTypeApi;
 import org.estatio.module.invoice.dom.DocumentTypeData;
-import org.estatio.module.invoice.dom.RenderingStrategyApi;
 import org.estatio.module.invoice.dom.RenderingStrategyData;
 
 import lombok.Getter;
@@ -901,7 +900,7 @@ public class DocumentTemplate
             final Object contentDataModel) {
         final String documentName = determineDocumentName(contentDataModel);
         document.setName(documentName);
-        final RenderingStrategyApi renderingStrategy = getContentRenderingStrategyData();
+        final RenderingStrategyData renderingStrategy = getContentRenderingStrategyData();
         final String variant = "content";
         try {
 
