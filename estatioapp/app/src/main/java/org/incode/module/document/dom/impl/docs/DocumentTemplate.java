@@ -81,7 +81,6 @@ import org.incode.module.document.dom.spi.RendererModelFactoryClassNameService;
 import org.incode.module.document.dom.types.AtPathType;
 import org.incode.module.document.dom.types.FqcnType;
 
-import org.estatio.module.invoice.dom.DocumentTemplateApi;
 import org.estatio.module.invoice.dom.DocumentTemplateData;
 import org.estatio.module.invoice.dom.DocumentTypeApi;
 import org.estatio.module.invoice.dom.DocumentTypeData;
@@ -384,11 +383,6 @@ public class DocumentTemplate
     private String atPathCopy;
     //endregion
 
-
-    @Programmatic
-    public DocumentTemplateApi getTemplateApi() {
-        return getTemplateData();
-    }
 
 
     @Programmatic
@@ -707,7 +701,7 @@ public class DocumentTemplate
 
     private RendererModelFactory newRendererModelFactory(final Object domainObject) {
         final Class<?> domainClass = domainObject.getClass();
-        return getTemplateApi().newRenderModelFactory(domainClass, classService, serviceRegistry2);
+        return getTemplateData().newRenderModelFactory(domainClass, classService, serviceRegistry2);
     }
 
     public RendererModelFactory newRenderModelFactory(
@@ -726,7 +720,7 @@ public class DocumentTemplate
     @Programmatic
     public AttachmentAdvisor newAttachmentAdvisor(final Object domainObject) {
         final Class<?> domainClass = domainObject.getClass();
-        return getTemplateApi().newAttachmentAdvisor(domainClass, classService, serviceRegistry2);
+        return getTemplateData().newAttachmentAdvisor(domainClass, classService, serviceRegistry2);
     }
 
     @Programmatic
