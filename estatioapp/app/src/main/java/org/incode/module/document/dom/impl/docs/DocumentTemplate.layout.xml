@@ -104,11 +104,7 @@
                                 </cpt:property>
                             </cpt:fieldSet>
                             <cpt:fieldSet name="Template" id="subjectTemplate">
-                                <cpt:property id="nameText" hidden="ALL_TABLES">
-                                    <cpt:action id="updateNameText">
-                                        <cpt:named>Update</cpt:named>
-                                    </cpt:action>
-                                </cpt:property>
+                                <cpt:property id="nameText" hidden="ALL_TABLES"/>
                             </cpt:fieldSet>
                         </bs3:col>
                     </bs3:row>
