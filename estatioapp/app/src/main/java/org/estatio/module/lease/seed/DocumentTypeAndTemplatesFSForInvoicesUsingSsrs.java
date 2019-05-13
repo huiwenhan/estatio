@@ -124,7 +124,7 @@ public class DocumentTypeAndTemplatesFSForInvoicesUsingSsrs extends DocumentTemp
         upsertDocumentTemplateForTextHtmlWithApplicability(
                 docTypeForPrelimCoverNote, docTypeDataForPrelimCoverNote,
                 templateDate, ApplicationTenancy_enum.Global.getPath(), null,
-                contentText, fmkRenderingStrategy,
+                contentText,
                 subjLneText, fmkRenderingStrategy,
                 Document.class,
                 FreemarkerModelOfPrelimLetterOrInvoiceDocForEmailCover.class,
@@ -136,7 +136,7 @@ public class DocumentTypeAndTemplatesFSForInvoicesUsingSsrs extends DocumentTemp
         upsertDocumentTemplateForTextHtmlWithApplicability(
                 docTypeForPrelimCoverNote, docTypeDataForPrelimCoverNote,
                 templateDate, ApplicationTenancy_enum.It.getPath(), " (Italy)",
-                contentText, fmkRenderingStrategy,
+                contentText,
                 subjLneText, fmkRenderingStrategy,
                 Document.class,
                 FreemarkerModelOfPrelimLetterOrInvoiceDocForEmailCover.class,
@@ -157,7 +157,6 @@ public class DocumentTypeAndTemplatesFSForInvoicesUsingSsrs extends DocumentTemp
                         + "PreliminaryLetterV2"
                         + "&id=${this.id}"
                         + "&rs:Command=Render&rs:Format=PDF",
-                sipcRenderingStrategy,
                 titleText,
                 siRenderingStrategy,
                 Invoice.class,
@@ -176,7 +175,6 @@ public class DocumentTypeAndTemplatesFSForInvoicesUsingSsrs extends DocumentTemp
                         + "PreliminaryLetterV2"
                         + "&id=${this.id}"
                         + "&rs:Command=Render&rs:Format=PDF",
-                sipcRenderingStrategy,
                 titleText,
                 siRenderingStrategy,
                 Invoice.class,
@@ -200,7 +198,7 @@ public class DocumentTypeAndTemplatesFSForInvoicesUsingSsrs extends DocumentTemp
         upsertDocumentTemplateForTextHtmlWithApplicability(
                 docTypeForInvoiceCoverNote, typeDataForInvoiceCoverNote,
                 templateDate, ApplicationTenancy_enum.Global.getPath(), null,
-                contentText, fmkRenderingStrategy,
+                contentText,
                 subjLneText, fmkRenderingStrategy,
                 Document.class,
                 FreemarkerModelOfPrelimLetterOrInvoiceDocForEmailCover.class,
@@ -212,7 +210,7 @@ public class DocumentTypeAndTemplatesFSForInvoicesUsingSsrs extends DocumentTemp
         upsertDocumentTemplateForTextHtmlWithApplicability(
                 docTypeForInvoiceCoverNote, typeDataForInvoiceCoverNote,
                 templateDate, ApplicationTenancy_enum.It.getPath(), " (Italy)",
-                contentText, fmkRenderingStrategy,
+                contentText,
                 subjLneText, fmkRenderingStrategy,
                 Document.class,
                 FreemarkerModelOfPrelimLetterOrInvoiceDocForEmailCover.class,
@@ -234,7 +232,6 @@ public class DocumentTypeAndTemplatesFSForInvoicesUsingSsrs extends DocumentTemp
                 + "InvoiceItaly"
                 + "&id=${this.id}"
                 + "&rs:Command=Render&rs:Format=PDF",
-                sipcRenderingStrategy,
                 titleText, siRenderingStrategy,
                 Invoice.class,
                 StringInterpolatorToSsrsUrlOfInvoice.class,
@@ -253,7 +250,6 @@ public class DocumentTypeAndTemplatesFSForInvoicesUsingSsrs extends DocumentTemp
                 + "InvoiceItaly"
                 + "&id=${this.id}"
                 + "&rs:Command=Render&rs:Format=PDF",
-                sipcRenderingStrategy,
                 titleText, siRenderingStrategy,
                 Invoice.class,
                 StringInterpolatorToSsrsUrlOfInvoice.class,
@@ -290,7 +286,6 @@ public class DocumentTypeAndTemplatesFSForInvoicesUsingSsrs extends DocumentTemp
                 + "Invoices"
                 + "&dueDate=${this.dueDate}&${this.seller.id}&atPath=${this.atPath}"
                 + "&rs:Command=Render&rs:Format=PDF",
-                sipcRenderingStrategy,
                 "Invoices overview",
                 siRenderingStrategy,
                 InvoiceSummaryForPropertyDueDateStatus.class,
@@ -309,7 +304,6 @@ public class DocumentTypeAndTemplatesFSForInvoicesUsingSsrs extends DocumentTemp
                 + "PreliminaryLetterV2"
                 + "&dueDate=${this.dueDate}&sellerId=${this.seller.id}&atPath=${this.atPath}"
                 + "&rs:Command=Render&rs:Format=PDF",
-                sipcRenderingStrategy,
                 "Preliminary letter for Invoices",
                 siRenderingStrategy,
                 InvoiceSummaryForPropertyDueDateStatus.class,
@@ -328,7 +322,6 @@ public class DocumentTypeAndTemplatesFSForInvoicesUsingSsrs extends DocumentTemp
                 + "PreliminaryLetterV2"
                 + "&dueDate=${this.dueDate}&sellerId=${this.seller.id}&atPath=${this.atPath}"
                 + "&rs:Command=Render&rs:Format=PDF",
-                sipcRenderingStrategy,
                 "Preliminary Invoice for Seller",
                 siRenderingStrategy,
                 InvoiceSummaryForPropertyDueDateStatus.class,
@@ -345,7 +338,7 @@ public class DocumentTypeAndTemplatesFSForInvoicesUsingSsrs extends DocumentTemp
             final String atPath,
             final String templateNameSuffixIfAny,
             final boolean previewOnly,
-            final String contentText, final RenderingStrategy contentRenderingStrategy,
+            final String contentText,
             final String nameText, final RenderingStrategy nameRenderingStrategy,
             final Class<?> applicableToClass,
             final Class<? extends RendererModelFactory> rendererModelFactoryClass,
@@ -354,8 +347,8 @@ public class DocumentTypeAndTemplatesFSForInvoicesUsingSsrs extends DocumentTemp
 
         final DocumentTemplate template =
                 upsertTemplateForPdf(documentType, typeData, templateDate, atPath, templateNameSuffixIfAny, previewOnly,
-				        contentText, contentRenderingStrategy, 
-						nameText, nameRenderingStrategy, 
+				        contentText,
+                        nameText, nameRenderingStrategy,
 						executionContext);
 
         mixin(DocumentTemplate._applicable.class, template)
@@ -371,7 +364,7 @@ public class DocumentTypeAndTemplatesFSForInvoicesUsingSsrs extends DocumentTemp
             final String atPath,
             final String templateNameSuffixIfAny,
             final boolean previewOnly,
-            final String contentText, final RenderingStrategy contentRenderingStrategy,
+            final String contentText,
             final String nameText, final RenderingStrategy nameRenderingStrategy,
             final ExecutionContext executionContext) {
 
@@ -381,7 +374,7 @@ public class DocumentTypeAndTemplatesFSForInvoicesUsingSsrs extends DocumentTemp
                 previewOnly,
                 buildTemplateName(typeData, docType, templateNameSuffixIfAny),
                 MimeTypeData.APPLICATION_PDF.asStr(),
-                contentText, contentRenderingStrategy,
+                contentText,
                 nameText, nameRenderingStrategy,
                 executionContext);
     }
@@ -393,7 +386,6 @@ public class DocumentTypeAndTemplatesFSForInvoicesUsingSsrs extends DocumentTemp
             final String atPath,
             final String nameSuffixIfAny,
             final String contentText,
-            final RenderingStrategy contentRenderingStrategy,
             final String nameText,
             final RenderingStrategy nameRenderingStrategy,
             final Class<?> domainClass,
@@ -406,7 +398,7 @@ public class DocumentTypeAndTemplatesFSForInvoicesUsingSsrs extends DocumentTemp
                 docType, typeData, templateDate, atPath,
                 ".html",
                 false,
-                clob, contentRenderingStrategy,
+                clob,
                 nameText, nameRenderingStrategy,
                 executionContext);
 

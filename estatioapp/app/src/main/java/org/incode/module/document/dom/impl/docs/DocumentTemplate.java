@@ -200,10 +200,9 @@ public class DocumentTemplate
             final String fileSuffix,
             final boolean previewOnly,
             final Blob blob,
-            final RenderingStrategy contentRenderingStrategy,
             final String subjectText,
             final RenderingStrategy subjectRenderingStrategy) {
-        this(type, typeData, date, atPath, fileSuffix, previewOnly, contentRenderingStrategy, subjectText, subjectRenderingStrategy);
+        this(type, typeData, date, atPath, fileSuffix, previewOnly, subjectText, subjectRenderingStrategy);
         modifyBlob(blob);
     }
 
@@ -215,10 +214,9 @@ public class DocumentTemplate
             final String fileSuffix,
             final boolean previewOnly,
             final String name, final String mimeType, final String text,
-            final RenderingStrategy contentRenderingStrategy,
             final String subjectText,
             final RenderingStrategy subjectRenderingStrategy) {
-        this(type, typeData, date, atPath, fileSuffix, previewOnly, contentRenderingStrategy, subjectText, subjectRenderingStrategy);
+        this(type, typeData, date, atPath, fileSuffix, previewOnly, subjectText, subjectRenderingStrategy);
         setTextData(name, mimeType, text);
     }
 
@@ -230,10 +228,9 @@ public class DocumentTemplate
             final String fileSuffix,
             final boolean previewOnly,
             final Clob clob,
-            final RenderingStrategy contentRenderingStrategy,
             final String subjectText,
             final RenderingStrategy subjectRenderingStrategy) {
-        this(type, typeData, date, atPath, fileSuffix, previewOnly, contentRenderingStrategy, subjectText, subjectRenderingStrategy);
+        this(type, typeData, date, atPath, fileSuffix, previewOnly, subjectText, subjectRenderingStrategy);
         modifyClob(clob);
     }
 
@@ -244,7 +241,6 @@ public class DocumentTemplate
             final String atPath,
             final String fileSuffix,
             final boolean previewOnly,
-            final RenderingStrategy contentRenderingStrategy,
             final String nameText,
             final RenderingStrategy nameRenderingStrategy) {
         super(type, typeData, atPath);
@@ -256,7 +252,6 @@ public class DocumentTemplate
         this.date = date;
         this.fileSuffix = stripLeadingDotAndLowerCase(fileSuffix);
         this.previewOnly = previewOnly;
-        this.contentRenderingStrategy = contentRenderingStrategy;
         this.nameText = nameText;
         this.nameRenderingStrategy = nameRenderingStrategy;
     }
@@ -312,11 +307,6 @@ public class DocumentTemplate
     @Column(allowsNull = "false")
     @Property(editing = Editing.DISABLED)
     private LocalDate date;
-
-    @Getter @Setter
-    @Column(allowsNull = "false", name = "contentRenderStrategyId")
-    @Property(editing = Editing.DISABLED)
-    private RenderingStrategy contentRenderingStrategy;
 
     @Getter @Setter
     @Column(allowsNull = "false", length = FileSuffixType.Meta.MAX_LEN)

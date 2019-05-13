@@ -110,7 +110,7 @@ public class DocumentTemplateFSForOrderConfirm extends DocumentTemplateFSAbstrac
                 documentType, typeData, templateDate, It.getPath(),
                 ".docx",
                 false,
-                contentBlob, xddRenderingStrategy,
+                contentBlob,
                 nameChars, fmkRenderingStrategy,
                 ec);
 

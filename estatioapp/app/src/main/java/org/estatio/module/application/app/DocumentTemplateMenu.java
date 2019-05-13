@@ -95,7 +95,6 @@ public class DocumentTemplateMenu extends UdoDomainService<DocumentTemplateMenu>
         final String documentName = name != null? name : type.getName();
         return documentTemplateRepository.createText(
                 type, typeData, date, applicationTenancy.getPath(), fileSuffix, previewOnly, documentName, mimeType, templateText,
-                contentRenderingStrategy,
                 subjectText, subjectRenderingStrategy);
     }
 
@@ -153,7 +152,7 @@ public class DocumentTemplateMenu extends UdoDomainService<DocumentTemplateMenu>
             @ParameterLayout(named = "Preview only?") final boolean previewOnly) {
 
         final DocumentTemplate template = documentTemplateRepository.createClob(
-                type, typeData, date, applicationTenancy.getPath(), fileSuffix, previewOnly, clob, contentRenderingStrategy, subjectText,
+                type, typeData, date, applicationTenancy.getPath(), fileSuffix, previewOnly, clob, subjectText,
                 subjectRenderingStrategy);
         if(name != null) {
             template.setName(name);
@@ -210,7 +209,7 @@ public class DocumentTemplateMenu extends UdoDomainService<DocumentTemplateMenu>
 
         final DocumentTemplate template = documentTemplateRepository.createBlob(
                 type, typeData, date, applicationTenancy.getPath(), fileSuffix, previewOnly, blob,
-                contentRenderingStrategy, subjectText, subjectRenderingStrategy);
+                subjectText, subjectRenderingStrategy);
         if(name != null) {
             template.setName(name);
         }

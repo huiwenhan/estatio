@@ -45,14 +45,12 @@ public class DocumentTemplateRepository {
             final String fileSuffix,
             final boolean previewOnly,
             final Blob blob,
-            final RenderingStrategy contentRenderingStrategy,
             final String subjectText,
             final RenderingStrategy subjectRenderingStrategy) {
         final DocumentTemplate document =
                 new DocumentTemplate(
                         type, typeData, date, atPath,
                         fileSuffix, previewOnly, blob,
-                        contentRenderingStrategy,
                         subjectText, subjectRenderingStrategy);
         repositoryService.persistAndFlush(document);
         return document;
@@ -67,14 +65,12 @@ public class DocumentTemplateRepository {
             final String fileSuffix,
             final boolean previewOnly,
             final Clob clob,
-            final RenderingStrategy contentRenderingStrategy,
             final String subjectText,
             final RenderingStrategy subjectRenderingStrategy) {
         final DocumentTemplate document =
                 new DocumentTemplate(
                         type, typeData, date, atPath,
                         fileSuffix, previewOnly, clob,
-                        contentRenderingStrategy,
                         subjectText, subjectRenderingStrategy);
         repositoryService.persistAndFlush(document);
         return document;
@@ -91,7 +87,6 @@ public class DocumentTemplateRepository {
             final String name,
             final String mimeType,
             final String text,
-            final RenderingStrategy contentRenderingStrategy,
             final String subjectText,
             final RenderingStrategy subjectRenderingStrategy) {
         final DocumentTemplate document =
@@ -99,7 +94,6 @@ public class DocumentTemplateRepository {
                         type, typeData, date, atPath,
                         fileSuffix, previewOnly,
                         name, mimeType, text,
-                        contentRenderingStrategy,
                         subjectText, subjectRenderingStrategy);
         repositoryService.persistAndFlush(document);
         return document;
