@@ -3,7 +3,6 @@ package org.incode.module.document.dom.impl.docs;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-import java.util.Optional;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -20,8 +19,6 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Queries;
 import javax.jdo.annotations.Unique;
 import javax.jdo.annotations.Uniques;
-
-import com.google.common.collect.Lists;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.LocalDate;
@@ -587,18 +584,6 @@ public class DocumentTemplate
 
     //region > appliesTo, newRendererModelFactory + newRendererModel, newAttachmentAdvisor + newAttachmentAdvice
 
-    /**
-     * TODO: only called by DocumentTemplateEquivalenceIntegTest, so eventually should be able to delete (along with Applicable etc).
-     */
-    @Programmatic
-    public Optional<Applicability> applicableTo(final Class<?> domainObjectClass) {
-        return Lists.newArrayList(getAppliesTo()).stream()
-                .filter(applicability -> applies(applicability, domainObjectClass)).findFirst();
-    }
-
-    /**
-     * TODO: only called indirectly by {@link #applicableTo(Class)}, itself called only by test code, so should be able to delete.
-     */
     private boolean applies(
             final Applicability applicability,
             final Class<?> domainObjectClass) {
