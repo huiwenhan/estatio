@@ -179,8 +179,7 @@ import lombok.Setter;
         bookmarking = BookmarkPolicy.AS_ROOT
 )
 public class DocumentTemplate
-        extends DocumentAbstract<DocumentTemplate>
-        implements DocumentTemplateApi {
+        extends DocumentAbstract<DocumentTemplate> {
 
 
     //region > ui event classes
@@ -720,7 +719,6 @@ public class DocumentTemplate
         return getTemplateApi().newRenderModelFactory(domainClass, classService, serviceRegistry2);
     }
 
-    @Override
     public RendererModelFactory newRenderModelFactory(
             final Class<?> domainClass,
             final ClassService classService,
