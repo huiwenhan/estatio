@@ -112,7 +112,7 @@ public abstract class DocumentAbstract<T extends DocumentAbstract> implements Co
     //endregion
 
     @Getter @Setter
-    @Column(allowsNull = "false")
+    @Column(allowsNull = "false", length = DocumentType.ReferenceType.Meta.MAX_LEN)
     @Property(
             domainEvent = TypeDomainEvent.class,
             editing = Editing.DISABLED
