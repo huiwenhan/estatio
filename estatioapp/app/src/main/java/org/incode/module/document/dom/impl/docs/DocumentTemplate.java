@@ -328,8 +328,8 @@ public class DocumentTemplate
             final String subjectText,
             final RenderingStrategy subjectRenderingStrategy) {
         super(type, typeData, atPath);
-        modifyBlob(blob);
         init(type, date, atPath, fileSuffix, previewOnly, contentRenderingStrategy, subjectText, subjectRenderingStrategy);
+        modifyBlob(blob);
     }
 
     public DocumentTemplate(
@@ -344,8 +344,8 @@ public class DocumentTemplate
             final String subjectText,
             final RenderingStrategy subjectRenderingStrategy) {
         super(type, typeData, atPath);
-        setTextData(name, mimeType, text);
         init(type, date, atPath, fileSuffix, previewOnly, contentRenderingStrategy, subjectText, subjectRenderingStrategy);
+        setTextData(name, mimeType, text);
     }
 
     public DocumentTemplate(
@@ -360,8 +360,8 @@ public class DocumentTemplate
             final String subjectText,
             final RenderingStrategy subjectRenderingStrategy) {
         super(type, typeData, atPath);
-        modifyClob(clob);
         init(type, date, atPath, fileSuffix, previewOnly, contentRenderingStrategy, subjectText, subjectRenderingStrategy);
+        modifyClob(clob);
     }
 
     private void init(
