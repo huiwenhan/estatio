@@ -22,13 +22,10 @@ import javax.jdo.annotations.Unique;
 import javax.jdo.annotations.Uniques;
 
 import com.google.common.collect.Lists;
-import com.google.common.eventbus.Subscribe;
 
 import org.apache.commons.lang3.StringUtils;
-import org.axonframework.eventhandling.annotation.EventHandler;
 import org.joda.time.LocalDate;
 
-import org.apache.isis.applib.AbstractSubscriber;
 import org.apache.isis.applib.ApplicationException;
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
@@ -37,11 +34,9 @@ import org.apache.isis.applib.annotation.Collection;
 import org.apache.isis.applib.annotation.Contributed;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
-import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.Editing;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Mixin;
-import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.Programmatic;
@@ -52,12 +47,10 @@ import org.apache.isis.applib.services.background.BackgroundService2;
 import org.apache.isis.applib.services.factory.FactoryService;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 import org.apache.isis.applib.services.registry.ServiceRegistry2;
-import org.apache.isis.applib.services.title.TitleService;
 import org.apache.isis.applib.services.xactn.TransactionService;
 import org.apache.isis.applib.value.Blob;
 import org.apache.isis.applib.value.Clob;
 
-import org.incode.module.document.DocumentModule;
 import org.incode.module.document.dom.impl.applicability.Applicability;
 import org.incode.module.document.dom.impl.applicability.ApplicabilityRepository;
 import org.incode.module.document.dom.impl.applicability.AttachmentAdvisor;
@@ -171,95 +164,25 @@ import lombok.Setter;
         editing = Editing.DISABLED
 )
 @DomainObjectLayout(
-        titleUiEvent = DocumentTemplate.TitleUiEvent.class,
-        iconUiEvent = DocumentTemplate.IconUiEvent.class,
-        cssClassUiEvent = DocumentTemplate.CssClassUiEvent.class,
         bookmarking = BookmarkPolicy.AS_ROOT
 )
 public class DocumentTemplate
         extends DocumentAbstract<DocumentTemplate> {
 
 
-    //region > ui event classes
-    public static class TitleUiEvent extends DocumentModule.TitleUiEvent<DocumentTemplate>{}
-    public static class IconUiEvent extends DocumentModule.IconUiEvent<DocumentTemplate>{}
-    public static class CssClassUiEvent extends DocumentModule.CssClassUiEvent<DocumentTemplate>{}
-    //endregion
-
     //region > title, icon, cssClass
-    /**
-     * Implemented as a subscriber so can be overridden by consuming application if required.
-     */
-    @DomainService(nature = NatureOfService.DOMAIN)
-    public static class TitleSubscriber extends AbstractSubscriber {
-
-        public String getId() {
-            return "incodeDocuments.DocumentTemplate$TitleSubscriber";
-        }
-
-        @EventHandler
-        @Subscribe
-        public void on(DocumentTemplate.TitleUiEvent ev) {
-            if(ev.getTitle() != null) {
-                return;
-            }
-            ev.setTranslatableTitle(titleOf(ev.getSource()));
-        }
-        private TranslatableString titleOf(final DocumentTemplate template) {
-            if(template.getDate() != null) {
-                return TranslatableString.tr("[{type}] ({date})",
-                        "type", template.getType().getReference(),
-                        "date", template.getDate());
-            } else {
-                return TranslatableString.tr("[{type}] {name}",
-                        "name", template.getName(),
-                        "type", template.getType().getReference());
-            }
-        }
-        @Inject
-        TitleService titleService;
-    }
-
-    /**
-     * Implemented as a subscriber so can be overridden by consuming application if required.
-     */
-    @DomainService(nature = NatureOfService.DOMAIN)
-    public static class IconSubscriber extends AbstractSubscriber {
-
-        public String getId() {
-            return "incodeDocuments.DocumentTemplate$IconSubscriber";
-        }
-
-        @EventHandler
-        @Subscribe
-        public void on(DocumentTemplate.IconUiEvent ev) {
-            if(ev.getIconName() != null) {
-                return;
-            }
-            ev.setIconName("");
+    public TranslatableString title() {
+        if(this.getDate() != null) {
+            return TranslatableString.tr("[{type}] ({date})",
+                    "type", this.getType().getReference(),
+                    "date", this.getDate());
+        } else {
+            return TranslatableString.tr("[{type}] {name}",
+                    "name", this.getName(),
+                    "type", this.getType().getReference());
         }
     }
 
-    /**
-     * Implemented as a subscriber so can be overridden by consuming application if required.
-     */
-    @DomainService(nature = NatureOfService.DOMAIN)
-    public static class CssClassSubscriber extends AbstractSubscriber {
-
-        public String getId() {
-            return "incodeDocuments.DocumentTemplate$CssClassSubscriber";
-        }
-
-        @EventHandler
-        @Subscribe
-        public void on(DocumentTemplate.CssClassUiEvent ev) {
-            if(ev.getCssClass() != null) {
-                return;
-            }
-            ev.setCssClass("");
-        }
-    }
-    //endregion
 
     //region > constructor
 
