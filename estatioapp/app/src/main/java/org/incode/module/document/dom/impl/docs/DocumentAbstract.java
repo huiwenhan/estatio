@@ -111,9 +111,13 @@ public abstract class DocumentAbstract<T extends DocumentAbstract> implements Co
     @Property(editing = Editing.DISABLED)
     private DocumentTypeData typeData;
 
+    public static class AtPathDomainEvent extends PropertyDomainEvent<String> { }
     @Getter @Setter
     @Column(allowsNull = "false", length = AtPathType.Meta.MAX_LEN)
-    @Property(editing = Editing.DISABLED)
+    @Property(
+            domainEvent = AtPathDomainEvent.class,
+            editing = Editing.DISABLED
+    )
     @PropertyLayout(named = "Application tenancy")
     private String atPath;
 
