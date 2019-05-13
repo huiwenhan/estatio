@@ -184,23 +184,6 @@ public class DocumentTemplate
         implements DocumentTemplateApi {
 
     enum Toggle {
-        ENTITIES {
-            @Override public DocumentTemplateApi getTemplateApi(final DocumentTemplate documentTemplate) {
-                return documentTemplate;
-            }
-
-            @Override public DocumentTypeApi getTypeApi(final DocumentTemplate documentTemplate) {
-                return documentTemplate.getType();
-            }
-
-            @Override public RenderingStrategyApi getContentRenderingStrategyApi(final DocumentTemplate documentTemplate) {
-                return documentTemplate.getContentRenderingStrategy();
-            }
-
-            @Override public RenderingStrategyApi getNameRenderingStrategyApi(final DocumentTemplate documentTemplate) {
-                return documentTemplate.getNameRenderingStrategy();
-            }
-        },
         DATA {
             @Override public DocumentTemplateApi getTemplateApi(final DocumentTemplate documentTemplate) {
                 return documentTemplate.templateData;
