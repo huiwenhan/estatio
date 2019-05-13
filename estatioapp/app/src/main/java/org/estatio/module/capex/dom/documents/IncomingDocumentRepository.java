@@ -147,7 +147,12 @@ public class IncomingDocumentRepository extends DocumentRepository {
     public static class UploadDomainEvent extends ActionDomainEvent<Object> {}
 
     @Programmatic
-    public Document upsertAndArchive(final DocumentType type, final String atPath, final String name, final Blob blob){
+    public Document upsertAndArchive(
+            final DocumentType type,
+            final DocumentTypeData typeData,
+            final String atPath,
+            final String name,
+            final Blob blob){
         synchronized (this) {
 
             Document existingDocument = findExistingDocumentIfAny(name);
@@ -156,7 +161,7 @@ public class IncomingDocumentRepository extends DocumentRepository {
             }
 
             // come what may, we will create a new document
-            final Document newDocument = documentService.createForBlob(type, atPath, name, blob);
+            final Document newDocument = documentService.createForBlob(type, typeData, atPath, name, blob);
 
 
             // if there was an existing document, then

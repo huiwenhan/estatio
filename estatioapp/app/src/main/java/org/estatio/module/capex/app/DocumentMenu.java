@@ -34,7 +34,6 @@ import org.apache.isis.applib.annotation.Optionality;
 import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.services.clock.ClockService;
-import org.apache.isis.applib.services.eventbus.EventBusService;
 import org.apache.isis.applib.value.Blob;
 
 import org.isisaddons.module.security.app.user.MeService;
@@ -90,14 +89,15 @@ public class DocumentMenu extends UdoDomainService<DocumentMenu> {
     @MemberOrder(sequence = "3")
     public Document upload(final Blob blob) {
         final String name = blob.getName();
-        final DocumentType type = DocumentTypeData.INCOMING.findUsing(documentTypeRepository);
+        final DocumentTypeData typeDataForIncoming = DocumentTypeData.INCOMING;
+        final DocumentType type = typeDataForIncoming.findUsing(documentTypeRepository);
         final ApplicationUser me = meService.me();
         String atPath = me != null ? me.getFirstAtPathUsingSeparator(';') : null;
         if (atPath == null) {
             atPath = "/";
         }
         atPath = documentBarcodeService.overrideUserAtPathUsingDocumentName(atPath, name);
-        return incomingDocumentRepository.upsertAndArchive(type, atPath, name, blob);
+        return incomingDocumentRepository.upsertAndArchive(type, typeDataForIncoming, atPath, name, blob);
     }
 
     @Inject

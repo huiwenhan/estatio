@@ -16,6 +16,8 @@ import org.apache.isis.applib.services.repository.RepositoryService;
 
 import org.incode.module.document.dom.impl.types.DocumentType;
 
+import org.estatio.module.invoice.dom.DocumentTypeData;
+
 @DomainService(
         nature = NatureOfService.DOMAIN,
         repositoryFor = DocumentAbstract.class
@@ -30,11 +32,12 @@ public class DocumentRepository {
     @Programmatic
     public Document create(
             final DocumentType type,
+            final DocumentTypeData typeData,
             final String atPath,
             final String documentName,
             final String mimeType) {
         final DateTime createdAt = clockService.nowAsDateTime();
-        final Document document = new Document(type, atPath, documentName, mimeType, createdAt);
+        final Document document = new Document(type, typeData, atPath, documentName, mimeType, createdAt);
         repositoryService.persist(document);
         return document;
     }

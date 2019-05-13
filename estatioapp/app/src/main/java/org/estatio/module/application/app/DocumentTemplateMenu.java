@@ -53,6 +53,7 @@ import org.incode.module.document.dom.types.NameType;
 
 import org.estatio.module.base.dom.UdoDomainService;
 import org.estatio.module.base.dom.apptenancy.EstatioApplicationTenancyRepository;
+import org.estatio.module.invoice.dom.DocumentTypeData;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
@@ -75,50 +76,43 @@ public class DocumentTemplateMenu extends UdoDomainService<DocumentTemplateMenu>
     @MemberOrder(sequence = "1")
     public DocumentTemplate newTextTemplate(
             final DocumentType type,
-            @ParameterLayout(named = "Date", describedAs = "Date that this template comes into effect")
-            final LocalDate date,
+            final DocumentTypeData typeData,
+            @ParameterLayout(named = "Date", describedAs = "Date that this template comes into effect") final LocalDate date,
             @Parameter(optionality = Optionality.OPTIONAL, maxLength = NameType.Meta.MAX_LEN)
-            @ParameterLayout(named = "Name", describedAs = "Optional, will defaults to the name of selected document type")
-            final String name,
+            @ParameterLayout(named = "Name", describedAs = "Optional, will defaults to the name of selected document type") final String name,
             @Parameter(maxLength = DocumentAbstract.MimeTypeType.Meta.MAX_LEN, mustSatisfy = DocumentAbstract.MimeTypeType.Meta.Specification.class)
-            @ParameterLayout(named = "MIME type")
-            final String mimeType,
+            @ParameterLayout(named = "MIME type") final String mimeType,
             @Parameter(maxLength = DocumentTemplate.FileSuffixType.Meta.MAX_LEN)
-            @ParameterLayout(named = "File suffix", describedAs = "The file suffix for any documents created from this template")
-            final String fileSuffix,
+            @ParameterLayout(named = "File suffix", describedAs = "The file suffix for any documents created from this template") final String fileSuffix,
             final ApplicationTenancy applicationTenancy,
-            @ParameterLayout(named = "Text", multiLine = DocumentModule.Constants.TEXT_MULTILINE)
-            final String templateText,
-            @ParameterLayout(named = "Content Rendering Strategy")
-            final RenderingStrategy contentRenderingStrategy,
+            @ParameterLayout(named = "Text", multiLine = DocumentModule.Constants.TEXT_MULTILINE) final String templateText,
+            @ParameterLayout(named = "Content Rendering Strategy") final RenderingStrategy contentRenderingStrategy,
             @Parameter(maxLength = DocumentTemplate.NameTextType.Meta.MAX_LEN)
-            @ParameterLayout(named = "Subject text")
-            final String subjectText,
-            @ParameterLayout(named = "Subject rendering strategy")
-            final RenderingStrategy subjectRenderingStrategy,
-            @ParameterLayout(named = "Preview only?")
-            final boolean previewOnly) {
+            @ParameterLayout(named = "Subject text") final String subjectText,
+            @ParameterLayout(named = "Subject rendering strategy") final RenderingStrategy subjectRenderingStrategy,
+            @ParameterLayout(named = "Preview only?") final boolean previewOnly) {
 
         final String documentName = name != null? name : type.getName();
         return documentTemplateRepository.createText(
-                type, date, applicationTenancy.getPath(), fileSuffix, previewOnly, documentName, mimeType, templateText,
+                type, typeData, date, applicationTenancy.getPath(), fileSuffix, previewOnly, documentName, mimeType, templateText,
                 contentRenderingStrategy,
                 subjectText, subjectRenderingStrategy);
     }
 
-    public String default3NewTextTemplate() {
+    public String default4NewTextTemplate() {
         return MimeTypeData.TEXT_HTML.asStr();
     }
-    public String default4NewTextTemplate() {
+    public String default5NewTextTemplate() {
         return "html";
     }
-    public List<ApplicationTenancy> choices5NewTextTemplate() {
+    public List<ApplicationTenancy> choices6NewTextTemplate() {
         return estatioApplicationTenancyRepository.allTenancies();
     }
 
 
     public TranslatableString validateNewTextTemplate(
             final DocumentType proposedType,
+            final DocumentTypeData typeData,
             final LocalDate proposedDate,
             final String name,
             final String mimeType,
@@ -132,7 +126,7 @@ public class DocumentTemplateMenu extends UdoDomainService<DocumentTemplateMenu>
 
         final DocumentSort documentSort = DocumentSort.TEXT;
 
-        return validateNewTemplate(proposedType, proposedDate, proposedApplicationTenancy, contentRenderingStrategy,
+        return validateNewTemplate(proposedType, typeData, proposedDate, proposedApplicationTenancy, contentRenderingStrategy,
                 documentSort);
     }
 
@@ -144,28 +138,22 @@ public class DocumentTemplateMenu extends UdoDomainService<DocumentTemplateMenu>
     @MemberOrder(sequence = "2")
     public DocumentTemplate newClobTemplate(
             final DocumentType type,
-            @ParameterLayout(named = "Date", describedAs = "Date that this template comes into effect")
-            final LocalDate date,
+            final DocumentTypeData typeData,
+            @ParameterLayout(named = "Date", describedAs = "Date that this template comes into effect") final LocalDate date,
             @Parameter(optionality = Optionality.OPTIONAL, maxLength = NameType.Meta.MAX_LEN)
-            @ParameterLayout(named = "Name", describedAs = "Optional, will default to the file name of the uploaded Clob")
-            final String name,
+            @ParameterLayout(named = "Name", describedAs = "Optional, will default to the file name of the uploaded Clob") final String name,
             @Parameter(maxLength = DocumentTemplate.FileSuffixType.Meta.MAX_LEN)
-            @ParameterLayout(named = "File suffix", describedAs = "The file suffix for any documents created from this template")
-            final String fileSuffix,
+            @ParameterLayout(named = "File suffix", describedAs = "The file suffix for any documents created from this template") final String fileSuffix,
             final ApplicationTenancy applicationTenancy,
-            @Parameter(optionality = Optionality.OPTIONAL)
-            final Clob clob,
+            @Parameter(optionality = Optionality.OPTIONAL) final Clob clob,
             final RenderingStrategy contentRenderingStrategy,
             @Parameter(maxLength = DocumentTemplate.NameTextType.Meta.MAX_LEN)
-            @ParameterLayout(named = "Subject text")
-            final String subjectText,
-            @ParameterLayout(named = "Subject rendering strategy")
-            final RenderingStrategy subjectRenderingStrategy,
-            @ParameterLayout(named = "Preview only?")
-            final boolean previewOnly) {
+            @ParameterLayout(named = "Subject text") final String subjectText,
+            @ParameterLayout(named = "Subject rendering strategy") final RenderingStrategy subjectRenderingStrategy,
+            @ParameterLayout(named = "Preview only?") final boolean previewOnly) {
 
         final DocumentTemplate template = documentTemplateRepository.createClob(
-                type, date, applicationTenancy.getPath(), fileSuffix, previewOnly, clob, contentRenderingStrategy, subjectText,
+                type, typeData, date, applicationTenancy.getPath(), fileSuffix, previewOnly, clob, contentRenderingStrategy, subjectText,
                 subjectRenderingStrategy);
         if(name != null) {
             template.setName(name);
@@ -173,13 +161,14 @@ public class DocumentTemplateMenu extends UdoDomainService<DocumentTemplateMenu>
         return template;
     }
 
-    public List<ApplicationTenancy> choices4NewClobTemplate() {
+    public List<ApplicationTenancy> choices5NewClobTemplate() {
         return estatioApplicationTenancyRepository.allTenancies();
     }
 
 
     public TranslatableString validateNewClobTemplate(
             final DocumentType proposedType,
+            final DocumentTypeData typeData,
             final LocalDate proposedDate,
             final String name,
             final String fileSuffix,
@@ -193,7 +182,7 @@ public class DocumentTemplateMenu extends UdoDomainService<DocumentTemplateMenu>
         final DocumentSort documentSort = DocumentSort.CLOB;
 
         return validateNewTemplate(
-                proposedType, proposedDate, proposedApplicationTenancy, contentRenderingStrategy,
+                proposedType, typeData, proposedDate, proposedApplicationTenancy, contentRenderingStrategy,
                 documentSort);
 
     }
@@ -205,28 +194,22 @@ public class DocumentTemplateMenu extends UdoDomainService<DocumentTemplateMenu>
     @MemberOrder(sequence = "3")
     public DocumentTemplate newBlobTemplate(
             final DocumentType type,
-            @ParameterLayout(named = "Date", describedAs = "Date that this template comes into effect")
-            final LocalDate date,
+            final DocumentTypeData typeData,
+            @ParameterLayout(named = "Date", describedAs = "Date that this template comes into effect") final LocalDate date,
             @Parameter(optionality = Optionality.OPTIONAL, maxLength = NameType.Meta.MAX_LEN)
-            @ParameterLayout(named = "Name", describedAs = "Optional, will default to the file name of the uploaded Blob")
-            final String name,
+            @ParameterLayout(named = "Name", describedAs = "Optional, will default to the file name of the uploaded Blob") final String name,
             @Parameter(maxLength = DocumentTemplate.FileSuffixType.Meta.MAX_LEN)
-            @ParameterLayout(named = "File suffix", describedAs = "The file suffix for any documents created from this template")
-            final String fileSuffix,
-            @Parameter(maxLength = DocumentAbstract.MimeTypeType.Meta.MAX_LEN, mustSatisfy = DocumentAbstract.MimeTypeType.Meta.Specification.class)
-            final ApplicationTenancy applicationTenancy,
+            @ParameterLayout(named = "File suffix", describedAs = "The file suffix for any documents created from this template") final String fileSuffix,
+            @Parameter(maxLength = DocumentAbstract.MimeTypeType.Meta.MAX_LEN, mustSatisfy = DocumentAbstract.MimeTypeType.Meta.Specification.class) final ApplicationTenancy applicationTenancy,
             final Blob blob,
             final RenderingStrategy contentRenderingStrategy,
             @Parameter(maxLength = DocumentTemplate.NameTextType.Meta.MAX_LEN)
-            @ParameterLayout(named = "Subject text")
-            final String subjectText,
-            @ParameterLayout(named = "Subject rendering strategy")
-            final RenderingStrategy subjectRenderingStrategy,
-            @ParameterLayout(named = "Preview only?")
-            final boolean previewOnly) {
+            @ParameterLayout(named = "Subject text") final String subjectText,
+            @ParameterLayout(named = "Subject rendering strategy") final RenderingStrategy subjectRenderingStrategy,
+            @ParameterLayout(named = "Preview only?") final boolean previewOnly) {
 
         final DocumentTemplate template = documentTemplateRepository.createBlob(
-                type, date, applicationTenancy.getPath(), fileSuffix, previewOnly, blob,
+                type, typeData, date, applicationTenancy.getPath(), fileSuffix, previewOnly, blob,
                 contentRenderingStrategy, subjectText, subjectRenderingStrategy);
         if(name != null) {
             template.setName(name);
@@ -234,13 +217,14 @@ public class DocumentTemplateMenu extends UdoDomainService<DocumentTemplateMenu>
         return template;
     }
 
-    public List<ApplicationTenancy> choices4NewBlobTemplate() {
+    public List<ApplicationTenancy> choices5NewBlobTemplate() {
         return estatioApplicationTenancyRepository.allTenancies();
     }
 
 
     public TranslatableString validateNewBlobTemplate(
             final DocumentType proposedType,
+            final DocumentTypeData typeData,
             final LocalDate proposedDate,
             final String name,
             final String fileSuffix,
@@ -254,17 +238,18 @@ public class DocumentTemplateMenu extends UdoDomainService<DocumentTemplateMenu>
         final DocumentSort documentSort = DocumentSort.BLOB;
 
         return validateNewTemplate(
-                proposedType, proposedDate, proposedApplicationTenancy, contentRenderingStrategy, documentSort);
+                proposedType, typeData, proposedDate, proposedApplicationTenancy, contentRenderingStrategy, documentSort);
     }
 
     private TranslatableString validateNewTemplate(
             final DocumentType proposedType,
+            final DocumentTypeData typeData,
             final LocalDate proposedDate,
             final ApplicationTenancy proposedApplicationTenancy,
             final RenderingStrategy proposedRenderingStrategy,
             final DocumentSort documentSort) {
         TranslatableString translatableString = documentTemplateRepository.validateApplicationTenancyAndDate(
-                proposedType, proposedApplicationTenancy.getPath(), proposedDate, null);
+                proposedType, typeData, proposedApplicationTenancy.getPath(), proposedDate, null);
         if(translatableString != null) {
             return translatableString;
         }

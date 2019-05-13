@@ -67,13 +67,15 @@ public class IncomingDocumentRepository_UpsertAndArchive_IntegTest extends Capex
     Blob itaBlob;
     Blob itaBlobDifferentContent;
 
+    DocumentTypeData typeData;
     DocumentType documentType;
     IncomingInvoice incomingInvoice;
     IncomingInvoice incomingInvoice2;
 
     @Before
     public void setUp() throws Exception {
-        documentType = DocumentTypeData.INCOMING.findUsing(documentTypeRepository);
+        typeData = DocumentTypeData.INCOMING;
+        documentType = typeData.findUsing(documentTypeRepository);
         incomingInvoice = IncomingInvoiceNoDocument_enum.invoiceForItaNoOrder.findUsing(serviceRegistry);
         incomingInvoice2 = IncomingInvoiceNoDocument_enum.invoiceForItaRecoverable.findUsing(serviceRegistry);
 
@@ -98,7 +100,7 @@ public class IncomingDocumentRepository_UpsertAndArchive_IntegTest extends Capex
 
         // when
         final Document document1 = incomingDocumentRepository
-                .upsertAndArchive(documentType, "/ITA", blob.getName(), blob);
+                .upsertAndArchive(documentType, typeData, "/ITA", blob.getName(), blob);
         transactionService.nextTransaction();
 
         // then no new paperclips, but document persisted
@@ -128,12 +130,12 @@ public class IncomingDocumentRepository_UpsertAndArchive_IntegTest extends Capex
 
         // when
         final Document document1 = incomingDocumentRepository
-                .upsertAndArchive(documentType, "/ITA", blob.getName(), blob);
+                .upsertAndArchive(documentType, typeData, "/ITA", blob.getName(), blob);
         transactionService.nextTransaction();
 
         // and when
         final Document document2 = incomingDocumentRepository
-                .upsertAndArchive(documentType, "/ITA", blob.getName(), blob);
+                .upsertAndArchive(documentType, typeData, "/ITA", blob.getName(), blob);
         transactionService.nextTransaction();
 
         // then the second identical blob is effectively ignored
@@ -370,9 +372,9 @@ public class IncomingDocumentRepository_UpsertAndArchive_IntegTest extends Capex
 
         // given
         final Document document1 = incomingDocumentRepository
-                .upsertAndArchive(documentType, "/ITA", blob.getName(), blob);
+                .upsertAndArchive(documentType, typeData, "/ITA", blob.getName(), blob);
         final Document document2 = incomingDocumentRepository
-                .upsertAndArchive(documentType, "/ITA", otherBlob.getName(), otherBlob);
+                .upsertAndArchive(documentType, typeData, "/ITA", otherBlob.getName(), otherBlob);
         paperclipRepository.attach(document1, null, incomingInvoice);
         paperclipRepository.attach(document1, "A", incomingInvoice2);
         paperclipRepository.attach(document2, "B", incomingInvoice2);
@@ -382,7 +384,7 @@ public class IncomingDocumentRepository_UpsertAndArchive_IntegTest extends Capex
 
         // when
         final Document documentReplacement = incomingDocumentRepository
-                .upsertAndArchive(documentType, "/ITA", blob.getName(), blobDifferentContent);
+                .upsertAndArchive(documentType, typeData, "/ITA", blob.getName(), blobDifferentContent);
         transactionService.nextTransaction();
 
         // then invoice1's paperclip is updated

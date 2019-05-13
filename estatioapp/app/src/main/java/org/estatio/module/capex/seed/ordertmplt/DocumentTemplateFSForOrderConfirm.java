@@ -95,10 +95,11 @@ public class DocumentTemplateFSForOrderConfirm extends DocumentTemplateFSAbstrac
         final RenderingStrategy fmkRenderingStrategy =
                 renderingStrategyRepository.findByReference(RenderingStrategies.REF_FMK);
 
-        final DocumentType documentType = upsertType(DocumentTypeData.ORDER_CONFIRM, ec);
+        final DocumentTypeData typeData = DocumentTypeData.ORDER_CONFIRM;
+        final DocumentType documentType = upsertType(typeData, ec);
         final byte[] contentBytes = loadBytesForOrderConfirmTemplateItaDocx();
 
-        final String name = buildTemplateName(documentType, "(Italy)");
+        final String name = buildTemplateName(typeData, documentType, "(Italy)");
         final String nameChars = loadCharsForOrderConfirmTemplateTitleItaFtl();
 
         final Blob contentBlob =
@@ -106,7 +107,7 @@ public class DocumentTemplateFSForOrderConfirm extends DocumentTemplateFSAbstrac
                         MimeTypeData.APPLICATION_DOCX.asStr(),
                         contentBytes);
         final DocumentTemplate documentTemplate = upsertDocumentBlobTemplate(
-                documentType, templateDate, It.getPath(),
+                documentType, typeData, templateDate, It.getPath(),
                 ".docx",
                 false,
                 contentBlob, xddRenderingStrategy,

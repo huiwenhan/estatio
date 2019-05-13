@@ -318,6 +318,7 @@ public class DocumentTemplate
 
     public DocumentTemplate(
             final DocumentType type,
+            final DocumentTypeData typeData,
             final LocalDate date,
             final String atPath,
             final String fileSuffix,
@@ -326,13 +327,14 @@ public class DocumentTemplate
             final RenderingStrategy contentRenderingStrategy,
             final String subjectText,
             final RenderingStrategy subjectRenderingStrategy) {
-        super(type, atPath);
+        super(type, typeData, atPath);
         modifyBlob(blob);
         init(type, date, atPath, fileSuffix, previewOnly, contentRenderingStrategy, subjectText, subjectRenderingStrategy);
     }
 
     public DocumentTemplate(
             final DocumentType type,
+            final DocumentTypeData typeData,
             final LocalDate date,
             final String atPath,
             final String fileSuffix,
@@ -341,13 +343,14 @@ public class DocumentTemplate
             final RenderingStrategy contentRenderingStrategy,
             final String subjectText,
             final RenderingStrategy subjectRenderingStrategy) {
-        super(type, atPath);
+        super(type, typeData, atPath);
         setTextData(name, mimeType, text);
         init(type, date, atPath, fileSuffix, previewOnly, contentRenderingStrategy, subjectText, subjectRenderingStrategy);
     }
 
     public DocumentTemplate(
             final DocumentType type,
+            final DocumentTypeData typeData,
             final LocalDate date,
             final String atPath,
             final String fileSuffix,
@@ -356,7 +359,7 @@ public class DocumentTemplate
             final RenderingStrategy contentRenderingStrategy,
             final String subjectText,
             final RenderingStrategy subjectRenderingStrategy) {
-        super(type, atPath);
+        super(type, typeData, atPath);
         modifyClob(clob);
         init(type, date, atPath, fileSuffix, previewOnly, contentRenderingStrategy, subjectText, subjectRenderingStrategy);
     }
@@ -434,14 +437,6 @@ public class DocumentTemplate
         return toggle.getTemplateApi(this);
     }
 
-    @NotPersistent
-    private DocumentTypeData typeData;
-    @Programmatic
-    public DocumentTypeData getTypeData() {
-        return typeData != null
-                ? typeData
-                : (typeData = DocumentTypeData.reverseLookup(getTypeCopy()));
-    }
 
     @Programmatic
     public DocumentTypeApi getTypeApi() {
@@ -944,7 +939,7 @@ public class DocumentTemplate
     }
 
     private Document createDocument(String documentName) {
-        return documentRepository.create(getType(), getAtPath(), documentName, getMimeType());
+        return documentRepository.create(getType(), getTypeData(), getAtPath(), documentName, getMimeType());
     }
     //endregion
 

@@ -15,6 +15,8 @@ import org.incode.module.document.dom.impl.rendering.RenderingStrategy;
 import org.incode.module.document.dom.impl.types.DocumentType;
 import org.incode.module.document.dom.impl.types.DocumentTypeRepository;
 
+import org.estatio.module.invoice.dom.DocumentTypeData;
+
 @Programmatic
 public abstract class DocumentTemplateFSAbstract extends FixtureScript {
 
@@ -45,6 +47,7 @@ public abstract class DocumentTemplateFSAbstract extends FixtureScript {
 
     protected DocumentTemplate upsertDocumentTextTemplate(
             final DocumentType documentType,
+            final DocumentTypeData typeData,
             final LocalDate date,
             final String atPath,
             final String fileSuffix,
@@ -71,7 +74,7 @@ public abstract class DocumentTemplateFSAbstract extends FixtureScript {
         } else {
             documentTemplate =
                     documentTemplateRepository.createText(
-                            documentType, date, atPath,
+                            documentType, typeData, date, atPath,
                             fileSuffix, previewOnly,
                             name, mimeType,
                             contentText, contentRenderingStrategy,
@@ -82,6 +85,7 @@ public abstract class DocumentTemplateFSAbstract extends FixtureScript {
 
     protected DocumentTemplate upsertDocumentClobTemplate(
             final DocumentType documentType,
+            final DocumentTypeData typeData,
             final LocalDate date,
             final String atPath,
             final String fileSuffix,
@@ -104,7 +108,7 @@ public abstract class DocumentTemplateFSAbstract extends FixtureScript {
         } else {
             documentTemplate =
                     documentTemplateRepository.createClob(
-                            documentType, date, atPath,
+                            documentType, typeData, date, atPath,
                             fileSuffix, previewOnly, clob,
                             contentRenderingStrategy,
                             nameText, nameRenderingStrategy);
@@ -114,6 +118,7 @@ public abstract class DocumentTemplateFSAbstract extends FixtureScript {
 
     protected DocumentTemplate upsertDocumentBlobTemplate(
             final DocumentType documentType,
+            final DocumentTypeData typeData,
             final LocalDate date,
             final String atPath,
             final String fileSuffix,
@@ -135,7 +140,7 @@ public abstract class DocumentTemplateFSAbstract extends FixtureScript {
         } else {
             documentTemplate =
                     documentTemplateRepository.createBlob(
-                            documentType, date, atPath,
+                            documentType, typeData, date, atPath,
                             fileSuffix, previewOnly, blob,
                             contentRenderingStrategy,
                             nameText, nameRenderingStrategy);
@@ -145,14 +150,15 @@ public abstract class DocumentTemplateFSAbstract extends FixtureScript {
     }
 
     protected static String buildTemplateName(
+            final DocumentTypeData typeData,
             final DocumentType docType,
             final String templateNameSuffixIfAny) {
-        return buildTemplateName(docType, templateNameSuffixIfAny, null);
+        return buildTemplateName(docType, typeData, templateNameSuffixIfAny, null);
     }
 
     protected static String buildTemplateName(
             final DocumentType docType,
-            final String templateNameSuffixIfAny,
+            final DocumentTypeData typeData, final String templateNameSuffixIfAny,
             final String extension) {
         final String name = docType.getName() + (templateNameSuffixIfAny != null ? templateNameSuffixIfAny : "");
         return extension != null

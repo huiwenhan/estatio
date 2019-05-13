@@ -18,22 +18,26 @@ import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
 import org.incode.module.document.dom.impl.types.DocumentType;
 import org.incode.module.document.dom.services.DocumentCreatorService;
 
+import org.estatio.module.invoice.dom.DocumentTypeData;
+
 @DomainService(nature = NatureOfService.DOMAIN)
 public class DocumentService {
 
     /**
+     * @param typeData
      * @param documentName - override the name of the blob (if null, then uses the blob's name)
      */
     @Programmatic
     public Document createForBlob(
             final DocumentType documentType,
+            final DocumentTypeData typeData,
             final String documentAtPath,
             String documentName,
             final Blob blob) {
         documentName = documentName != null? documentName: blob.getName();
 
         final Document document = documentRepository.create(
-                documentType, documentAtPath, documentName, blob.getMimeType().getBaseType());
+                documentType, typeData, documentAtPath, documentName, blob.getMimeType().getBaseType());
 
         document.setRenderedAt(clockService.nowAsDateTime());
         document.setState(DocumentState.RENDERED);
@@ -43,18 +47,20 @@ public class DocumentService {
     }
 
     /**
+     * @param typeData
      * @param documentName - override the name of the clob (if null, then uses the clob's name)
      */
     @Programmatic
     public Document createForClob(
             final DocumentType documentType,
+            final DocumentTypeData typeData,
             final String documentAtPath,
             String documentName,
             final Clob clob) {
         documentName = documentName != null? documentName: clob.getName();
 
         final Document document = documentRepository.create(
-                documentType, documentAtPath, documentName, clob.getMimeType().getBaseType());
+                documentType, typeData, documentAtPath, documentName, clob.getMimeType().getBaseType());
 
         document.setRenderedAt(clockService.nowAsDateTime());
         document.setState(DocumentState.RENDERED);
@@ -64,18 +70,19 @@ public class DocumentService {
     }
 
     /**
+     * @param typeData
      * @param documentName - override the name of the blob (if null, then uses the blob's name)
      */
     @Programmatic
     public Document createAndAttachDocumentForBlob(
             final DocumentType documentType,
-            final String documentAtPath,
+            final DocumentTypeData typeData, final String documentAtPath,
             String documentName,
             final Blob blob,
             final String paperclipRoleName,
             final Object paperclipAttachTo){
 
-        final Document document = createForBlob(documentType, documentAtPath, documentName, blob);
+        final Document document = createForBlob(documentType, typeData, documentAtPath, documentName, blob);
 
         paperclipRepository.attach(document, paperclipRoleName, paperclipAttachTo);
 
@@ -84,18 +91,20 @@ public class DocumentService {
 
 
     /**
+     * @param typeData
      * @param documentName - override the name of the clob (if null, then uses the clob's name)
      */
     @Programmatic
     public Document createAndAttachDocumentForClob(
             final DocumentType documentType,
+            final DocumentTypeData typeData,
             final String documentAtPath,
             String documentName,
             final Clob clob,
             final String paperclipRoleName,
             final Object paperclipAttachTo){
 
-        final Document document = createForClob(documentType, documentAtPath, documentName, clob);
+        final Document document = createForClob(documentType, typeData, documentAtPath, documentName, clob);
 
         paperclipRepository.attach(document, paperclipRoleName, paperclipAttachTo);
 

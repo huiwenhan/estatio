@@ -23,6 +23,8 @@ import org.apache.isis.applib.value.Clob;
 import org.incode.module.document.dom.impl.rendering.RenderingStrategy;
 import org.incode.module.document.dom.impl.types.DocumentType;
 
+import org.estatio.module.invoice.dom.DocumentTypeData;
+
 @DomainService(
         nature = NatureOfService.DOMAIN,
         repositoryFor = DocumentTemplate.class
@@ -37,6 +39,7 @@ public class DocumentTemplateRepository {
     @Programmatic
     public DocumentTemplate createBlob(
             final DocumentType type,
+            final DocumentTypeData typeData,
             final LocalDate date,
             final String atPath,
             final String fileSuffix,
@@ -47,7 +50,7 @@ public class DocumentTemplateRepository {
             final RenderingStrategy subjectRenderingStrategy) {
         final DocumentTemplate document =
                 new DocumentTemplate(
-                        type, date, atPath,
+                        type, typeData, date, atPath,
                         fileSuffix, previewOnly, blob,
                         contentRenderingStrategy,
                         subjectText, subjectRenderingStrategy);
@@ -58,6 +61,7 @@ public class DocumentTemplateRepository {
     @Programmatic
     public DocumentTemplate createClob(
             final DocumentType type,
+            final DocumentTypeData typeData,
             final LocalDate date,
             final String atPath,
             final String fileSuffix,
@@ -68,7 +72,7 @@ public class DocumentTemplateRepository {
             final RenderingStrategy subjectRenderingStrategy) {
         final DocumentTemplate document =
                 new DocumentTemplate(
-                        type, date, atPath,
+                        type, typeData, date, atPath,
                         fileSuffix, previewOnly, clob,
                         contentRenderingStrategy,
                         subjectText, subjectRenderingStrategy);
@@ -79,6 +83,7 @@ public class DocumentTemplateRepository {
     @Programmatic
     public DocumentTemplate createText(
             final DocumentType type,
+            final DocumentTypeData typeData,
             final LocalDate date,
             final String atPath,
             final String fileSuffix,
@@ -91,7 +96,7 @@ public class DocumentTemplateRepository {
             final RenderingStrategy subjectRenderingStrategy) {
         final DocumentTemplate document =
                 new DocumentTemplate(
-                        type, date, atPath,
+                        type, typeData, date, atPath,
                         fileSuffix, previewOnly,
                         name, mimeType, text,
                         contentRenderingStrategy,
@@ -237,6 +242,7 @@ public class DocumentTemplateRepository {
     @Programmatic
     public TranslatableString validateApplicationTenancyAndDate(
             final DocumentType proposedType,
+            final DocumentTypeData typeData,
             final String proposedAtPath,
             final LocalDate proposedDate,
             final DocumentTemplate ignore) {

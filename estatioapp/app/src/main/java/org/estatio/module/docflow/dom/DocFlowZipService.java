@@ -50,43 +50,47 @@ public class DocFlowZipService {
         docFlowZipRepository.persist(docFlowZip);
 
         if(xmlFileMetadatiIfAny != null) {
+            final DocumentTypeData typeDataForDocflowMetadata = DocumentTypeData.DOCFLOW_METADATA;
             final DocumentType docTypeDocflowMetadata =
-                    DocumentTypeData.DOCFLOW_METADATA.findUsing(documentTypeRepository);
+                    typeDataForDocflowMetadata.findUsing(documentTypeRepository);
             documentService.createAndAttachDocumentForClob(
-                    docTypeDocflowMetadata, atPath,
+                    docTypeDocflowMetadata, typeDataForDocflowMetadata, atPath,
                     xmlFileMetadatiIfAny.getName(), xmlFileMetadatiIfAny,
                     null, docFlowZip);
         }
 
+        final DocumentTypeData typeDataForDocflowFaturraXml = DocumentTypeData.DOCFLOW_FATURRA_XML;
         final DocumentType docTypeDocflowFaturraXml =
-                DocumentTypeData.DOCFLOW_FATURRA_XML.findUsing(documentTypeRepository);
+                typeDataForDocflowFaturraXml.findUsing(documentTypeRepository);
         documentService.createAndAttachDocumentForClob(
-                docTypeDocflowFaturraXml, atPath,
+                docTypeDocflowFaturraXml, typeDataForDocflowFaturraXml, atPath,
                 xmlFatturaElettronica.getName(), xmlFatturaElettronica,
                 null, docFlowZip);
 
 
         // TODO: what should the name be of this?
         //  how do we match to it from CodaDocHead/IncomingInvoice
+        final DocumentTypeData typeDataForIncomingInvoice = DocumentTypeData.INCOMING_INVOICE;
         final DocumentType docTypeIncomingInvoice =
-                DocumentTypeData.INCOMING_INVOICE.findUsing(documentTypeRepository);
+                typeDataForIncomingInvoice.findUsing(documentTypeRepository);
         documentService.createAndAttachDocumentForBlob(
-                docTypeIncomingInvoice, atPath,
+                docTypeIncomingInvoice, typeDataForIncomingInvoice, atPath,
                 pdfFatturaElettronica.getName(), pdfFatturaElettronica,
                 PAPERCLIP_ROLE_NAME_GENERATED, docFlowZip);
 
         if(p7mFatturaElettronicaIfAny != null) {
+            final DocumentTypeData typeDataForDocflowFaturraP7m = DocumentTypeData.DOCFLOW_FATURRA_P7M;
             final DocumentType docTypeDocflowFaturraP7m =
-                    DocumentTypeData.DOCFLOW_FATURRA_P7M.findUsing(documentTypeRepository);
+                    typeDataForDocflowFaturraP7m.findUsing(documentTypeRepository);
             documentService.createAndAttachDocumentForBlob(
-                    docTypeDocflowFaturraP7m, atPath,
+                    docTypeDocflowFaturraP7m, typeDataForDocflowFaturraP7m, atPath,
                     p7mFatturaElettronicaIfAny.getName(), p7mFatturaElettronicaIfAny,
                     null, docFlowZip);
         }
 
         if(pdfSupplierIfAny != null) {
             documentService.createAndAttachDocumentForBlob(
-                    docTypeIncomingInvoice, atPath,
+                    docTypeIncomingInvoice, typeDataForIncomingInvoice, atPath,
                     pdfSupplierIfAny.getName(), pdfSupplierIfAny,
                     PAPERCLIP_ROLE_NAME_SUPPLIERS, docFlowZip);
         }

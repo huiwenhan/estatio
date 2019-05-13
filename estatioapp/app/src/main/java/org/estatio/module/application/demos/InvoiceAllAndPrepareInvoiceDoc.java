@@ -106,9 +106,10 @@ public class InvoiceAllAndPrepareInvoiceDoc extends DiscoverableFixtureScript {
         try {
             wrapperFactory.wrapTry(mixin).$$(
                                     randomOf(mixin.choices0$$()),
+                                    randomOf(mixin.choices1$$()),
                                     blob,
                                     blob.getName(),
-                                    randomOf(mixin.choices3$$()));
+                                    randomOf(mixin.choices4$$()));
         } catch (IOException e) {
             // ignore
         }

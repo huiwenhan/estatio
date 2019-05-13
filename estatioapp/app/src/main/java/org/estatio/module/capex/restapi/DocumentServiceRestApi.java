@@ -59,7 +59,7 @@ public class DocumentServiceRestApi extends UdoDomainService<DocumentServiceRest
 
         final String atPathToUse = determineAtPath(documentTypeData, name, atPath);
 
-        return incomingDocumentRepository.upsertAndArchive(type, atPathToUse, name, blob);
+        return incomingDocumentRepository.upsertAndArchive(type, documentTypeData, atPathToUse, name, blob);
     }
 
     private String determineAtPath(

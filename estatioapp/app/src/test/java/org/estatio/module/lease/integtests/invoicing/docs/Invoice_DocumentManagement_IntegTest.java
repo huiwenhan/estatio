@@ -214,23 +214,26 @@ public class Invoice_DocumentManagement_IntegTest extends LeaseModuleIntegTestAb
 
             // when
             final List<DocumentType> documentTypes = invoice_attachSupportingDocument.choices0$$();
+            final List<DocumentTypeData> documentTypesData = invoice_attachSupportingDocument.choices1$$();
 
             // then
             assertThat(documentTypes).hasSize(4);
+            assertThat(documentTypesData).hasSize(4);
 
             // when
-            final List<String> roleNames = invoice_attachSupportingDocument.choices3$$();
+            final List<String> roleNames = invoice_attachSupportingDocument.choices4$$();
 
             // then
             assertThat(roleNames).hasSize(1);
 
             // and when
             final DocumentType documentType = documentTypes.get(0);
+            final DocumentTypeData documentTypeData = documentTypesData.get(0);
             final String roleName = roleNames.get(0);
             final String fileName = "receipt-1.pdf";
             final Blob blob = asBlob(fileName);
 
-            wrap(invoice_attachSupportingDocument).$$(documentType, blob, null, roleName);
+            wrap(invoice_attachSupportingDocument).$$(documentType, documentTypeData, blob, null, roleName);
 
             // then
             paperclips = paperclipRepository.findByAttachedTo(invoice);
@@ -976,16 +979,19 @@ public class Invoice_DocumentManagement_IntegTest extends LeaseModuleIntegTestAb
 
         final List<DocumentType> documentTypes = invoice_attachSupportingDocument.choices0$$();
         assertThat(documentTypes).hasSize(4);
-        final DocumentType documentType = documentTypes.stream().filter(x -> Objects
-                .equals(x.getReference(), DocumentTypeData.SUPPLIER_RECEIPT.getRef()))
+
+        final DocumentTypeData typeData = DocumentTypeData.SUPPLIER_RECEIPT;
+        final DocumentType documentType = documentTypes.stream()
+                .filter(x -> Objects.equals(x.getReference(), typeData.getRef()))
                 .findFirst().orElse(null);
-        final List<String> roleNames = invoice_attachSupportingDocument.choices3$$();
+
+        final List<String> roleNames = invoice_attachSupportingDocument.choices4$$();
         assertThat(roleNames).hasSize(1);
         final String roleName = roleNames.get(0);
 
         final Blob blob = asBlob(fileName);
 
-        wrap(invoice_attachSupportingDocument).$$(documentType, blob, null, roleName);
+        wrap(invoice_attachSupportingDocument).$$(documentType, typeData, blob, null, roleName);
     }
 
     void assertNoDocumentOrCommunicationsFor(final DocAndCommForPrelimLetter prelimLetterViewModel) {

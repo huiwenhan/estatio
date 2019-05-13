@@ -28,6 +28,8 @@ import org.incode.module.document.dom.impl.types.DocumentTypeRepository;
 import org.incode.platform.dom.communications.integtests.demo.dom.invoice.DemoInvoice;
 import org.incode.platform.dom.communications.integtests.dom.communications.fixture.data.doctypes.DocumentType_and_DocumentTemplates_createSome;
 
+import org.estatio.module.invoice.dom.DocumentTypeData;
+
 /**
  * Being lazy here... don't want to set up all the ref data etc to actually render this DemoInvoice as some sort of
  * Document, so instead manually create a Document from an already-existing Blob.
@@ -64,9 +66,10 @@ public class DemoInvoice_simulateRenderAsDoc {
         String name = determineName(document, fileName);
 
         final DocumentType documentType = findDocumentType(DocumentType_and_DocumentTemplates_createSome.DOC_TYPE_REF_INVOICE);
+        final DocumentTypeData typeData = DocumentTypeData.INVOICE; // this isn't exact, because the test is using a dummy invoice rather than actual
 
         final Document receiptDoc = documentRepository
-                .create(documentType, AT_PATH,
+                .create(documentType, typeData, AT_PATH,
                         name,
                         document.getMimeType().getBaseType());
 

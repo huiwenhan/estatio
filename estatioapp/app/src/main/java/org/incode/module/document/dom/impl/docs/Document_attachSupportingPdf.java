@@ -25,6 +25,8 @@ import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
 import org.incode.module.document.dom.impl.types.DocumentType;
 import org.incode.module.document.dom.spi.DocumentAttachmentAdvisor;
 
+import org.estatio.module.invoice.dom.DocumentTypeData;
+
 @Mixin(method = "exec")
 public class Document_attachSupportingPdf {
 
@@ -47,18 +49,16 @@ public class Document_attachSupportingPdf {
     )
     public Document exec(
             final DocumentType documentType,
-            @Parameter(fileAccept = MimeTypeData.Str.APPLICATION_PDF)
-            final Blob document,
-            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "File name")
-            final String fileName,
-            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Role name")
-            final String roleName
-        ) throws IOException {
+            final DocumentTypeData typeData,
+            @Parameter(fileAccept = MimeTypeData.Str.APPLICATION_PDF) final Blob document,
+            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "File name") final String fileName,
+            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Role name") final String roleName
+    ) throws IOException {
 
         String name = determineName(document, fileName);
 
         final Document doc = documentRepository.create(
-                                documentType, this.document.getAtPath(), name, document.getMimeType().getBaseType());
+                                documentType, typeData, this.document.getAtPath(), name, document.getMimeType().getBaseType());
 
         // unlike documents that are generated from a template (where we call documentTemplate#render), in this case
         // we have the actual bytes; so we just set up the remaining state of the document manually.
@@ -91,13 +91,19 @@ public class Document_attachSupportingPdf {
     public List<DocumentType> choices0Exec() {
         return documentAttachmentAdvisor.documentTypeChoicesFor(document);
     }
+    public List<DocumentTypeData> choices1Exec() {
+        return documentAttachmentAdvisor.documentTypeDataChoicesFor(document);
+    }
     public DocumentType default0Exec() {
         return documentAttachmentAdvisor.documentTypeDefaultFor(document);
     }
-    public List<String> choices3Exec() {
+    public DocumentTypeData default1Exec() {
+        return documentAttachmentAdvisor.documentTypeDataDefaultFor(document);
+    }
+    public List<String> choices4Exec() {
         return documentAttachmentAdvisor.roleNameChoicesFor(document);
     }
-    public String default3Exec() {
+    public String default4Exec() {
         return documentAttachmentAdvisor.roleNameDefaultFor(document);
     }
 

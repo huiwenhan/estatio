@@ -91,6 +91,7 @@ public abstract class DocumentAbstract<T extends DocumentAbstract> implements Co
 
     public DocumentAbstract(
             final DocumentType type,
+            final DocumentTypeData typeData,
             final String atPath) {
         this.type = type;
         this.typeData = DocumentTypeData.reverseLookup(type);

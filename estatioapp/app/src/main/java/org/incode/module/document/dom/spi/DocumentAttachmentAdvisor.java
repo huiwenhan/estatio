@@ -9,6 +9,8 @@ import org.incode.module.document.dom.impl.docs.DocumentTemplate;
 import org.incode.module.document.dom.impl.docs.Document_attachSupportingPdf;
 import org.incode.module.document.dom.impl.types.DocumentType;
 
+import org.estatio.module.invoice.dom.DocumentTypeData;
+
 /**
  * Used by {@link Document_attachSupportingPdf} mixin, to obtain the list of available {@link DocumentType}s that can be used
  * to attach existing PDFs to a {@link Document}.
@@ -24,7 +26,11 @@ public interface DocumentAttachmentAdvisor {
     @Programmatic
     List<DocumentType> documentTypeChoicesFor(final Document document);
     @Programmatic
+    List<DocumentTypeData> documentTypeDataChoicesFor(final Document document);
+    @Programmatic
     DocumentType documentTypeDefaultFor(final Document document);
+    @Programmatic
+    DocumentTypeData documentTypeDataDefaultFor(final Document document);
     @Programmatic
     List<String> roleNameChoicesFor(final Document document);
     @Programmatic

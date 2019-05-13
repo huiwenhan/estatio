@@ -1583,8 +1583,9 @@ public class Order extends UdoDomainObject2<Order> implements Stateful {
     @Programmatic
     public Order newDocument(final Blob pdf) {
         Document currentDoc = lookupAttachedPdfService.lookupOrderPdfFrom(this).isPresent() ? lookupAttachedPdfService.lookupOrderPdfFrom(this).get() : null;
-        DocumentType type = DocumentTypeData.INCOMING_ORDER.findUsing(documentTypeRepository);
-        documentService.createAndAttachDocumentForBlob(type, this.getAtPath(), pdf.getName(), pdf, null, this);
+        final DocumentTypeData typeDataForIncomingOrder = DocumentTypeData.INCOMING_ORDER;
+        DocumentType docTypeForIncomingOrder = typeDataForIncomingOrder.findUsing(documentTypeRepository);
+        documentService.createAndAttachDocumentForBlob(docTypeForIncomingOrder, typeDataForIncomingOrder, this.getAtPath(), pdf.getName(), pdf, null, this);
         if (currentDoc != null)
             messageService.warnUser("Order now has multiple documents attached.");
         return this;

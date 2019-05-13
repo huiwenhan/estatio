@@ -45,7 +45,7 @@ public class DocumentTemplate_changeDate {
         final DocumentTemplate original = documentTemplate;
         final String proposedAtPath = documentTemplate.getAtPath();
 
-        return documentTemplateRepository.validateApplicationTenancyAndDate(original.getType(), proposedAtPath, proposedDate, original);
+        return documentTemplateRepository.validateApplicationTenancyAndDate(original.getType(), original.getTypeData(), proposedAtPath, proposedDate, original);
     }
 
 

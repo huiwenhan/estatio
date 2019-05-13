@@ -45,7 +45,8 @@ public class BankAccount_attachPdfAsIbanProof {
             @Parameter(fileAccept = MimeTypeData.Str.APPLICATION_PDF)
             final Blob document) {
 
-        final DocumentType ibanProofDocType = DocumentTypeData.IBAN_PROOF.findUsing(documentTypeRepository);
+        final DocumentTypeData typeDataForIbanProof = DocumentTypeData.IBAN_PROOF;
+        final DocumentType ibanProofDocType = typeDataForIbanProof.findUsing(documentTypeRepository);
 
         final List<Paperclip> ibanProofPaperclips =
                 paperclipRepository.findByAttachedToAndRoleName(bankAccount, ROLE_NAME_FOR_IBAN_PROOF);
@@ -63,7 +64,7 @@ public class BankAccount_attachPdfAsIbanProof {
 
         final String name = document.getName();
         documentService.createAndAttachDocumentForBlob(
-                ibanProofDocType, bankAccount.getAtPath(), name, document, ROLE_NAME_FOR_IBAN_PROOF, bankAccount);
+                ibanProofDocType, typeDataForIbanProof, bankAccount.getAtPath(), name, document, ROLE_NAME_FOR_IBAN_PROOF, bankAccount);
         return bankAccount;
     }
 

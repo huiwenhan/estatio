@@ -1,6 +1,7 @@
 package org.incode.platform.dom.communications.integtests.dom.communications.dom.spiimpl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -15,6 +16,8 @@ import org.incode.module.document.dom.impl.types.DocumentTypeRepository;
 import org.incode.module.document.dom.spi.DocumentAttachmentAdvisor;
 import org.incode.platform.dom.communications.integtests.dom.communications.fixture.data.doctypes.DocumentType_and_DocumentTemplates_createSome;
 
+import org.estatio.module.invoice.dom.DocumentTypeData;
+
 @DomainService(nature = NatureOfService.DOMAIN)
 public class DocumentAttachmentAdvisorForReceipts implements DocumentAttachmentAdvisor {
 
@@ -28,8 +31,20 @@ public class DocumentAttachmentAdvisorForReceipts implements DocumentAttachmentA
     }
 
     @Override
+    public List<DocumentTypeData> documentTypeDataChoicesFor(final Document document) {
+        return documentTypeChoicesFor(document).stream()
+                .map(DocumentTypeData::reverseLookup)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public DocumentType documentTypeDefaultFor(final Document document) {
         return documentTypeChoicesFor(document).get(0);
+    }
+
+    @Override
+    public DocumentTypeData documentTypeDataDefaultFor(final Document document) {
+        return documentTypeDataChoicesFor(document).get(0);
     }
 
     @Override

@@ -48,6 +48,7 @@ import org.incode.module.document.dom.impl.types.DocumentType;
 import org.incode.module.document.dom.types.NameType;
 
 import org.estatio.module.base.dom.apptenancy.EstatioApplicationTenancyRepository;
+import org.estatio.module.invoice.dom.DocumentTypeData;
 
 /**
  * TODO: remove this once move to RenderingStrategyData
@@ -86,11 +87,12 @@ public class DocumentTemplate_cloneWhenText {
             final boolean previewOnly) {
 
         final DocumentType type = documentTemplate.getType();
+        final DocumentTypeData typeData = documentTemplate.getTypeData();
         final String mimeType = documentTemplate.getMimeType();
         final String fileSuffix = documentTemplate.getFileSuffix();
 
         final DocumentTemplate template = documentTemplateRepository.createText(
-                type, date, applicationTenancy.getPath(), fileSuffix, previewOnly, name, mimeType,
+                type, typeData, date, applicationTenancy.getPath(), fileSuffix, previewOnly, name, mimeType,
                 templateText, contentRenderingStrategy,
                 nameText, nameRenderingStrategy);
 
@@ -166,7 +168,7 @@ public class DocumentTemplate_cloneWhenText {
             final boolean previewOnly) {
 
         return documentTemplateRepository.validateApplicationTenancyAndDate(
-                documentTemplate.getType(), proposedApplicationTenancy.getPath(), proposedDate, null);
+                documentTemplate.getType(), documentTemplate.getTypeData(), proposedApplicationTenancy.getPath(), proposedDate, null);
     }
 
 

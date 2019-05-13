@@ -43,6 +43,8 @@ import org.incode.module.document.dom.impl.paperclips.Paperclip;
 import org.incode.module.document.dom.impl.types.DocumentType;
 import org.incode.module.document.dom.mixins.T_documents;
 
+import org.estatio.module.invoice.dom.DocumentTypeData;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -160,11 +162,12 @@ public class Document extends DocumentAbstract<Document> implements DocumentLike
 
     public Document(
             final DocumentType type,
+            final DocumentTypeData typeData,
             final String atPath,
             final String documentName,
             final String mimeType,
             final DateTime createdAt) {
-        super(type, atPath);
+        super(type, typeData, atPath);
         setName(documentName);
         setMimeType(mimeType);
         this.createdAt = createdAt;
@@ -172,11 +175,12 @@ public class Document extends DocumentAbstract<Document> implements DocumentLike
     }
     public Document(
             final DocumentType type,
+            final DocumentTypeData typeData,
             final String atPath,
             final String documentName,
             final MimeTypeData mimeType,
             final DateTime createdAt) {
-        this(type, atPath, documentName, mimeType.asStr(), createdAt);
+        this(type, typeData, atPath, documentName, mimeType.asStr(), createdAt);
     }
     //endregion
 

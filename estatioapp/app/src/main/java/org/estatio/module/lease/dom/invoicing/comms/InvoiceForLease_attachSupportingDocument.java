@@ -20,6 +20,7 @@ package org.estatio.module.lease.dom.invoicing.comms;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -76,11 +77,10 @@ public class InvoiceForLease_attachSupportingDocument {
     @ActionLayout(contributed = Contributed.AS_ACTION, cssClassFa = "paperclip")
     public Invoice $$(
             final DocumentType supportingDocumentType,
+            final DocumentTypeData supportingDocumentTypeData,
             @Parameter(fileAccept = MimeTypeData.Str.APPLICATION_PDF)
-            @ParameterLayout(named = "Receipt (PDF)")
-            final Blob blob,
-            @Parameter(optionality = Optionality.OPTIONAL)
-            final String fileName,
+            @ParameterLayout(named = "Receipt (PDF)") final Blob blob,
+            @Parameter(optionality = Optionality.OPTIONAL) final String fileName,
             final String roleName) throws IOException {
 
 
@@ -102,7 +102,7 @@ public class InvoiceForLease_attachSupportingDocument {
 
 
         final Document supportingDoc = documentService.createAndAttachDocumentForBlob(
-                supportingDocumentType, this.invoiceForLease.getAtPath(), documentName, blob,
+                supportingDocumentType, supportingDocumentTypeData, this.invoiceForLease.getAtPath(), documentName, blob,
                 PaperclipRoleNames.SUPPORTING_DOCUMENT, this.invoiceForLease);
 
 
@@ -165,16 +165,19 @@ public class InvoiceForLease_attachSupportingDocument {
     public List<DocumentType> choices0$$() {
         return documentAttachmentAdvisor.documentTypeChoicesFor(null);
     }
+    public List<DocumentTypeData> choices1$$() {
+        return documentAttachmentAdvisor.documentTypeDataChoicesFor(null);
+    }
 
     public DocumentType default0$$() {
         return documentAttachmentAdvisor.documentTypeDefaultFor(null);
     }
 
-    public List<String> choices3$$() {
+    public List<String> choices4$$() {
         return documentAttachmentAdvisor.roleNameChoicesFor(null);
     }
 
-    public String default3$$() {
+    public String default4$$() {
         return documentAttachmentAdvisor.roleNameDefaultFor(null);
     }
 
@@ -234,9 +237,21 @@ public class InvoiceForLease_attachSupportingDocument {
         }
 
         @Override
+        public List<DocumentTypeData> documentTypeDataChoicesFor(final Document document) {
+            return documentTypeChoicesFor(document).stream()
+                    .map(DocumentTypeData::reverseLookup)
+                    .collect(Collectors.toList());
+        }
+
+        @Override
         public DocumentType documentTypeDefaultFor(final Document document) {
             List<DocumentType> documentTypes = documentTypeChoicesFor(document);
             return !documentTypes.isEmpty() ? documentTypes.get(0) : null;
+        }
+
+        @Override
+        public DocumentTypeData documentTypeDataDefaultFor(final Document document) {
+            return documentTypeDataChoicesFor(document).get(0);
         }
 
         @Override
