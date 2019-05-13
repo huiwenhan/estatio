@@ -203,7 +203,7 @@ public class DocumentTemplate
         },
         DATA {
             @Override public DocumentTemplateApi getTemplateApi(final DocumentTemplate documentTemplate) {
-                return documentTemplate.getTemplateData();
+                return documentTemplate.templateData;
             }
 
             @Override public DocumentTypeApi getTypeApi(final DocumentTemplate documentTemplate) {
@@ -312,8 +312,15 @@ public class DocumentTemplate
     //endregion
 
     //region > constructor
+
+    @NotPersistent
+    @Getter
+    private final DocumentTemplateData templateData;
+
+
     DocumentTemplate() {
         // for unit testing only
+        this.templateData = null;
     }
 
     public DocumentTemplate(
@@ -375,6 +382,8 @@ public class DocumentTemplate
 
         this.typeCopy = type;
         this.atPathCopy = atPath;
+
+        this.templateData = typeData.lookup(atPath);
         this.date = date;
         this.fileSuffix = stripLeadingDotAndLowerCase(fileSuffix);
         this.previewOnly = previewOnly;
@@ -423,14 +432,6 @@ public class DocumentTemplate
     private String atPathCopy;
     //endregion
 
-    @NotPersistent
-    private DocumentTemplateData templateData;
-    @Programmatic
-    public DocumentTemplateData getTemplateData() {
-        return  templateData != null
-                ? templateData
-                : (templateData = getTypeData().lookup(getAtPathCopy()));
-    }
 
     @Programmatic
     public DocumentTemplateApi getTemplateApi() {
@@ -445,7 +446,7 @@ public class DocumentTemplate
 
     @Programmatic
     public RenderingStrategyData getContentRenderingStrategyData() {
-        return getTemplateData().getContentRenderingStrategy();
+        return templateData.getContentRenderingStrategy();
     }
 
     @Programmatic
@@ -455,7 +456,7 @@ public class DocumentTemplate
 
     @Programmatic
     public RenderingStrategyData getNameRenderingStrategyData() {
-        return getTemplateData().getNameRenderingStrategy();
+        return templateData.getNameRenderingStrategy();
     }
 
     @Programmatic
@@ -839,13 +840,13 @@ public class DocumentTemplate
 
         serviceRegistry2.injectServicesInto(rendererModel);
 
-        if(!getTemplateData().getContentRenderingStrategy().isPreviewsToUrl()) {
+        if(!templateData.getContentRenderingStrategy().isPreviewsToUrl()) {
             throw new IllegalStateException(String.format("RenderingStrategy '%s' does not support previewing to URL",
-                    getTemplateData().getContentRenderingStrategy().getReference()));
+                    templateData.getContentRenderingStrategy().getReference()));
         }
 
-        final DocumentNature inputNature = getTemplateData().getContentRenderingStrategy().getInputNature();
-        final DocumentNature outputNature = getTemplateData().getContentRenderingStrategy().getOutputNature();
+        final DocumentNature inputNature = templateData.getContentRenderingStrategy().getInputNature();
+        final DocumentNature outputNature = templateData.getContentRenderingStrategy().getOutputNature();
 
         final Renderer renderer = getContentRenderingStrategyApi().newRenderer(
                 classService, serviceRegistry2);
