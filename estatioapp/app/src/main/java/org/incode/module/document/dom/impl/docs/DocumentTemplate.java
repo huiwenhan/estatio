@@ -211,8 +211,6 @@ public class DocumentTemplate
         public abstract RenderingStrategyApi getNameRenderingStrategyApi(final DocumentTemplate documentTemplate);
     }
 
-    static Toggle toggle = Toggle.DATA;
-
     //region > ui event classes
     public static class TitleUiEvent extends DocumentModule.TitleUiEvent<DocumentTemplate>{}
     public static class IconUiEvent extends DocumentModule.IconUiEvent<DocumentTemplate>{}
@@ -418,13 +416,13 @@ public class DocumentTemplate
 
     @Programmatic
     public DocumentTemplateApi getTemplateApi() {
-        return toggle.getTemplateApi(this);
+        return Toggle.DATA.getTemplateApi(this);
     }
 
 
     @Programmatic
     public DocumentTypeApi getTypeApi() {
-        return toggle.getTypeApi(this);
+        return Toggle.DATA.getTypeApi(this);
     }
 
     @Programmatic
@@ -434,7 +432,7 @@ public class DocumentTemplate
 
     @Programmatic
     public RenderingStrategyApi getContentRenderingStrategyApi() {
-        return toggle.getContentRenderingStrategyApi(this);
+        return Toggle.DATA.getContentRenderingStrategyApi(this);
     }
 
     @Programmatic
@@ -444,7 +442,7 @@ public class DocumentTemplate
 
     @Programmatic
     public RenderingStrategyApi getNameRenderingStrategyApi() {
-        return toggle.getNameRenderingStrategyApi(this);
+        return Toggle.DATA.getNameRenderingStrategyApi(this);
     }
 
     //region > date (property)
