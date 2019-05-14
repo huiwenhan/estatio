@@ -33,8 +33,9 @@ import org.incode.module.document.dom.impl.docs.DocumentState;
 import org.incode.module.document.dom.impl.docs.DocumentTemplate;
 import org.incode.module.document.dom.impl.docs.DocumentTemplateRepository;
 import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
-import org.incode.module.document.dom.impl.types.DocumentType;
 import org.incode.module.document.dom.services.DocumentCreatorService;
+
+import org.estatio.module.invoice.dom.DocumentTypeData;
 
 /**
  * Provides the ability to send an email.
@@ -191,18 +192,18 @@ public class Document_sendByEmail {
     }
 
     private DocumentTemplate determineEmailCoverNoteTemplateElseNull() {
-        final DocumentType coverNoteDocumentType = determineEmailCoverNoteDocumentType();
+        final DocumentTypeData coverNoteDocumentType = determineEmailCoverNoteDocumentType();
         if(coverNoteDocumentType == null) {
             return null;
         }
-        return documentTemplateRepository.findFirstByTypeAndApplicableToAtPath(coverNoteDocumentType, document.getAtPath());
+        return documentTemplateRepository.findFirstByTypeDataAndApplicableToAtPath(null, coverNoteDocumentType, document.getAtPath());
     }
 
-    private DocumentType determineEmailCoverNoteDocumentType() {
-        final DocumentType docType = queryResultsCache.execute(() -> {
+    private DocumentTypeData determineEmailCoverNoteDocumentType() {
+        final DocumentTypeData docType = queryResultsCache.execute(() -> {
             if (documentCommunicationSupports != null) {
                 for (DocumentCommunicationSupport supportService : documentCommunicationSupports) {
-                    final DocumentType documentType = supportService.emailCoverNoteDocumentTypeFor(document);
+                    final DocumentTypeData documentType = supportService.emailCoverNoteDocumentTypeDataFor(document);
                     if (documentType != null) {
                         return documentType;
                     }

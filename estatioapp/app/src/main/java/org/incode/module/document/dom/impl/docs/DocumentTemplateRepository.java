@@ -111,11 +111,14 @@ public class DocumentTemplateRepository {
      * provided application tenancy, and then by date (desc).
      */
     @Programmatic
-    public List<DocumentTemplate> findByTypeAndApplicableToAtPath(final DocumentType documentType, final String atPath) {
+    public List<DocumentTemplate> findByTypeDataAndApplicableToAtPath(
+            final DocumentType documentType,
+            final DocumentTypeData typeData,
+            final String atPath) {
         return repositoryService.allMatches(
                 new QueryDefault<>(DocumentTemplate.class,
-                        "findByTypeAndApplicableToAtPath",
-                        "type", documentType,
+                        "findByTypeDataAndApplicableToAtPath",
+                        "typeData", typeData,
                         "atPath", atPath));
     }
 
@@ -124,8 +127,11 @@ public class DocumentTemplateRepository {
      * provided application tenancy, and then by date (desc).
      */
     @Programmatic
-    public DocumentTemplate findFirstByTypeAndApplicableToAtPath(final DocumentType documentType, final String atPath) {
-        final List<DocumentTemplate> templates = findByTypeAndApplicableToAtPath(documentType, atPath);
+    public DocumentTemplate findFirstByTypeDataAndApplicableToAtPath(
+            final DocumentType documentType,
+            final DocumentTypeData typeData,
+            final String atPath) {
+        final List<DocumentTemplate> templates = findByTypeDataAndApplicableToAtPath(documentType, typeData, atPath);
         return templates.isEmpty() ? null : templates.get(0);
     }
 
@@ -180,7 +186,7 @@ public class DocumentTemplateRepository {
     }
 
     /**
-     * As {@link #findByTypeAndApplicableToAtPath(DocumentType, String)}, but excludes any templates in the future.  Those returned
+     * As {@link #findByTypeDataAndApplicableToAtPath(DocumentType, DocumentTypeData, String)}, but excludes any templates in the future.  Those returned
      * are ordered by most specific application tenancy first, and then by most recent first; so the first template returned
      * is usually the one to be used.
      */

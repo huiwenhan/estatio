@@ -382,6 +382,11 @@ public enum DocumentTypeData {
                 : null;
     }
 
+    public static DocumentTypeData coverNoteTypeDataFor(
+            final Document document) {
+        return coverNoteFor(document);
+    }
+
     public static DocumentTypeData docTypeDataFor(final Document document) {
         if(document == null) {
             return null;

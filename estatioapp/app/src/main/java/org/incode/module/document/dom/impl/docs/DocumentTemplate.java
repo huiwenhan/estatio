@@ -99,10 +99,10 @@ import lombok.Setter;
                         + "   && date       == :date "
         ),
         @javax.jdo.annotations.Query(
-                name = "findByTypeAndApplicableToAtPath", language = "JDOQL",
+                name = "findByTypeDataAndApplicableToAtPath", language = "JDOQL",
                 value = "SELECT "
                         + "FROM org.incode.module.document.dom.impl.docs.DocumentTemplate "
-                        + "WHERE typeCopy   == :type "
+                        + "WHERE typeDataCopy   == :typeData "
                         + "   && :atPath.startsWith(atPathCopy) "
                         + "ORDER BY atPathCopy DESC, date DESC "
         ),

@@ -57,8 +57,18 @@ public class DocumentCommunicationSupportForDocumentsAttachedToInvoiceForLease i
             return null;
         }
 
-        return DocumentTypeData.coverNoteTypeFor(
-                document, documentTypeRepository, queryResultsCache);
+        return DocumentTypeData.coverNoteTypeFor(document, documentTypeRepository, queryResultsCache);
+    }
+
+    @Override
+    public DocumentTypeData emailCoverNoteDocumentTypeDataFor(final Document document) {
+
+        final Invoice invoice = paperclipRepository.paperclipAttaches(document, Invoice.class);
+        if (invoice == null) {
+            return null;
+        }
+
+        return DocumentTypeData.coverNoteTypeDataFor(document);
     }
 
     @Override

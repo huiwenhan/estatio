@@ -28,9 +28,9 @@ public class Order_confirmationTemplate {
     )
     @ActionLayout(contributed = Contributed.AS_ASSOCIATION)
     public DocumentTemplate prop() {
-        final DocumentType documentType =
-                DocumentTypeData.ORDER_CONFIRM.findUsing(documentTypeRepository);
-        return documentTemplateRepository.findFirstByTypeAndApplicableToAtPath(documentType, "/ITA");
+        final DocumentTypeData typeData = DocumentTypeData.ORDER_CONFIRM;
+        final DocumentType documentType = typeData.findUsing(documentTypeRepository);
+        return documentTemplateRepository.findFirstByTypeDataAndApplicableToAtPath(documentType, typeData, "/ITA");
     }
 
     @Inject

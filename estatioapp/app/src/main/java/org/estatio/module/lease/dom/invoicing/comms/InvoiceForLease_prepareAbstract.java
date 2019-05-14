@@ -44,9 +44,12 @@ import org.estatio.module.invoice.dom.Invoice;
 import org.estatio.module.lease.dom.invoicing.InvoiceForLease;
 import org.estatio.module.lease.dom.invoicing.summary.comms.InvoiceSummaryForPropertyDueDateStatus_actionAbstract;
 
+import lombok.Getter;
+
 public abstract class InvoiceForLease_prepareAbstract {
 
     final InvoiceForLease invoiceForLease;
+    @Getter
     final DocumentTypeData documentTypeData;
 
     public InvoiceForLease_prepareAbstract(
@@ -89,11 +92,12 @@ public abstract class InvoiceForLease_prepareAbstract {
     }
 
     DocumentTemplate documentTemplateFor(final Invoice invoice) {
+
         return queryResultsCache.execute(
                 () -> documentTemplateRepository
-                        .findFirstByTypeAndApplicableToAtPath(
+                        .findFirstByTypeDataAndApplicableToAtPath(
                                 getDocumentType(),
-                                invoice.getApplicationTenancyPath()),
+                                getDocumentTypeData(), invoice.getApplicationTenancyPath()),
                 InvoiceSummaryForPropertyDueDateStatus_actionAbstract.class,
                 "findFirstByTypeAndApplicableToAtPath",
                 getDocumentType(), invoice
