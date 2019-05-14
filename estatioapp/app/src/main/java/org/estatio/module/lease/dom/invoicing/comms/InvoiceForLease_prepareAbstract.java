@@ -96,11 +96,10 @@ public abstract class InvoiceForLease_prepareAbstract {
         return queryResultsCache.execute(
                 () -> documentTemplateRepository
                         .findFirstByTypeDataAndApplicableToAtPath(
-                                getDocumentType(),
                                 getDocumentTypeData(), invoice.getApplicationTenancyPath()),
                 InvoiceSummaryForPropertyDueDateStatus_actionAbstract.class,
                 "findFirstByTypeAndApplicableToAtPath",
-                getDocumentType(), invoice
+                getDocumentTypeData(), invoice
         );
     }
 

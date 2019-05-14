@@ -10,7 +10,6 @@ import org.apache.isis.applib.annotation.SemanticsOf;
 
 import org.incode.module.document.dom.impl.docs.DocumentTemplate;
 import org.incode.module.document.dom.impl.docs.DocumentTemplateRepository;
-import org.incode.module.document.dom.impl.types.DocumentType;
 import org.incode.module.document.dom.impl.types.DocumentTypeRepository;
 
 import org.estatio.module.capex.dom.order.Order;
@@ -28,9 +27,7 @@ public class Order_confirmationTemplate {
     )
     @ActionLayout(contributed = Contributed.AS_ASSOCIATION)
     public DocumentTemplate prop() {
-        final DocumentTypeData typeData = DocumentTypeData.ORDER_CONFIRM;
-        final DocumentType documentType = typeData.findUsing(documentTypeRepository);
-        return documentTemplateRepository.findFirstByTypeDataAndApplicableToAtPath(documentType, typeData, "/ITA");
+        return documentTemplateRepository.findFirstByTypeDataAndApplicableToAtPath(DocumentTypeData.ORDER_CONFIRM, "/ITA");
     }
 
     @Inject

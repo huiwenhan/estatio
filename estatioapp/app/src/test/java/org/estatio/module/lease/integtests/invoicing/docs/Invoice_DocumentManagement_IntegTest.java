@@ -925,11 +925,10 @@ public class Invoice_DocumentManagement_IntegTest extends LeaseModuleIntegTestAb
     }
 
     DocumentTemplate findDocumentTemplateFor(final DocumentTypeData documentTypeData, final Invoice invoice) {
-        final DocumentType documentType = documentTypeData.findUsing(documentTypeRepository);
-        assertThat(documentType).isNotNull();
-        DocumentTemplate documentTemplate = documentTemplateRepository.findFirstByTypeDataAndApplicableToAtPath(documentType,
+        assertThat(documentTypeData).isNotNull();
+        DocumentTemplate documentTemplate = documentTemplateRepository.findFirstByTypeDataAndApplicableToAtPath(
                 documentTypeData, invoice.getApplicationTenancyPath());
-        assertThat(documentType).isNotNull();
+        assertThat(documentTemplate).isNotNull();
         return documentTemplate;
     }
 

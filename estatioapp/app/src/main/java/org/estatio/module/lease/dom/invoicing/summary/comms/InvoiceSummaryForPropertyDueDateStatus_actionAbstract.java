@@ -77,11 +77,10 @@ public abstract class InvoiceSummaryForPropertyDueDateStatus_actionAbstract {
         final DocumentTemplate documentTemplate = queryResultsCache.execute(
                 () -> documentTemplateRepository
                         .findFirstByTypeDataAndApplicableToAtPath(
-                                getDocumentType(),
                                 getDocumentTypeData(), invoice.getApplicationTenancyPath()),
                 InvoiceSummaryForPropertyDueDateStatus_actionAbstract.class,
                 "documentTemplateFor",
-                getDocumentType(), invoice
+                getDocumentTypeData(), invoice
         );
         // best to fail fast...
         if(documentTemplate == null) {

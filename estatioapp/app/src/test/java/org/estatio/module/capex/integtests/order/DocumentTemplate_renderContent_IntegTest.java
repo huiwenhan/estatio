@@ -85,10 +85,9 @@ public class DocumentTemplate_renderContent_IntegTest extends CapexModuleIntegTe
         order = Order_enum.italianOrder.findUsing(serviceRegistry);
         assertThat(order.getAtPath()).isEqualTo("/ITA");
 
-        final DocumentTypeData orderConfirmTypeData = DocumentTypeData.ORDER_CONFIRM;
-        final DocumentType orderConfirmType = orderConfirmTypeData.findUsing(documentTypeRepository);
         final DocumentTemplate orderConfirmItaTemplate =
-                documentTemplateRepository.findFirstByTypeDataAndApplicableToAtPath(orderConfirmType, orderConfirmTypeData, order.getAtPath());
+                documentTemplateRepository.findFirstByTypeDataAndApplicableToAtPath(
+                        DocumentTypeData.ORDER_CONFIRM, order.getAtPath());
         assertThat(orderConfirmItaTemplate).isNotNull();
 
         // when

@@ -112,7 +112,6 @@ public class DocumentTemplateRepository {
      */
     @Programmatic
     public List<DocumentTemplate> findByTypeDataAndApplicableToAtPath(
-            final DocumentType documentType,
             final DocumentTypeData typeData,
             final String atPath) {
         return repositoryService.allMatches(
@@ -128,10 +127,9 @@ public class DocumentTemplateRepository {
      */
     @Programmatic
     public DocumentTemplate findFirstByTypeDataAndApplicableToAtPath(
-            final DocumentType documentType,
             final DocumentTypeData typeData,
             final String atPath) {
-        final List<DocumentTemplate> templates = findByTypeDataAndApplicableToAtPath(documentType, typeData, atPath);
+        final List<DocumentTemplate> templates = findByTypeDataAndApplicableToAtPath(typeData, atPath);
         return templates.isEmpty() ? null : templates.get(0);
     }
 
@@ -186,7 +184,7 @@ public class DocumentTemplateRepository {
     }
 
     /**
-     * As {@link #findByTypeDataAndApplicableToAtPath(DocumentType, DocumentTypeData, String)}, but excludes any templates in the future.  Those returned
+     * As {@link #findByTypeDataAndApplicableToAtPath(DocumentTypeData, String)}, but excludes any templates in the future.  Those returned
      * are ordered by most specific application tenancy first, and then by most recent first; so the first template returned
      * is usually the one to be used.
      */

@@ -192,11 +192,11 @@ public class Document_sendByEmail {
     }
 
     private DocumentTemplate determineEmailCoverNoteTemplateElseNull() {
-        final DocumentTypeData coverNoteDocumentType = determineEmailCoverNoteDocumentType();
-        if(coverNoteDocumentType == null) {
+        final DocumentTypeData coverNoteTypeData = determineEmailCoverNoteDocumentType();
+        if(coverNoteTypeData == null) {
             return null;
         }
-        return documentTemplateRepository.findFirstByTypeDataAndApplicableToAtPath(null, coverNoteDocumentType, document.getAtPath());
+        return documentTemplateRepository.findFirstByTypeDataAndApplicableToAtPath(coverNoteTypeData, document.getAtPath());
     }
 
     private DocumentTypeData determineEmailCoverNoteDocumentType() {
