@@ -58,7 +58,7 @@ public abstract class DocumentTemplateFSAbstract extends FixtureScript {
             final ExecutionContext executionContext) {
 
         DocumentTemplate documentTemplate = documentTemplateRepository
-                                                    .findByTypeDataAndAtPathAndDate(documentType, typeData, atPath, date);
+                                                    .findByTypeDataAndAtPathAndDate(typeData, atPath, date);
         if(documentTemplate != null) {
             documentTemplate.setFileSuffix(fileSuffix);
             documentTemplate.setPreviewOnly(previewOnly);
@@ -90,7 +90,7 @@ public abstract class DocumentTemplateFSAbstract extends FixtureScript {
             ExecutionContext executionContext) {
 
         DocumentTemplate documentTemplate = documentTemplateRepository
-                .findByTypeDataAndAtPathAndDate(documentType, typeData, atPath, date);
+                .findByTypeDataAndAtPathAndDate(typeData, atPath, date);
 
         if(documentTemplate != null) {
             documentTemplate.setFileSuffix(fileSuffix);
@@ -119,7 +119,7 @@ public abstract class DocumentTemplateFSAbstract extends FixtureScript {
             ExecutionContext executionContext) {
 
         DocumentTemplate documentTemplate = documentTemplateRepository
-                .findByTypeDataAndAtPathAndDate(documentType, typeData, atPath, date);
+                .findByTypeDataAndAtPathAndDate(typeData, atPath, date);
         if(documentTemplate != null) {
             documentTemplate.setFileSuffix(fileSuffix);
             documentTemplate.setPreviewOnly(previewOnly);

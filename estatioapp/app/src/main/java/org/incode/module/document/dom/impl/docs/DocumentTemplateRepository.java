@@ -177,7 +177,6 @@ public class DocumentTemplateRepository {
      */
     @Programmatic
     public DocumentTemplate findByTypeDataAndAtPathAndDate(
-            final DocumentType documentType,
             final DocumentTypeData typeData,
             final String atPath,
             final LocalDate date) {
