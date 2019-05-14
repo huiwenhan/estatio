@@ -91,10 +91,10 @@ import lombok.Setter;
                         + "ORDER BY date DESC"
         ),
         @javax.jdo.annotations.Query(
-                name = "findByTypeAndAtPathAndDate", language = "JDOQL",
+                name = "findByTypeDataAndAtPathAndDate", language = "JDOQL",
                 value = "SELECT "
                         + "FROM org.incode.module.document.dom.impl.docs.DocumentTemplate "
-                        + "WHERE typeCopy   == :type "
+                        + "WHERE typeDataCopy   == :typeData "
                         + "   && atPathCopy == :atPath "
                         + "   && date       == :date "
         ),

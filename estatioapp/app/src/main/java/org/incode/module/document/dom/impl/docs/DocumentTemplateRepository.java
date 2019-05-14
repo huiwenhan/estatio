@@ -176,11 +176,15 @@ public class DocumentTemplateRepository {
      * Returns the document template, if any for the specified {@link DocumentType} and exact application tenancy, and exact date.
      */
     @Programmatic
-    public DocumentTemplate findByTypeAndAtPathAndDate(final DocumentType documentType, final String atPath, final LocalDate date) {
+    public DocumentTemplate findByTypeDataAndAtPathAndDate(
+            final DocumentType documentType,
+            final DocumentTypeData typeData,
+            final String atPath,
+            final LocalDate date) {
         return repositoryService.firstMatch(
                 new QueryDefault<>(DocumentTemplate.class,
-                        "findByTypeAndAtPathAndDate",
-                        "type", documentType,
+                        "findByTypeDataAndAtPathAndDate",
+                        "typeData", typeData,
                         "atPath", atPath,
                         "date", date));
     }
