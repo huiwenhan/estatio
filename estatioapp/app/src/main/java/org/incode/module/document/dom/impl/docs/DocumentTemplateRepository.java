@@ -163,7 +163,6 @@ public class DocumentTemplateRepository {
      */
     @Programmatic
     public List<DocumentTemplate> findByTypeDataAndAtPath(
-            final DocumentType documentType,
             final DocumentTypeData typeData,
             final String atPath) {
         return repositoryService.allMatches(
@@ -239,14 +238,13 @@ public class DocumentTemplateRepository {
     //region > validate...
     @Programmatic
     public TranslatableString validateApplicationTenancyAndDate(
-            final DocumentType proposedType,
             final DocumentTypeData proposedTypeData,
             final String proposedAtPath,
             final LocalDate proposedDate,
             final DocumentTemplate ignore) {
 
         final List<DocumentTemplate> existingTemplates =
-                findByTypeDataAndAtPath(proposedType, proposedTypeData, proposedAtPath);
+                findByTypeDataAndAtPath(proposedTypeData, proposedAtPath);
         for (DocumentTemplate existingTemplate : existingTemplates) {
             if(existingTemplate == ignore) {
                 continue;
