@@ -143,6 +143,10 @@ import lombok.Setter;
                 name = "DocumentTemplate_type_atPath_date_IDX",
                 members = { "typeCopy", "atPathCopy", "date" }
         ),
+        @Unique(
+                name = "DocumentTemplate_typeData_atPath_date_IDX",
+                members = { "typeDataCopy", "atPathCopy", "date" }
+        ),
 })
 @Indices({
         @Index(
@@ -152,6 +156,10 @@ import lombok.Setter;
         @Index(
                 name = "DocumentTemplate_type_date_IDX",
                 members = { "typeCopy", "date" }
+        ),
+        @Index(
+                name = "DocumentTemplate_type_date_IDX",
+                members = { "typeDataCopy", "date" }
         ),
 })
 @DomainObject(
@@ -241,6 +249,7 @@ public class DocumentTemplate
         super(type, typeData, atPath);
 
         this.typeCopy = type;
+        this.typeDataCopy = typeData;
         this.atPathCopy = atPath;
 
         this.templateData = typeData.lookup(atPath);
@@ -259,7 +268,6 @@ public class DocumentTemplate
     //endregion
 
 
-    //region > typeCopy (derived property, persisted)
     /**
      * Copy of {@link #getType()}, for query purposes only.
      */
@@ -271,9 +279,17 @@ public class DocumentTemplate
     )
     private DocumentType typeCopy;
 
-    //endregion
+    /**
+     * Copy of {@link #getTypeData()}, for query purposes only.
+     */
+    @Getter @Setter
+    @Column(allowsNull = "false", length = DocumentType.ReferenceType.Meta.MAX_LEN)
+    @Property(
+            notPersisted = true,
+            hidden = Where.EVERYWHERE
+    )
+    private DocumentTypeData typeDataCopy;
 
-    //region > atPathCopy (derived property, persisted)
     /**
      * Copy of {@link #getAtPath()}, for query purposes only.
      */
@@ -284,7 +300,6 @@ public class DocumentTemplate
             hidden = Where.EVERYWHERE
     )
     private String atPathCopy;
-    //endregion
 
     @Programmatic
     public RenderingStrategyData getContentRenderingStrategyData() {
