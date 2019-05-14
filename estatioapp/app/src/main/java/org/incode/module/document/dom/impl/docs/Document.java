@@ -68,12 +68,12 @@ import lombok.Setter;
                         + "   && createdAt      <= :endDateTime "
                         + "ORDER BY createdAt DESC "),
         @Query(
-                name = "findByTypeAndAtPathAndName", language = "JDOQL",
+                name = "findByTypeDataAndAtPathAndName", language = "JDOQL",
                 value = "SELECT "
                         + "FROM org.incode.module.document.dom.impl.docs.Document "
-                        + "WHERE type   == :type  "
-                        + "   && atPath == :atPath "
-                        + "   && name   == :name "
+                        + "WHERE typeData == :typeData  "
+                        + "   && atPath   == :atPath "
+                        + "   && name     == :name "
                         + "ORDER BY createdAt DESC "),
         @Query(
                 /*

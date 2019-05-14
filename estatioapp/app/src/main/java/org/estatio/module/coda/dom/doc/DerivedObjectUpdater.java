@@ -419,7 +419,7 @@ public class DerivedObjectUpdater {
                         existingPaperclipIfAny.getDocument().setType(incomingDocumentType);
 
                         final List<Document> documents =
-                                documentRepository.findByTypeAndNameAndAtPath(incomingDocumentType, AT_PATH, userRef1);
+                                documentRepository.findByTypeDataAndNameAndAtPath(DocumentTypeData.INCOMING, AT_PATH, userRef1);
                         switch (documents.size()) {
                         case 0:
                             // could not locate new Document, so delete old paperclip and reset document
@@ -487,7 +487,7 @@ public class DerivedObjectUpdater {
                     // foreign Ita, use barcode
 
                     final List<Document> documents =
-                        documentRepository.findByTypeAndNameAndAtPath(incomingDocumentType, "/ITA", userRef1);
+                        documentRepository.findByTypeDataAndNameAndAtPath(DocumentTypeData.INCOMING, "/ITA", userRef1);
                     switch (documents.size()) {
                         case 0:
                             // nothing to do

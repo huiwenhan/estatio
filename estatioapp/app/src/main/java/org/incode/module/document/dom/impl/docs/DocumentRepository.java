@@ -43,14 +43,14 @@ public class DocumentRepository {
     }
 
     @Programmatic
-    public List<Document> findByTypeAndNameAndAtPath(
-            final DocumentType type,
+    public List<Document> findByTypeDataAndNameAndAtPath(
+            final DocumentTypeData typeData,
             final String atPath,
             final String name) {
         return repositoryService.allMatches(
                 new QueryDefault<>(Document.class,
-                        "findByTypeAndAtPathAndName",
-                        "type", type,
+                        "findByTypeDataAndAtPathAndName",
+                        "typeData", typeData,
                         "atPath", atPath,
                         "name", name
                         ));
