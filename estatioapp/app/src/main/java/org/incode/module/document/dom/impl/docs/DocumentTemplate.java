@@ -115,10 +115,6 @@ import lombok.Setter;
 })
 @Uniques({
         @Unique(
-                name = "DocumentTemplate_type_atPath_date_IDX",
-                members = { "typeCopy", "atPathCopy", "date" }
-        ),
-        @Unique(
                 name = "DocumentTemplate_typeData_atPath_date_IDX",
                 members = { "typeDataCopy", "atPathCopy", "date" }
         ),
@@ -129,11 +125,7 @@ import lombok.Setter;
                 members = { "atPathCopy", "date" }
         ),
         @Index(
-                name = "DocumentTemplate_type_date_IDX",
-                members = { "typeCopy", "date" }
-        ),
-        @Index(
-                name = "DocumentTemplate_type_date_IDX",
+                name = "DocumentTemplate_typeData_date_IDX",
                 members = { "typeDataCopy", "date" }
         ),
 })
@@ -148,7 +140,6 @@ public class DocumentTemplate
         extends DocumentAbstract<DocumentTemplate> {
 
 
-    //region > title, icon, cssClass
     public TranslatableString title() {
         if(this.getDate() != null) {
             return TranslatableString.tr("[{type}] ({date})",
@@ -161,8 +152,6 @@ public class DocumentTemplate
         }
     }
 
-
-    //region > constructor
 
     @NotPersistent
     @Getter
@@ -223,7 +212,6 @@ public class DocumentTemplate
             final String nameText) {
         super(type, typeData, atPath);
 
-        this.typeCopy = type;
         this.typeDataCopy = typeData;
         this.atPathCopy = atPath;
 
@@ -240,19 +228,8 @@ public class DocumentTemplate
         return stripLeadingDot.toLowerCase();
     }
 
-    //endregion
 
 
-    /**
-     * Copy of {@link #getType()}, for query purposes only.
-     */
-    @Getter @Setter
-    @Column(allowsNull = "false", name = "typeId")
-    @Property(
-            notPersisted = true, // ignore for auditing
-            hidden = Where.EVERYWHERE
-    )
-    private DocumentType typeCopy;
 
     /**
      * Copy of {@link #getTypeData()}, for query purposes only.
@@ -275,6 +252,7 @@ public class DocumentTemplate
             hidden = Where.EVERYWHERE
     )
     private String atPathCopy;
+
 
     @Programmatic
     public RenderingStrategyData getContentRenderingStrategyData() {
@@ -325,9 +303,6 @@ public class DocumentTemplate
 
     //region > applicable (action)
 
-    /**
-     * TODO: remove once moved over to using DocumentTypeData and DocumentTemplateData
-     */
     @Mixin
     public static class _applicable {
         private final DocumentTemplate documentTemplate;
