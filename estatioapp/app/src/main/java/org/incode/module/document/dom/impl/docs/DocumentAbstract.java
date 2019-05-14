@@ -66,8 +66,12 @@ import lombok.Setter;
                 members = { "atPath", "type" }
         ),
         @Index(
-                name = "DocumentAbstract_type_atPath_name_IDX",
-                members = { "type", "atPath", "name" }
+                name = "DocumentAbstract_atPath_typeData_IDX",
+                members = { "atPath", "typeData" }
+        ),
+        @Index(
+                name = "DocumentAbstract_typeData_atPath_name_IDX",
+                members = { "typeData", "atPath", "name" }
         ),
 })
 @DomainObject(
