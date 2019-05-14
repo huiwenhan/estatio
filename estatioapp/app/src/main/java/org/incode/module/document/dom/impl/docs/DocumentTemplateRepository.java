@@ -162,11 +162,14 @@ public class DocumentTemplateRepository {
      * Returns all document templates for the specified {@link DocumentType} and exact application tenancy, ordered by date (desc).
      */
     @Programmatic
-    public List<DocumentTemplate> findByTypeAndAtPath(final DocumentType documentType, final String atPath) {
+    public List<DocumentTemplate> findByTypeDataAndAtPath(
+            final DocumentType documentType,
+            final DocumentTypeData typeData,
+            final String atPath) {
         return repositoryService.allMatches(
                 new QueryDefault<>(DocumentTemplate.class,
-                        "findByTypeAndAtPath",
-                        "type", documentType,
+                        "findByTypeDataAndAtPath",
+                        "typeData", typeData,
                         "atPath", atPath));
     }
 
@@ -237,13 +240,13 @@ public class DocumentTemplateRepository {
     @Programmatic
     public TranslatableString validateApplicationTenancyAndDate(
             final DocumentType proposedType,
-            final DocumentTypeData typeData,
+            final DocumentTypeData proposedTypeData,
             final String proposedAtPath,
             final LocalDate proposedDate,
             final DocumentTemplate ignore) {
 
         final List<DocumentTemplate> existingTemplates =
-                findByTypeAndAtPath(proposedType, proposedAtPath);
+                findByTypeDataAndAtPath(proposedType, proposedTypeData, proposedAtPath);
         for (DocumentTemplate existingTemplate : existingTemplates) {
             if(existingTemplate == ignore) {
                 continue;
