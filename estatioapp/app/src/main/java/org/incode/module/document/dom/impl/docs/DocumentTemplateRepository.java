@@ -15,12 +15,10 @@ import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.query.QueryDefault;
 import org.apache.isis.applib.services.clock.ClockService;
-import org.apache.isis.applib.services.i18n.TranslatableString;
 import org.apache.isis.applib.services.repository.RepositoryService;
 import org.apache.isis.applib.value.Blob;
 import org.apache.isis.applib.value.Clob;
 
-import org.incode.module.document.dom.impl.rendering.RenderingStrategy;
 import org.incode.module.document.dom.impl.types.DocumentType;
 
 import org.estatio.module.invoice.dom.DocumentTypeData;
@@ -210,22 +208,6 @@ public class DocumentTemplateRepository {
     }
     //endregion
 
-    //region > validate...
-
-    @Programmatic
-    public TranslatableString validateSortAndRenderingStrategyInputNature(
-            final DocumentSort sort,
-            final RenderingStrategy renderingStrategy) {
-        final DocumentNature documentNature = renderingStrategy.getInputNature();
-        if(sort.isBytes() && documentNature == DocumentNature.CHARACTERS) {
-            return TranslatableString.tr("Must provide text or Clob template with a character-based rendering strategy");
-        }
-        if(sort.isCharacters() && documentNature == DocumentNature.BYTES) {
-            return TranslatableString.tr("Must provide Blob template with a binary-based rendering strategy");
-        }
-        return null;
-    }
-    //endregion
 
 
     //region > injected services
