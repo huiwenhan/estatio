@@ -211,29 +211,6 @@ public class DocumentTemplateRepository {
     //endregion
 
     //region > validate...
-    @Programmatic
-    public TranslatableString validateApplicationTenancyAndDate(
-            final DocumentTypeData proposedTypeData,
-            final String proposedAtPath,
-            final LocalDate proposedDate,
-            final DocumentTemplate ignore) {
-
-        final List<DocumentTemplate> existingTemplates =
-                findByTypeDataAndAtPath(proposedTypeData, proposedAtPath);
-        for (DocumentTemplate existingTemplate : existingTemplates) {
-            if(existingTemplate == ignore) {
-                continue;
-            }
-            if(java.util.Objects.equals(existingTemplate.getDate(), proposedDate)) {
-                return TranslatableString.tr("A template already exists for this date");
-            }
-            if (proposedDate == null && existingTemplate.getDate() != null) {
-                return TranslatableString.tr(
-                        "Must provide a date (there are existing templates that already have a date specified)");
-            }
-        }
-        return null;
-    }
 
     @Programmatic
     public TranslatableString validateSortAndRenderingStrategyInputNature(
