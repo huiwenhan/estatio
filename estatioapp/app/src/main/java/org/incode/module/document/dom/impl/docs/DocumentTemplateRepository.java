@@ -14,7 +14,6 @@ import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.query.QueryDefault;
-import org.apache.isis.applib.services.clock.ClockService;
 import org.apache.isis.applib.services.repository.RepositoryService;
 import org.apache.isis.applib.value.Blob;
 import org.apache.isis.applib.value.Clob;
@@ -33,7 +32,6 @@ public class DocumentTemplateRepository {
         return "incodeDocuments.DocumentTemplateRepository";
     }
 
-    //region > createBlob, createClob, createText
     @Programmatic
     public DocumentTemplate createBlob(
             final DocumentType type,
@@ -93,16 +91,12 @@ public class DocumentTemplateRepository {
         repositoryService.persistAndFlush(document);
         return document;
     }
-    //endregion
 
-    //region > delete
     @Programmatic
     public void delete(final DocumentTemplate documentTemplate) {
         repositoryService.removeAndFlush(documentTemplate);
     }
-    //endregion
 
-    //region > findBy...
 
     /**
      * Returns all document templates for the specified {@link DocumentType}, ordered by type, then most specific to
@@ -199,24 +193,14 @@ public class DocumentTemplateRepository {
     }
 
 
-    //endregion
-
-    //region > allTemplates
     @Programmatic
     public List<DocumentTemplate> allTemplates() {
         return repositoryService.allInstances(DocumentTemplate.class);
     }
-    //endregion
 
 
-
-    //region > injected services
 
     @Inject
     RepositoryService repositoryService;
-    @Inject
-    ClockService clockService;
-
-    //endregion
 
 }
