@@ -150,19 +150,6 @@ public class DocumentTemplateRepository {
         }
     }
 
-    /**
-     * Returns all document templates for the specified {@link DocumentType} and exact application tenancy, ordered by date (desc).
-     */
-    @Programmatic
-    public List<DocumentTemplate> findByTypeDataAndAtPath(
-            final DocumentTypeData typeData,
-            final String atPath) {
-        return repositoryService.allMatches(
-                new QueryDefault<>(DocumentTemplate.class,
-                        "findByTypeDataAndAtPath",
-                        "typeData", typeData,
-                        "atPath", atPath));
-    }
 
     /**
      * Returns the document template, if any for the specified {@link DocumentType} and exact application tenancy, and exact date.

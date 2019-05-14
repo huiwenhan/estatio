@@ -83,14 +83,6 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
 @Queries({
         @javax.jdo.annotations.Query(
-                name = "findByTypeDataAndAtPath", language = "JDOQL",
-                value = "SELECT "
-                        + "FROM org.incode.module.document.dom.impl.docs.DocumentTemplate "
-                        + "WHERE typeDataCopy   == :typeData "
-                        + "   && atPathCopy == :atPath "
-                        + "ORDER BY date DESC"
-        ),
-        @javax.jdo.annotations.Query(
                 name = "findByTypeDataAndAtPathAndDate", language = "JDOQL",
                 value = "SELECT "
                         + "FROM org.incode.module.document.dom.impl.docs.DocumentTemplate "
