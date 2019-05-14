@@ -168,17 +168,6 @@ public class DocumentTemplateRepository {
     }
 
 
-    /**
-     * Returns all templates for a type, ordered by application tenancy and date desc.
-     */
-    @Programmatic
-    public List<DocumentTemplate> findByType(final DocumentType documentType) {
-        return repositoryService.allMatches(
-                new QueryDefault<>(DocumentTemplate.class,
-                        "findByType",
-                        "type", documentType));
-    }
-
 
     @Programmatic
     public List<DocumentTemplate> allTemplates() {
