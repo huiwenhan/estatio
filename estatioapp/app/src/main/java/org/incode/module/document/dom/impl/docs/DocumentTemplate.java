@@ -136,12 +136,12 @@ public class DocumentTemplate
     public TranslatableString title() {
         if(this.getDate() != null) {
             return TranslatableString.tr("[{type}] ({date})",
-                    "type", this.getType().getReference(),
+                    "type", this.getTypeData().getRef(),
                     "date", this.getDate());
         } else {
             return TranslatableString.tr("[{type}] {name}",
                     "name", this.getName(),
-                    "type", this.getType().getReference());
+                    "type", this.getTypeData().getRef());
         }
     }
 

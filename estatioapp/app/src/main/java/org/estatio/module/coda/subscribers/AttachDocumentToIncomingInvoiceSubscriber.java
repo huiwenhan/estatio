@@ -64,7 +64,8 @@ public class AttachDocumentToIncomingInvoiceSubscriber extends AbstractSubscribe
 
     private List<CodaDocHead> kickCodaDocHeadsAndUpdatePaperclips(
             final Document document, final String userRef1) {
-        final DocumentType docType = DocumentTypeData.INCOMING_INVOICE.findUsing(documentTypeRepository);
+        final DocumentTypeData typeData = DocumentTypeData.INCOMING_INVOICE;
+        final DocumentType docType = typeData.findUsing(documentTypeRepository);
 
         final List<CodaDocHead> updated = Lists.newArrayList();
         codaDocLineRepository.findByUserRef1(userRef1)
@@ -78,6 +79,7 @@ public class AttachDocumentToIncomingInvoiceSubscriber extends AbstractSubscribe
                 .forEach(invoice -> {
                     paperclipRepository.attach(document, null, invoice);
                     document.setType(docType);
+                    document.setTypeData(typeData);
                 });
 
         return updated;

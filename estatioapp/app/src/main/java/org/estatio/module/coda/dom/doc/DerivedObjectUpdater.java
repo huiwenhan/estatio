@@ -365,10 +365,13 @@ public class DerivedObjectUpdater {
         final String existingDocumentNameIfAny = previous.getDocumentNameIfAny();
         final Paperclip existingPaperclipIfAny = previous.getPaperclipIfAny();
 
+        final DocumentTypeData incomingTypeData = DocumentTypeData.INCOMING;
         final DocumentType incomingDocumentType =
-                DocumentTypeData.INCOMING.findUsing(documentTypeRepository);
+                incomingTypeData.findUsing(documentTypeRepository);
+
+        final DocumentTypeData incomingInvoiceTypeData = DocumentTypeData.INCOMING_INVOICE;
         final DocumentType incomingInvoiceDocumentType =
-                DocumentTypeData.INCOMING_INVOICE.findUsing(documentTypeRepository);
+                incomingInvoiceTypeData.findUsing(documentTypeRepository);
 
         final IncomingInvoice incomingInvoice = derivedObjectLookup.invoiceIfAnyFrom(docHead);
 
@@ -382,6 +385,7 @@ public class DerivedObjectUpdater {
 
                 // reset the existing document back to vanilla 'INCOMING'
                 existingPaperclipIfAny.getDocument().setType(incomingDocumentType);
+                existingPaperclipIfAny.getDocument().setTypeData(incomingTypeData);
 
             } else {
 
@@ -417,6 +421,7 @@ public class DerivedObjectUpdater {
 
                         // reset the existing document back to vanilla 'INCOMING'
                         existingPaperclipIfAny.getDocument().setType(incomingDocumentType);
+                        existingPaperclipIfAny.getDocument().setTypeData(incomingTypeData);
 
                         final List<Document> documents =
                                 documentRepository.findByTypeDataAndNameAndAtPath(DocumentTypeData.INCOMING, AT_PATH, userRef1);
@@ -430,6 +435,7 @@ public class DerivedObjectUpdater {
                             final Document document = documents.get(0);
                             existingPaperclipIfAny.setDocument(document);
                             document.setType(incomingInvoiceDocumentType);
+                            document.setTypeData(incomingInvoiceTypeData);
                             break;
                         default:
                             // could not locate a unique Document, so delete
@@ -481,6 +487,7 @@ public class DerivedObjectUpdater {
                     final Document document = documentIfAny.get();
                     paperclipRepository.attach(document, null, incomingInvoice);
                     document.setType(incomingInvoiceDocumentType);
+                    document.setTypeData(incomingInvoiceTypeData);
 
                 } else {
 
@@ -497,6 +504,7 @@ public class DerivedObjectUpdater {
                             final Document document = documents.get(0);
                             paperclipRepository.attach(document, null, incomingInvoice);
                             document.setType(incomingInvoiceDocumentType);
+                            document.setTypeData(incomingInvoiceTypeData);
                             break;
                         default:
                             // could not locate a unique Document, so do nothing

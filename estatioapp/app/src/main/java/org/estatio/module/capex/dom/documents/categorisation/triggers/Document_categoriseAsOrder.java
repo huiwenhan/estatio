@@ -52,7 +52,9 @@ public class Document_categoriseAsOrder
 
         final Document document = getDomainObject();
 
-        document.setType(DocumentTypeData.INCOMING_ORDER.findUsing(documentTypeRepository));
+        final DocumentTypeData incomingOrderTypeData = DocumentTypeData.INCOMING_ORDER;
+        document.setType(incomingOrderTypeData.findUsing(documentTypeRepository));
+        document.setTypeData(incomingOrderTypeData);
 
         // create order
         final Order order = orderRepository.create(

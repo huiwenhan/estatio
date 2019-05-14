@@ -54,7 +54,7 @@ public class BankAccount_attachPdfAsIbanProof {
         // delete all existing paperclips for this role whose type is also not IBAN_PROOF
         // (ie any incoming invoices that were automatically attached as candidate iban proofs)
         final Predicate<Paperclip> hasIbanProofDocType =
-                paperclip -> Objects.equals(ibanProofDocType, paperclip.getDocument().getType());
+                paperclip -> Objects.equals(typeDataForIbanProof, paperclip.getDocument().getTypeData());
         final Predicate<Paperclip> doesNotHaveIbanProofDocType = hasIbanProofDocType.negate();
 
         ibanProofPaperclips.stream()

@@ -59,7 +59,9 @@ public class Document_categoriseAsPropertyInvoice
 
         final Document document = getDomainObject();
 
-        document.setType(DocumentTypeData.INCOMING_INVOICE.findUsing(documentTypeRepository));
+        final DocumentTypeData incomingInvoiceTypeData = DocumentTypeData.INCOMING_INVOICE;
+        document.setType(incomingInvoiceTypeData.findUsing(documentTypeRepository));
+        document.setTypeData(incomingInvoice);
 
         LocalDate dateReceived = document.getCreatedAt().toLocalDate();
         LocalDate dueDate = document.getCreatedAt().toLocalDate().plusDays(30);

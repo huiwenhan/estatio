@@ -150,7 +150,7 @@ public class Document extends DocumentAbstract<Document> implements DocumentLike
     private TranslatableString titleOf(final Document document) {
         return TranslatableString.tr("[{type}] {name} {createdAt}",
                 "name", document.getName(),
-                "type", document.getType().getReference(),
+                "type", document.getTypeData().getRef(),
                 "createdAt", document.getCreatedAt().toString("(dd-MM-YYYY hh:mm)"));
     }
 

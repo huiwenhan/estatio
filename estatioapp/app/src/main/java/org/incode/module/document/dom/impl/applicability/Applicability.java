@@ -78,7 +78,7 @@ public class Applicability implements Comparable<Applicability> {
         return TranslatableString.tr(
                 "{simpleName} applies to [{docType}]",
                 "simpleName", simpleNameOf(this.getDomainClassName()),
-                "docType", this.getDocumentTemplate().getType().getReference());
+                "docType", this.getDocumentTemplate().getTypeData().getRef());
     }
 
     private static String simpleNameOf(final String domainType) {
