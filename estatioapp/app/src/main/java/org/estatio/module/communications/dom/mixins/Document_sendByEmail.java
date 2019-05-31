@@ -27,14 +27,14 @@ import org.estatio.module.communications.dom.impl.comms.Communication;
 import org.estatio.module.communications.dom.impl.comms.CommunicationRepository;
 import org.estatio.module.communications.dom.spi.CommHeaderForEmail;
 import org.estatio.module.communications.dom.spi.DocumentCommunicationSupport;
-import org.incode.module.document.DocumentModule;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.docs.DocumentState;
-import org.incode.module.document.dom.impl.docs.DocumentTemplate;
-import org.incode.module.document.dom.impl.docs.DocumentTemplateRepository;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
-import org.incode.module.document.dom.impl.types.DocumentType;
-import org.incode.module.document.dom.services.DocumentCreatorService;
+import org.estatio.module.document.DocumentModule;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.DocumentState;
+import org.estatio.module.document.dom.impl.docs.DocumentTemplate;
+import org.estatio.module.document.dom.impl.docs.DocumentTemplateRepository;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.impl.types.DocumentType;
+import org.estatio.module.document.dom.services.DocumentCreatorService;
 
 /**
  * Provides the ability to send an email.

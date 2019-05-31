@@ -32,7 +32,7 @@ import org.apache.isis.applib.value.Blob;
 
 import org.incode.module.base.dom.MimeTypeData;
 import org.estatio.module.communications.dom.impl.commchannel.PostalAddress;
-import org.incode.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.Document;
 
 import org.estatio.module.invoice.dom.DocumentTypeData;
 import org.estatio.module.lease.dom.invoicing.InvoiceForLease;

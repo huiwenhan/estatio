@@ -13,9 +13,9 @@ import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.Mixin;
 import org.apache.isis.applib.annotation.SemanticsOf;
 
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
-import org.incode.module.document.dom.impl.types.DocumentTypeRepository;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.impl.types.DocumentTypeRepository;
 
 import org.estatio.module.asset.dom.Property;
 import org.estatio.module.asset.dom.role.FixedAssetRole;

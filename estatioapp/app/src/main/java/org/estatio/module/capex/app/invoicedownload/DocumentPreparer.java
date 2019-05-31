@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
-import org.incode.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.Document;
 
 import org.estatio.module.capex.dom.invoice.approval.IncomingInvoiceApprovalStateTransition;
 import org.estatio.module.capex.dom.invoice.IncomingInvoice;

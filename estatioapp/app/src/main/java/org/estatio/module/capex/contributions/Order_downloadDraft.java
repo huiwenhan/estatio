@@ -12,7 +12,7 @@ import org.apache.isis.applib.services.factory.FactoryService;
 import org.apache.isis.applib.value.Blob;
 
 import org.incode.module.base.dom.MimeTypeData;
-import org.incode.module.document.dom.impl.docs.DocumentTemplate;
+import org.estatio.module.document.dom.impl.docs.DocumentTemplate;
 
 import org.estatio.module.capex.dom.order.Order;
 

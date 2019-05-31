@@ -18,9 +18,9 @@ import org.apache.isis.applib.value.Blob;
 
 import org.incode.module.apptenancy.fixtures.enums.ApplicationTenancy_enum;
 import org.incode.module.base.dom.MimeTypeData;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.paperclips.Paperclip;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.paperclips.Paperclip;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
 
 import org.estatio.module.asset.fixtures.person.enums.Person_enum;
 import org.estatio.module.capex.app.DocumentMenu;

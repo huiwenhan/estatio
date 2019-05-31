@@ -23,10 +23,11 @@ import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 
 import org.estatio.module.base.dom.apptenancy.WithApplicationTenancy;
+import org.estatio.module.document.dom.spi.ApplicationTenancyService;
 
 @DomainService(nature = NatureOfService.DOMAIN, menuOrder = "100")
 public class ApplicationTenancyServiceForWithApplicationTenancy
-        implements org.incode.module.document.dom.spi.ApplicationTenancyService,
+        implements ApplicationTenancyService,
                    org.incode.module.docfragment.dom.spi.ApplicationTenancyService  {
 
     @Override

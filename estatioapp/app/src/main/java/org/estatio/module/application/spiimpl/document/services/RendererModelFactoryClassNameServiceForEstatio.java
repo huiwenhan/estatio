@@ -23,10 +23,10 @@ import java.util.List;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 
-import org.incode.module.document.dom.impl.applicability.RendererModelFactory;
-import org.incode.module.document.dom.services.ClassNameServiceAbstract;
-import org.incode.module.document.dom.services.ClassNameViewModel;
-import org.incode.module.document.dom.spi.RendererModelFactoryClassNameService;
+import org.estatio.module.document.dom.impl.applicability.RendererModelFactory;
+import org.estatio.module.document.dom.services.ClassNameServiceAbstract;
+import org.estatio.module.document.dom.services.ClassNameViewModel;
+import org.estatio.module.document.dom.spi.RendererModelFactoryClassNameService;
 
 @DomainService(nature = NatureOfService.DOMAIN)
 public class RendererModelFactoryClassNameServiceForEstatio extends ClassNameServiceAbstract<RendererModelFactory> implements

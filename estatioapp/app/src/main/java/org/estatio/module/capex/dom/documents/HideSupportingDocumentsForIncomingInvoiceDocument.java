@@ -7,9 +7,9 @@ import org.apache.isis.applib.annotation.Programmatic;
 
 import org.estatio.module.communications.dom.mixins.Document_communicationAttachments;
 import org.estatio.module.communications.dom.mixins.Document_communications;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.docs.Document_backgroundCommands;
-import org.incode.module.document.dom.mixins.T_documents;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.Document_backgroundCommands;
+import org.estatio.module.document.dom.mixins.T_documents;
 
 import org.estatio.module.invoice.dom.DocumentTypeData;
 

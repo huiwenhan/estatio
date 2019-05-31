@@ -64,10 +64,10 @@ import org.estatio.module.communications.dom.impl.commchannel.EmailAddress;
 import org.estatio.module.communications.dom.mixins.DocumentConstants;
 import org.estatio.module.communications.dom.types.AtPathType;
 import org.estatio.module.communications.dom.types.SubjectType;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.docs.DocumentAbstract;
-import org.incode.module.document.dom.impl.paperclips.Paperclip;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.DocumentAbstract;
+import org.estatio.module.document.dom.impl.paperclips.Paperclip;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
 
 import lombok.Getter;
 import lombok.Setter;

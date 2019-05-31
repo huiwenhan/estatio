@@ -10,9 +10,9 @@ import org.apache.isis.applib.annotation.Mixin;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.services.queryresultscache.QueryResultsCache;
 
-import org.incode.module.document.dom.impl.docs.DocumentAbstract;
-import org.incode.module.document.dom.impl.paperclips.Paperclip;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.impl.docs.DocumentAbstract;
+import org.estatio.module.document.dom.impl.paperclips.Paperclip;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
 
 import org.estatio.module.capex.dom.bankaccount.verification.BankAccountVerificationState;
 import org.estatio.module.capex.dom.bankaccount.verification.BankAccountVerificationStateTransition;

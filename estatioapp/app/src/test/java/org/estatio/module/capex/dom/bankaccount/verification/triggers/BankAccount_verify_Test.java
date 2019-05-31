@@ -11,8 +11,8 @@ import org.junit.Test;
 
 import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2;
 
-import org.incode.module.document.dom.impl.paperclips.Paperclip;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.impl.paperclips.Paperclip;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
 
 import org.estatio.module.capex.contributions.BankAccount_attachPdfAsIbanProof;
 import org.estatio.module.financial.dom.BankAccount;

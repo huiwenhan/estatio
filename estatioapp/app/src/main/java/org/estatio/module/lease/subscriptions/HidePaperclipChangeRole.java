@@ -24,7 +24,7 @@ import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.Programmatic;
 
-import org.incode.module.document.dom.impl.paperclips.Paperclip_changeRole;
+import org.estatio.module.document.dom.impl.paperclips.Paperclip_changeRole;
 
 @DomainService(nature = NatureOfService.DOMAIN)
 public class HidePaperclipChangeRole extends AbstractSubscriber {

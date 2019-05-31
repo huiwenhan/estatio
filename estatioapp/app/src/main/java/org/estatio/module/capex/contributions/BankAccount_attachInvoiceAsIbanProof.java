@@ -13,9 +13,9 @@ import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.Mixin;
 import org.apache.isis.applib.annotation.SemanticsOf;
 
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.paperclips.Paperclip;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.paperclips.Paperclip;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
 
 import org.estatio.module.capex.dom.documents.LookupAttachedPdfService;
 import org.estatio.module.financial.dom.BankAccount;

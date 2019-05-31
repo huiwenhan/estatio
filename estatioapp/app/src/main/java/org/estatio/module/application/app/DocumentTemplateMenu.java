@@ -29,11 +29,10 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.SemanticsOf;
 
-import org.incode.module.document.dom.impl.docs.DocumentTemplate;
-import org.incode.module.document.dom.impl.docs.DocumentTemplateRepository;
+import org.estatio.module.document.dom.impl.docs.DocumentTemplate;
+import org.estatio.module.document.dom.impl.docs.DocumentTemplateRepository;
 
 import org.estatio.module.base.dom.UdoDomainService;
-import org.estatio.module.base.dom.apptenancy.EstatioApplicationTenancyRepository;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,

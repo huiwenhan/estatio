@@ -13,10 +13,10 @@ import org.apache.isis.applib.AbstractSubscriber;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
-import org.incode.module.document.dom.impl.types.DocumentType;
-import org.incode.module.document.dom.impl.types.DocumentTypeRepository;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.impl.types.DocumentType;
+import org.estatio.module.document.dom.impl.types.DocumentTypeRepository;
 
 import org.estatio.module.capex.dom.documents.IncomingDocumentRepository;
 import org.estatio.module.coda.dom.doc.CodaDocHead;

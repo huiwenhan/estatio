@@ -11,7 +11,7 @@ import org.apache.isis.applib.annotation.SemanticsOf;
 import org.isisaddons.module.security.dom.tenancy.ApplicationTenancy;
 import org.isisaddons.module.security.dom.tenancy.ApplicationTenancyRepository;
 
-import org.incode.module.document.dom.impl.docs.DocumentAbstract;
+import org.estatio.module.document.dom.impl.docs.DocumentAbstract;
 
 @Mixin(method = "prop")
 public class DocumentAbstract_applicationTenancy {

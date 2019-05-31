@@ -10,7 +10,7 @@ import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.Mixin;
 import org.apache.isis.applib.annotation.SemanticsOf;
 
-import org.incode.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.Document;
 
 import org.estatio.module.capex.dom.documents.LookupAttachedPdfService;
 import org.estatio.module.capex.dom.documents.categorisation.IncomingDocumentCategorisationStateTransition;

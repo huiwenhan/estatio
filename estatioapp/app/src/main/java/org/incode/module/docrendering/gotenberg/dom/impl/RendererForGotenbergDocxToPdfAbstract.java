@@ -6,8 +6,8 @@ import javax.inject.Inject;
 
 import org.apache.isis.applib.services.registry.ServiceRegistry2;
 
-import org.incode.module.document.dom.impl.renderers.RendererFromBytesToBytes;
-import org.incode.module.document.dom.impl.types.DocumentType;
+import org.estatio.module.document.dom.impl.renderers.RendererFromBytesToBytes;
+import org.estatio.module.document.dom.impl.types.DocumentType;
 
 public abstract class RendererForGotenbergDocxToPdfAbstract implements RendererFromBytesToBytes {
 

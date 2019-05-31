@@ -10,7 +10,7 @@ import org.apache.isis.applib.fixturescripts.PersonaWithFinder;
 import org.apache.isis.applib.services.registry.ServiceRegistry2;
 
 import org.incode.module.apptenancy.fixtures.enums.ApplicationTenancy_enum;
-import org.incode.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.Document;
 
 import org.estatio.module.asset.fixtures.person.enums.Person_enum;
 import org.estatio.module.asset.fixtures.property.enums.PropertyAndUnitsAndOwnerAndManager_enum;

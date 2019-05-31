@@ -4,7 +4,7 @@
      xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/jdo/orm
         http://xmlns.jcp.org/xml/ns/jdo/orm_3_0.xsd">
 
-    <package name="org.incode.module.communications.dom.impl.commchannel">
+    <package name="org.estatio.module.communications.dom.impl.commchannel">
         <class name="PhoneOrFaxNumber"
                 schema="dbo">
         </class>

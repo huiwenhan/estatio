@@ -25,7 +25,7 @@ import org.isisaddons.module.freemarker.dom.service.FreeMarkerService;
 import org.isisaddons.module.xdocreport.dom.service.OutputType;
 import org.isisaddons.module.xdocreport.dom.service.XDocReportService;
 
-import org.incode.module.document.dom.impl.docs.DocumentTemplate;
+import org.estatio.module.document.dom.impl.docs.DocumentTemplate;
 
 import org.estatio.module.asset.dom.Property;
 import org.estatio.module.capex.dom.order.Order;

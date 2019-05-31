@@ -68,8 +68,8 @@ import org.isisaddons.module.security.dom.tenancy.ApplicationTenancy;
 
 import org.incode.module.base.dom.types.NotesType;
 import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannel;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
-import org.incode.module.document.dom.types.AtPathType;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.types.AtPathType;
 
 import org.estatio.module.bankmandate.dom.BankMandate;
 import org.estatio.module.base.dom.EstatioRole;

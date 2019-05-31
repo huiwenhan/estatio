@@ -13,7 +13,7 @@ public class WithNameComparableContractForIncodeModuleTest_compareTo extends
         ComparableByNameContractTestAbstract_compareTo {
 
     public WithNameComparableContractForIncodeModuleTest_compareTo() {
-        super("org.incode.module.communications", ImmutableMap.<Class<?>, Class<?>>of());
+        super("org.estatio.module.communications", ImmutableMap.<Class<?>, Class<?>>of());
     }
 
 }

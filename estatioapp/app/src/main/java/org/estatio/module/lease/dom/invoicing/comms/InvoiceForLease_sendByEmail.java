@@ -44,11 +44,11 @@ import org.estatio.module.communications.dom.impl.commchannel.CommunicationChann
 import org.estatio.module.communications.dom.impl.commchannel.EmailAddress;
 import org.estatio.module.communications.dom.impl.comms.Communication;
 import org.estatio.module.communications.dom.mixins.Document_sendByEmail;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.docs.DocumentAbstract;
-import org.incode.module.document.dom.impl.docs.DocumentState;
-import org.incode.module.document.dom.impl.paperclips.Paperclip;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.DocumentAbstract;
+import org.estatio.module.document.dom.impl.docs.DocumentState;
+import org.estatio.module.document.dom.impl.paperclips.Paperclip;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
 
 import org.estatio.module.invoice.dom.DocumentTypeData;
 import org.estatio.module.lease.dom.invoicing.InvoiceForLease;

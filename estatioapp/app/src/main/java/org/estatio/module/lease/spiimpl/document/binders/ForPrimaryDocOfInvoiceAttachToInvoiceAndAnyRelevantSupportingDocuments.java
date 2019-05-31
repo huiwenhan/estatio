@@ -24,13 +24,13 @@ import javax.inject.Inject;
 
 import com.google.common.collect.Lists;
 
-import org.incode.module.document.dom.impl.applicability.AttachmentAdvisor;
-import org.incode.module.document.dom.impl.applicability.AttachmentAdvisorAbstract;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.docs.DocumentAbstract;
-import org.incode.module.document.dom.impl.docs.DocumentTemplate;
-import org.incode.module.document.dom.impl.paperclips.Paperclip;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.impl.applicability.AttachmentAdvisor;
+import org.estatio.module.document.dom.impl.applicability.AttachmentAdvisorAbstract;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.DocumentAbstract;
+import org.estatio.module.document.dom.impl.docs.DocumentTemplate;
+import org.estatio.module.document.dom.impl.paperclips.Paperclip;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
 
 import org.estatio.module.invoice.dom.DocumentTypeData;
 import org.estatio.module.invoice.dom.Invoice;

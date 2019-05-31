@@ -2,7 +2,7 @@ package org.estatio.module.coda.dom.doc;
 
 import java.util.Map;
 
-import org.incode.module.document.dom.impl.paperclips.Paperclip;
+import org.estatio.module.document.dom.impl.paperclips.Paperclip;
 
 import org.estatio.module.capex.dom.invoice.IncomingInvoice;
 

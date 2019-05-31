@@ -16,11 +16,11 @@ import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.annotation.SemanticsOf;
 
-import org.incode.module.document.DocumentModule;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.paperclips.Paperclip;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
-import org.incode.module.document.dom.spi.SupportingDocumentsEvaluator;
+import org.estatio.module.document.DocumentModule;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.paperclips.Paperclip;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.spi.SupportingDocumentsEvaluator;
 
 @Mixin(method = "coll")
 public class Document_communicationAttachments {

@@ -36,14 +36,14 @@ import org.apache.isis.applib.services.queryresultscache.QueryResultsCache;
 import org.apache.isis.applib.services.repository.RepositoryService;
 import org.apache.isis.applib.value.Blob;
 
-import org.incode.module.document.dom.api.DocumentService;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.docs.DocumentRepository;
-import org.incode.module.document.dom.impl.docs.QDocument;
-import org.incode.module.document.dom.impl.paperclips.Paperclip;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
-import org.incode.module.document.dom.impl.types.DocumentType;
-import org.incode.module.document.dom.impl.types.DocumentTypeRepository;
+import org.estatio.module.document.dom.api.DocumentService;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.DocumentRepository;
+import org.estatio.module.document.dom.impl.docs.QDocument;
+import org.estatio.module.document.dom.impl.paperclips.Paperclip;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.impl.types.DocumentType;
+import org.estatio.module.document.dom.impl.types.DocumentTypeRepository;
 
 import org.estatio.module.asset.dom.FixedAsset;
 import org.estatio.module.asset.dom.PropertyRepository;

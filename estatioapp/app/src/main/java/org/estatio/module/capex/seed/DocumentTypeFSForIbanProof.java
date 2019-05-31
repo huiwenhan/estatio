@@ -18,8 +18,8 @@
  */
 package org.estatio.module.capex.seed;
 
-import org.incode.module.document.dom.impl.types.DocumentType;
-import org.incode.module.document.fixture.DocumentTemplateFSAbstract;
+import org.estatio.module.document.dom.impl.types.DocumentType;
+import org.estatio.module.document.fixture.DocumentTemplateFSAbstract;
 
 import org.estatio.module.invoice.dom.DocumentTypeData;
 

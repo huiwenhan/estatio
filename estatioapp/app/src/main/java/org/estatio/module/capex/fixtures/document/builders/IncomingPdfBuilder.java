@@ -12,7 +12,7 @@ import org.apache.isis.applib.services.sudo.SudoService;
 import org.apache.isis.applib.value.Blob;
 
 import org.incode.module.base.dom.MimeTypeData;
-import org.incode.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.Document;
 
 import org.estatio.module.capex.app.DocumentMenu;
 

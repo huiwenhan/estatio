@@ -31,7 +31,7 @@ import org.apache.isis.applib.services.clock.ClockService;
 import org.apache.isis.applib.services.factory.FactoryService;
 import org.apache.isis.schema.utils.jaxbadapters.JodaLocalDateStringAdapter;
 
-import org.incode.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.Document;
 
 import org.estatio.module.budget.dom.budgetitem.BudgetItem;
 import org.estatio.module.capex.app.document.IncomingDocViewModel;

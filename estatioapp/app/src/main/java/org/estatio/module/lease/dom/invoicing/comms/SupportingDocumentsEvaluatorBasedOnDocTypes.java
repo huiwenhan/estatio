@@ -23,8 +23,8 @@ import java.util.List;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.spi.SupportingDocumentsEvaluator;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.spi.SupportingDocumentsEvaluator;
 
 import org.estatio.module.invoice.dom.DocumentTypeData;
 

@@ -20,10 +20,10 @@ import org.apache.isis.applib.services.tablecol.TableColumnOrderService;
 
 import org.estatio.module.communications.dom.impl.comms.Communication;
 import org.estatio.module.communications.dom.impl.covernotes.Document_coverNoteFor;
-import org.incode.module.document.DocumentModule;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
-import org.incode.module.document.dom.spi.SupportingDocumentsEvaluator;
+import org.estatio.module.document.DocumentModule;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.spi.SupportingDocumentsEvaluator;
 
 @Mixin(method = "coll")
 public class Document_communications {

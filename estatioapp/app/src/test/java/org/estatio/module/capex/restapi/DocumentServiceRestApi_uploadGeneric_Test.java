@@ -11,7 +11,7 @@ import org.apache.isis.applib.value.Blob;
 import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2;
 
 import org.incode.module.base.dom.MimeTypeData;
-import org.incode.module.document.dom.impl.types.DocumentTypeRepository;
+import org.estatio.module.document.dom.impl.types.DocumentTypeRepository;
 
 public class DocumentServiceRestApi_uploadGeneric_Test {
 

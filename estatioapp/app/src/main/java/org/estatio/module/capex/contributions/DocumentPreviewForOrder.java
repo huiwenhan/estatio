@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlType;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.Editing;
 
-import org.incode.module.document.dom.mixins.DocumentPreview;
+import org.estatio.module.document.dom.mixins.DocumentPreview;
 
 import org.estatio.module.capex.dom.order.Order;
 

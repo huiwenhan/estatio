@@ -16,7 +16,7 @@ import org.estatio.module.communications.dom.impl.comms.CommChannelRole;
 import org.estatio.module.communications.dom.impl.comms.Communication;
 import org.estatio.module.communications.dom.impl.paperclips.PaperclipForCommunication;
 import org.incode.module.country.CountryModule;
-import org.incode.module.document.DocumentModule;
+import org.estatio.module.document.DocumentModule;
 import org.incode.module.fixturesupport.dom.scripts.TeardownFixtureAbstract;
 
 @XmlRootElement(name = "module")

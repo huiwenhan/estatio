@@ -31,11 +31,11 @@ import com.google.common.collect.Lists;
 
 import org.apache.isis.applib.services.queryresultscache.QueryResultsCache;
 
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.docs.DocumentAbstract;
-import org.incode.module.document.dom.impl.docs.DocumentTemplate;
-import org.incode.module.document.dom.impl.types.DocumentType;
-import org.incode.module.document.dom.impl.types.DocumentTypeRepository;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.DocumentAbstract;
+import org.estatio.module.document.dom.impl.docs.DocumentTemplate;
+import org.estatio.module.document.dom.impl.types.DocumentType;
+import org.estatio.module.document.dom.impl.types.DocumentTypeRepository;
 
 import lombok.Getter;
 

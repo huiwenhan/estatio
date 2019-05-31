@@ -2,7 +2,7 @@ package org.estatio.module.capex.dom.documents.categorisation.tasks;
 
 import org.apache.isis.applib.annotation.Mixin;
 
-import org.incode.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.Document;
 
 import org.estatio.module.capex.dom.dobj.DomainObject_nextTaskRoleAssignedToAbstract;
 import org.estatio.module.capex.dom.documents.categorisation.IncomingDocumentCategorisationState;

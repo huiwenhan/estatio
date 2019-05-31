@@ -2,7 +2,7 @@ package org.estatio.module.capex.dom.documents.categorisation.triggers;
 
 import javax.inject.Inject;
 
-import org.incode.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.Document;
 
 import org.estatio.module.capex.dom.documents.BuyerFinder;
 import org.estatio.module.capex.dom.documents.categorisation.IncomingDocumentCategorisationState;

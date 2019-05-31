@@ -25,7 +25,7 @@ import com.google.common.io.BaseEncoding;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 
-import org.incode.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.Document;
 
 import org.estatio.canonical.documents.v2.DocumentNature;
 import org.estatio.canonical.documents.v2.DocumentType;

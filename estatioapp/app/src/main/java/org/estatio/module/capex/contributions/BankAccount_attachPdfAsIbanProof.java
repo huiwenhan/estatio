@@ -14,11 +14,11 @@ import org.apache.isis.applib.value.Blob;
 
 import org.incode.module.base.dom.MimeTypeData;
 import org.incode.module.base.spi.DeriveBlobFromDummyPdfArg0;
-import org.incode.module.document.dom.api.DocumentService;
-import org.incode.module.document.dom.impl.paperclips.Paperclip;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
-import org.incode.module.document.dom.impl.types.DocumentType;
-import org.incode.module.document.dom.impl.types.DocumentTypeRepository;
+import org.estatio.module.document.dom.api.DocumentService;
+import org.estatio.module.document.dom.impl.paperclips.Paperclip;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.impl.types.DocumentType;
+import org.estatio.module.document.dom.impl.types.DocumentTypeRepository;
 
 import org.estatio.module.financial.dom.BankAccount;
 import org.estatio.module.invoice.dom.DocumentTypeData;

@@ -3,8 +3,8 @@ package org.estatio.module.communications.dom.spi;
 import org.apache.isis.applib.annotation.Programmatic;
 
 import org.estatio.module.communications.dom.mixins.Document_sendByEmail;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.types.DocumentType;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.types.DocumentType;
 
 /**
  * As used by the {@link Document_sendByEmail} mixin.

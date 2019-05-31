@@ -44,8 +44,8 @@ import org.isisaddons.module.pdfbox.dom.service.PdfBoxService;
 
 import org.incode.module.base.dom.MimeTypeData;
 import org.incode.module.country.dom.impl.Country;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.docs.DocumentAbstract;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.DocumentAbstract;
 import org.incode.module.zip.impl.ZipService;
 
 import org.estatio.module.asset.dom.FixedAsset;

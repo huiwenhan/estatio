@@ -40,9 +40,9 @@ import org.isisaddons.wicket.pdfjs.cpt.applib.PdfJsViewer;
 
 import org.incode.module.base.dom.valuetypes.LocalDateInterval;
 import org.incode.module.country.dom.impl.Country;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
-import org.incode.module.document.dom.impl.types.DocumentType;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.impl.types.DocumentType;
 
 import org.estatio.module.asset.dom.OwnershipType;
 import org.estatio.module.asset.dom.Property;

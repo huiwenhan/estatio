@@ -5,7 +5,7 @@ import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.Programmatic;
 
-import org.incode.module.document.dom.impl.docs.DocumentAbstract;
+import org.estatio.module.document.dom.impl.docs.DocumentAbstract;
 
 @DomainService(nature = NatureOfService.DOMAIN)
 public class Document_hideAtPath extends AbstractSubscriber {

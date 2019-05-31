@@ -21,8 +21,8 @@ import org.isisaddons.module.pdfbox.dom.service.PdfBoxService;
 import org.incode.module.base.dom.MimeTypeData;
 import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelType;
 import org.estatio.module.communications.dom.mixins.DocumentConstants;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.docs.minio.Document_downloadExternalUrlAsBlob;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.minio.Document_downloadExternalUrlAsBlob;
 
 @Mixin(method = "act")
 public class Communication_downloadPdfForPosting {

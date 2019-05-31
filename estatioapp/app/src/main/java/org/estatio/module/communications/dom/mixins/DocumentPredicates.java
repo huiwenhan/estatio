@@ -4,8 +4,8 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
 import org.incode.module.base.dom.MimeTypeData;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.docs.DocumentSort;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.DocumentSort;
 
 public class DocumentPredicates {
     private DocumentPredicates() {

@@ -38,9 +38,9 @@ import org.estatio.module.communications.dom.impl.comms.Communication;
 import org.estatio.module.communications.dom.mixins.Document_communicationAttachments;
 import org.estatio.module.communications.dom.mixins.Document_sendByEmail;
 import org.estatio.module.communications.dom.mixins.Document_sendByPost;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.docs.DocumentSort;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.DocumentSort;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
 
 import org.estatio.module.lease.dom.invoicing.InvoiceForLease;
 

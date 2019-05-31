@@ -25,8 +25,8 @@ import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.Mixin;
 import org.apache.isis.applib.annotation.Where;
 
-import org.incode.module.document.dom.impl.docs.DocumentTemplate;
-import org.incode.module.document.dom.mixins.T_createAndAttachDocumentAndScheduleRender;
+import org.estatio.module.document.dom.impl.docs.DocumentTemplate;
+import org.estatio.module.document.dom.mixins.T_createAndAttachDocumentAndScheduleRender;
 
 import org.estatio.module.lease.dom.invoicing.InvoiceForLease;
 

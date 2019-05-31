@@ -630,14 +630,14 @@ public class PaymentBatch extends UdoDomainObject2<PaymentBatch> implements Stat
 
                 final BankAccount bankAccount = invoice.getBankAccount();
 
-                final Optional<org.incode.module.document.dom.impl.docs.Document> invoiceDocIfAny =
+                final Optional<org.estatio.module.document.dom.impl.docs.Document> invoiceDocIfAny =
                         lookupAttachedPdfService.lookupIncomingInvoicePdfFrom(invoice);
 
                 if (invoiceDocIfAny.isPresent()) {
-                    final org.incode.module.document.dom.impl.docs.Document invoiceDoc = invoiceDocIfAny.get();
+                    final org.estatio.module.document.dom.impl.docs.Document invoiceDoc = invoiceDocIfAny.get();
                     final byte[] invoiceDocBytes = invoiceDoc.asBytes();
 
-                    final Optional<org.incode.module.document.dom.impl.docs.Document> ibanProofDocIfAny = lookupAttachedPdfService
+                    final Optional<org.estatio.module.document.dom.impl.docs.Document> ibanProofDocIfAny = lookupAttachedPdfService
                             .lookupIbanProofPdfFrom(bankAccount);
 
                     List<String> leftLines = Lists.newArrayList();
@@ -657,7 +657,7 @@ public class PaymentBatch extends UdoDomainObject2<PaymentBatch> implements Stat
                     boolean attachProof = false;
                     final String proof;
                     if (ibanProofDocIfAny.isPresent()) {
-                        final org.incode.module.document.dom.impl.docs.Document ibanProofDoc = ibanProofDocIfAny.get();
+                        final org.estatio.module.document.dom.impl.docs.Document ibanProofDoc = ibanProofDocIfAny.get();
                         if (DocumentTypeData.IBAN_PROOF.isDocTypeFor(ibanProofDoc)) {
                             proof = "Separate IBAN proof (next page)";
                             attachProof = true;
@@ -678,7 +678,7 @@ public class PaymentBatch extends UdoDomainObject2<PaymentBatch> implements Stat
                     appendTempFile(extractedInvoiceDocBytes, documentName, pdfFiles);
 
                     if (attachProof) {
-                        final org.incode.module.document.dom.impl.docs.Document ibanProofDoc = ibanProofDocIfAny.get();
+                        final org.estatio.module.document.dom.impl.docs.Document ibanProofDoc = ibanProofDocIfAny.get();
                         final byte[] ibanProofBytes = ibanProofDoc.asBytes();
                         final byte[] firstPageIbanProofDocBytes =
                                 pdfManipulator.extract(ibanProofBytes, ExtractSpec.FIRST_PAGE_ONLY);

@@ -7,7 +7,7 @@ public class WithNameUniqueContractForIncodeModuleTest_hasJdoUniqueIndexAnnotati
         WithFieldUniqueContractTestAllAbstract<WithNameUnique> {
 
     public WithNameUniqueContractForIncodeModuleTest_hasJdoUniqueIndexAnnotation() {
-        super("org.incode.module.communications", "name", WithNameUnique.class);
+        super("org.estatio.module.communications", "name", WithNameUnique.class);
     }
 
 }

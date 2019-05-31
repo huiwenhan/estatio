@@ -20,10 +20,10 @@ import org.isisaddons.wicket.pdfjs.cpt.applib.PdfJsViewer;
 
 import org.incode.module.base.dom.MimeTypeData;
 import org.incode.module.docrendering.gotenberg.dom.impl.GotenbergClientService;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.docs.DocumentAbstract;
-import org.incode.module.document.dom.impl.docs.DocumentLike;
-import org.incode.module.document.dom.impl.docs.DocumentState;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.DocumentAbstract;
+import org.estatio.module.document.dom.impl.docs.DocumentLike;
+import org.estatio.module.document.dom.impl.docs.DocumentState;
 
 /**
  * In effect replaces the {@link Document}'s own {@link Document#getBlob() blob} property with a derived

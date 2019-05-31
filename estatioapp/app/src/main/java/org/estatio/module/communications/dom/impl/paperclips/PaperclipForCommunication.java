@@ -19,9 +19,9 @@ import org.apache.isis.applib.services.tablecol.TableColumnOrderService;
 
 import org.estatio.module.communications.dom.impl.comms.Communication;
 
-import org.incode.module.document.dom.impl.paperclips.Paperclip;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
-import org.incode.module.document.dom.mixins.T_documents;
+import org.estatio.module.document.dom.impl.paperclips.Paperclip;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.mixins.T_documents;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -20,8 +20,8 @@ package org.estatio.module.lease.spiimpl.document.binders;
 
 import org.isisaddons.module.stringinterpolator.dom.StringInterpolatorService;
 
-import org.incode.module.document.dom.impl.applicability.RendererModelFactoryAbstract;
-import org.incode.module.document.dom.impl.docs.DocumentTemplate;
+import org.estatio.module.document.dom.impl.applicability.RendererModelFactoryAbstract;
+import org.estatio.module.document.dom.impl.docs.DocumentTemplate;
 
 import org.estatio.module.settings.dom.ReportServerSettingsService;
 import org.estatio.module.base.dom.apptenancy.WithApplicationTenancy;

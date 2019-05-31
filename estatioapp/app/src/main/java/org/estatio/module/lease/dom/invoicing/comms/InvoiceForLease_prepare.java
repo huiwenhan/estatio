@@ -27,8 +27,8 @@ import com.google.common.collect.Lists;
 
 import org.apache.isis.applib.annotation.Mixin;
 
-import org.incode.module.document.dom.impl.docs.DocumentTemplate;
-import org.incode.module.document.dom.mixins.T_createAndAttachDocumentAndRender;
+import org.estatio.module.document.dom.impl.docs.DocumentTemplate;
+import org.estatio.module.document.dom.mixins.T_createAndAttachDocumentAndRender;
 
 import org.estatio.module.invoice.dom.DocumentTypeData;
 import org.estatio.module.invoice.dom.Invoice;

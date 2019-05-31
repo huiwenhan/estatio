@@ -11,7 +11,7 @@ import org.apache.isis.applib.ModuleAbstract;
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 import org.apache.isis.applib.fixturescripts.teardown.TeardownFixtureAbstract2;
 
-import org.incode.module.document.DocumentModule;
+import org.estatio.module.document.DocumentModule;
 
 import org.estatio.canonical.EstatioCanonicalModule;
 import org.estatio.module.assetfinancial.EstatioAssetFinancialModule;

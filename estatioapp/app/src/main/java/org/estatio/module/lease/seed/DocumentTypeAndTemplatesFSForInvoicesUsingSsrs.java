@@ -33,13 +33,13 @@ import org.apache.isis.applib.value.Clob;
 
 import org.incode.module.apptenancy.fixtures.enums.ApplicationTenancy_enum;
 import org.incode.module.base.dom.MimeTypeData;
-import org.incode.module.document.dom.impl.applicability.AttachmentAdvisor;
-import org.incode.module.document.dom.impl.applicability.RendererModelFactory;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.docs.DocumentTemplate;
-import org.incode.module.document.dom.impl.docs.DocumentTemplate_applicable;
-import org.incode.module.document.dom.impl.types.DocumentType;
-import org.incode.module.document.fixture.DocumentTemplateFSAbstract;
+import org.estatio.module.document.dom.impl.applicability.AttachmentAdvisor;
+import org.estatio.module.document.dom.impl.applicability.RendererModelFactory;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.DocumentTemplate;
+import org.estatio.module.document.dom.impl.docs.DocumentTemplate_applicable;
+import org.estatio.module.document.dom.impl.types.DocumentType;
+import org.estatio.module.document.fixture.DocumentTemplateFSAbstract;
 
 import org.estatio.module.invoice.dom.DocumentTypeData;
 import org.estatio.module.invoice.dom.Invoice;

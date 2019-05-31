@@ -2,7 +2,7 @@ package org.estatio.module.capex.dom.documents.categorisation;
 
 import org.apache.isis.applib.annotation.Mixin;
 
-import org.incode.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.Document;
 
 import org.estatio.module.capex.dom.dobj.DomainObject_currentStateAbstract;
 import org.estatio.module.invoice.dom.DocumentTypeData;

@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2;
 
-import org.incode.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.Document;
 
 import org.estatio.module.capex.app.DocumentBarcodeService;
 import org.estatio.module.capex.dom.invoice.IncomingInvoice;

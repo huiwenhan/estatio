@@ -57,7 +57,7 @@ import org.apache.isis.applib.services.factory.FactoryService;
 import org.apache.isis.applib.services.message.MessageService;
 import org.apache.isis.schema.utils.jaxbadapters.JodaLocalDateStringAdapter;
 
-import org.incode.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.Document;
 
 import org.estatio.module.base.platform.applib.ReasonBuffer2;
 import org.estatio.module.budget.dom.budgetitem.BudgetItem;

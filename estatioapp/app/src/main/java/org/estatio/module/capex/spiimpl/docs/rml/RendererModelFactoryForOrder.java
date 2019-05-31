@@ -23,8 +23,8 @@ import org.estatio.module.communications.dom.impl.commchannel.CommunicationChann
 import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelRepository;
 import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelType;
 import org.estatio.module.communications.dom.impl.commchannel.PostalAddress;
-import org.incode.module.document.dom.impl.applicability.RendererModelFactoryAbstract;
-import org.incode.module.document.dom.impl.docs.DocumentTemplate;
+import org.estatio.module.document.dom.impl.applicability.RendererModelFactoryAbstract;
+import org.estatio.module.document.dom.impl.docs.DocumentTemplate;
 
 import org.estatio.module.asset.dom.Property;
 import org.estatio.module.base.dom.CurrencyUtil;

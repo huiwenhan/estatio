@@ -25,10 +25,10 @@ import org.incode.module.docrendering.stringinterpolator.dom.impl.RendererForStr
 import org.incode.module.docrendering.xdocgoten.dom.impl.RendererForXDocReportToDocxThenGotenbergToPdf;
 import org.incode.module.docrendering.xdocreport.dom.impl.RendererForXDocReportToDocx;
 import org.incode.module.docrendering.xdocreport.dom.impl.RendererForXDocReportToPdf;
-import org.incode.module.document.dom.impl.docs.DocumentNature;
-import org.incode.module.document.dom.impl.renderers.PreviewToUrl;
-import org.incode.module.document.dom.impl.renderers.Renderer;
-import org.incode.module.document.dom.services.ClassService;
+import org.estatio.module.document.dom.impl.docs.DocumentNature;
+import org.estatio.module.document.dom.impl.renderers.PreviewToUrl;
+import org.estatio.module.document.dom.impl.renderers.Renderer;
+import org.estatio.module.document.dom.services.ClassService;
 
 import lombok.Getter;
 

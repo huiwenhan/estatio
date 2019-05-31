@@ -23,10 +23,10 @@ import java.util.Optional;
 
 import javax.inject.Inject;
 
-import org.incode.module.document.dom.impl.applicability.RendererModelFactoryAbstract;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.docs.DocumentTemplate;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.impl.applicability.RendererModelFactoryAbstract;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.DocumentTemplate;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
 
 import org.estatio.module.asset.dom.Property;
 import org.estatio.module.asset.dom.Unit;

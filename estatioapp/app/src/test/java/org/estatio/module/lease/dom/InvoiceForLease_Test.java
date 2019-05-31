@@ -29,7 +29,7 @@ import org.incode.module.unittestsupport.dom.bean.PojoTester.FixtureDatumFactory
 import org.estatio.module.asset.dom.FixedAsset;
 import org.estatio.module.asset.dom.FixedAssetForTesting;
 import org.estatio.module.bankmandate.dom.BankMandate;
-import org.estatio.dom.communicationchannel.CommunicationChannelForTesting;
+import org.estatio.module.communicationchannel.dom.CommunicationChannelForTesting;
 import org.estatio.module.currency.dom.Currency;
 import org.estatio.module.invoice.dom.InvoiceStatus;
 import org.estatio.module.lease.dom.invoicing.InvoiceForLease;

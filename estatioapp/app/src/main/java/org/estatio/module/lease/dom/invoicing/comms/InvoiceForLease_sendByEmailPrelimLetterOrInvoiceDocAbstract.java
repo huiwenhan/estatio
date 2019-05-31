@@ -33,7 +33,7 @@ import org.apache.isis.applib.services.eventbus.ActionDomainEvent;
 
 import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannel;
 import org.estatio.module.communications.dom.impl.commchannel.EmailAddress;
-import org.incode.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.Document;
 
 import org.estatio.module.invoice.dom.DocumentTypeData;
 import org.estatio.module.invoice.dom.Invoice;

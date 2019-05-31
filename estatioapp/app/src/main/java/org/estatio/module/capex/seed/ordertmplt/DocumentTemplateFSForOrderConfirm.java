@@ -33,10 +33,10 @@ import org.apache.isis.applib.value.Blob;
 
 import org.incode.module.apptenancy.fixtures.enums.ApplicationTenancy_enum;
 import org.incode.module.base.dom.MimeTypeData;
-import org.incode.module.document.dom.impl.docs.DocumentTemplate;
-import org.incode.module.document.dom.impl.docs.DocumentTemplate_applicable;
-import org.incode.module.document.dom.impl.types.DocumentType;
-import org.incode.module.document.fixture.DocumentTemplateFSAbstract;
+import org.estatio.module.document.dom.impl.docs.DocumentTemplate;
+import org.estatio.module.document.dom.impl.docs.DocumentTemplate_applicable;
+import org.estatio.module.document.dom.impl.types.DocumentType;
+import org.estatio.module.document.fixture.DocumentTemplateFSAbstract;
 
 import org.estatio.module.capex.dom.order.Order;
 import org.estatio.module.capex.spiimpl.docs.aa.AttachToSameForOrder;

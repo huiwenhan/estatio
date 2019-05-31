@@ -11,7 +11,7 @@ import org.apache.isis.applib.ModuleAbstract;
 
 import org.isisaddons.module.freemarker.dom.FreeMarkerModule;
 
-import org.incode.module.document.DocumentModule;
+import org.estatio.module.document.DocumentModule;
 
 @XmlRootElement(name = "module")
 public class FreemarkerDocRenderingModule extends ModuleAbstract {

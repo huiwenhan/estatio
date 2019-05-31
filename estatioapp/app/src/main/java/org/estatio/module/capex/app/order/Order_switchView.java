@@ -14,7 +14,7 @@ import org.apache.isis.applib.services.registry.ServiceRegistry2;
 
 import org.isisaddons.module.security.app.user.MeService;
 
-import org.incode.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.Document;
 
 import org.estatio.module.capex.dom.documents.LookupAttachedPdfService;
 import org.estatio.module.capex.dom.order.Order;

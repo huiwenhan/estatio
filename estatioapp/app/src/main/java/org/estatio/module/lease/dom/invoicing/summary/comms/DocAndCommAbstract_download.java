@@ -38,9 +38,9 @@ import org.isisaddons.module.pdfbox.dom.service.PdfBoxService;
 import org.incode.module.base.dom.MimeTypeData;
 import org.estatio.module.communications.dom.mixins.DocumentPredicates;
 import org.estatio.module.communications.dom.mixins.Document_communicationAttachments;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.docs.DocumentSort;
-import org.incode.module.document.dom.impl.docs.DocumentState;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.DocumentSort;
+import org.estatio.module.document.dom.impl.docs.DocumentState;
 
 import org.estatio.module.invoice.dom.DocumentTypeData;
 

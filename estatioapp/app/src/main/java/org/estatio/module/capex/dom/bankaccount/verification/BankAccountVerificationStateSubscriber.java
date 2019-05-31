@@ -12,8 +12,8 @@ import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.services.eventbus.AbstractDomainEvent;
 import org.apache.isis.applib.util.Enums;
 
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
 
 import org.estatio.module.capex.contributions.BankAccount_attachPdfAsIbanProof;
 import org.estatio.module.capex.dom.documents.LookupAttachedPdfService;

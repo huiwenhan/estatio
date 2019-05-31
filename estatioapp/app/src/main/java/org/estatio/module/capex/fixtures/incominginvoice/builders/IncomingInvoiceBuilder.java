@@ -9,7 +9,7 @@ import org.joda.time.LocalDate;
 import org.apache.isis.applib.fixturescripts.BuilderScriptAbstract;
 import org.apache.isis.applib.services.sudo.SudoService;
 
-import org.incode.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.Document;
 
 import org.estatio.module.asset.dom.Property;
 import org.estatio.module.asset.dom.role.FixedAssetRoleTypeEnum;

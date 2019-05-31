@@ -13,10 +13,10 @@ import org.apache.isis.applib.services.eventbus.AbstractDomainEvent;
 
 import org.estatio.module.communications.dom.impl.comms.Communication;
 import org.estatio.module.communications.dom.mixins.Document_communicationAttachments;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.docs.DocumentAbstract_attachedTo;
-import org.incode.module.document.dom.impl.docs.Document_backgroundCommands;
-import org.incode.module.document.dom.impl.docs.Document_supportingDocuments;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.DocumentAbstract_attachedTo;
+import org.estatio.module.document.dom.impl.docs.Document_backgroundCommands;
+import org.estatio.module.document.dom.impl.docs.Document_supportingDocuments;
 
 @DomainService(nature = NatureOfService.DOMAIN)
 public class SuppressContributionsForCoverNoteDocument extends AbstractSubscriber {

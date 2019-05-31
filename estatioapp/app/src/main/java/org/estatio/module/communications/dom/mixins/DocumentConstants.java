@@ -1,7 +1,7 @@
 package org.estatio.module.communications.dom.mixins;
 
 import org.estatio.module.communications.dom.impl.comms.Communication;
-import org.incode.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.Document;
 
 import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelType;
 

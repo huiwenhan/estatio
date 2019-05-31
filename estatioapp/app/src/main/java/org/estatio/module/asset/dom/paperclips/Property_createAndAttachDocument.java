@@ -21,7 +21,7 @@ package org.estatio.module.asset.dom.paperclips;
 
 import org.apache.isis.applib.annotation.Mixin;
 
-import org.incode.module.document.dom.mixins.T_createAndAttachDocumentAndRender;
+import org.estatio.module.document.dom.mixins.T_createAndAttachDocumentAndRender;
 
 import org.estatio.module.asset.dom.Property;
 

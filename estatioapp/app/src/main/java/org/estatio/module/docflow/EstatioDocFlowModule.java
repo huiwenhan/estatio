@@ -29,7 +29,7 @@ import org.apache.isis.applib.ModuleAbstract;
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 import org.apache.isis.applib.fixturescripts.teardown.TeardownFixtureAbstract2;
 
-import org.incode.module.document.DocumentModule;
+import org.estatio.module.document.DocumentModule;
 
 import org.estatio.module.docflow.dom.DocFlowZip;
 import org.estatio.module.docflow.dom.paperclips.PaperclipForDocFlowZip;

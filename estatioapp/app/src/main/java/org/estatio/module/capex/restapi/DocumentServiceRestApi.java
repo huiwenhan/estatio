@@ -25,10 +25,10 @@ import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.value.Blob;
 
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.types.DocumentType;
-import org.incode.module.document.dom.impl.types.DocumentTypeRepository;
-import org.incode.module.document.spi.DeriveBlobFromReturnedDocumentArg0;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.types.DocumentType;
+import org.estatio.module.document.dom.impl.types.DocumentTypeRepository;
+import org.estatio.module.document.spi.DeriveBlobFromReturnedDocumentArg0;
 
 import org.estatio.module.base.dom.UdoDomainService;
 import org.estatio.module.capex.app.DocumentBarcodeService;

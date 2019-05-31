@@ -22,7 +22,7 @@ import org.apache.isis.applib.services.urlencoding.UrlEncodingService;
 
 import org.isisaddons.wicket.pdfjs.cpt.applib.PdfJsViewerAdvisor;
 
-import org.incode.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.Document;
 
 import org.estatio.module.capex.app.document.IncomingDocViewModel;
 import org.estatio.module.capex.app.invoice.IncomingDocAsInvoiceViewModel;

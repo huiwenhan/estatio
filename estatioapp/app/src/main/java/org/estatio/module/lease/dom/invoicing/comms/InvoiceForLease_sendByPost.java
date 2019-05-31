@@ -37,11 +37,11 @@ import org.apache.isis.applib.value.Blob;
 import org.incode.module.base.dom.MimeTypeData;
 import org.estatio.module.communications.dom.impl.commchannel.PostalAddress;
 import org.estatio.module.communications.dom.mixins.Document_sendByPost;
-import org.incode.module.document.DocumentModule;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.docs.DocumentAbstract;
-import org.incode.module.document.dom.impl.docs.DocumentState;
-import org.incode.module.document.dom.impl.paperclips.Paperclip;
+import org.estatio.module.document.DocumentModule;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.docs.DocumentAbstract;
+import org.estatio.module.document.dom.impl.docs.DocumentState;
+import org.estatio.module.document.dom.impl.paperclips.Paperclip;
 
 import org.estatio.module.invoice.dom.DocumentTypeData;
 import org.estatio.module.lease.dom.invoicing.InvoiceForLease;

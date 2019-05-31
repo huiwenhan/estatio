@@ -15,9 +15,9 @@ import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.services.queryresultscache.QueryResultsCache;
 
 import org.incode.module.base.dom.MimeTypeData;
-import org.incode.module.document.dom.impl.docs.Document;
-import org.incode.module.document.dom.impl.paperclips.Paperclip;
-import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
+import org.estatio.module.document.dom.impl.docs.Document;
+import org.estatio.module.document.dom.impl.paperclips.Paperclip;
+import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
 
 import org.estatio.module.capex.contributions.BankAccount_attachInvoiceAsIbanProof;
 import org.estatio.module.capex.dom.invoice.IncomingInvoice;
