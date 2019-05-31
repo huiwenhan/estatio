@@ -8,7 +8,7 @@ import org.isisaddons.module.excel.dom.ExcelFixture2;
 import org.isisaddons.module.excel.dom.WorksheetSpec;
 import org.isisaddons.module.excel.dom.util.Mode;
 
-import org.estatio.module.capex.imports.IncomingChargeImportAdapter;
+import org.estatio.module.charge.imports.IncomingChargeImportAdapter;
 
 @DomainObject(
         objectType = "org.estatio.module.ecpimport.fixtures.excel.IncomingChargeFixtureForIta"

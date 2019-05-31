@@ -1,4 +1,4 @@
-package org.estatio.module.capex.imports;
+package org.estatio.module.charge.imports;
 
 import javax.annotation.Nullable;
 import javax.inject.Inject;
@@ -9,8 +9,6 @@ import org.apache.isis.applib.services.registry.ServiceRegistry2;
 import org.isisaddons.module.excel.dom.ExcelFixture2;
 import org.isisaddons.module.excel.dom.ExcelMetaDataEnabled;
 import org.isisaddons.module.excel.dom.FixtureAwareRowHandler;
-
-import org.estatio.module.charge.imports.ChargeImport;
 
 import lombok.Getter;
 import lombok.Setter;
