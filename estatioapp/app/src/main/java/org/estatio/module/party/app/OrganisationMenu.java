@@ -51,6 +51,7 @@ import org.incode.module.country.dom.impl.Country;
 import org.estatio.module.capex.dom.invoice.IncomingInvoiceRoleTypeEnum;
 import org.estatio.module.countryapptenancy.dom.CountryServiceForCurrentUser;
 import org.estatio.module.countryapptenancy.dom.EstatioApplicationTenancyRepositoryForCountry;
+import org.estatio.module.lease.app.MissingChamberOfCommerceCodeManager;
 import org.estatio.module.lease.dom.LeaseAgreementRoleTypeEnum;
 import org.estatio.module.numerator.dom.NumeratorRepository;
 import org.estatio.module.party.dom.Organisation;
@@ -129,39 +130,6 @@ public class OrganisationMenu {
         return null;
     }
 
-    // //////////////////////////////////////
-
-    @Action(semantics = SemanticsOf.SAFE)
-    @ActionLayout(cssClassFa = "fa-wrench")
-    @MemberOrder(sequence = "98")
-    public MissingChamberOfCommerceCodeManager fixMissingChamberOfCommerceCodes(
-            final Country country,
-            final IPartyRoleType role,
-            final @ParameterLayout(named = "Start from bottom?") boolean reversed) {
-        final ApplicationTenancy applicationTenancy = estatioApplicationTenancyRepository.findOrCreateTenancyFor(country);
-        List<Organisation> organisationsMissingCode = organisationRepository.findByAtPathMissingChamberOfCommerceCode(applicationTenancy.getPath())
-                .stream()
-                .filter(org -> org.hasPartyRoleType(role))
-                .collect(Collectors.collectingAndThen(
-                        Collectors.toList(), lst -> {
-                            if (reversed) Collections.reverse(lst);
-                            return lst;
-                        }
-                ));
-
-        return new MissingChamberOfCommerceCodeManager(organisationsMissingCode);
-    }
-
-    public List<Country> choices0FixMissingChamberOfCommerceCodes() {
-        return countryServiceForCurrentUser.countriesForCurrentUser();
-    }
-
-    public List<PartyRoleType> choices1FixMissingChamberOfCommerceCodes() {
-        return Arrays.asList(
-                partyRoleTypeRepository.findByKey(LeaseAgreementRoleTypeEnum.TENANT.getKey()),
-                partyRoleTypeRepository.findByKey(IncomingInvoiceRoleTypeEnum.SUPPLIER.getKey())
-        );
-    }
 
     // //////////////////////////////////////
 

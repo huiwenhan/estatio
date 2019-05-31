@@ -10,6 +10,7 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
+import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -17,17 +18,18 @@ import org.junit.Test;
 import org.apache.isis.applib.services.message.MessageService;
 import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2;
 
+import org.estatio.module.party.app.services.ChamberOfCommerceCodeLookUpService;
+import org.estatio.module.party.app.services.OrganisationNameNumberViewModel;
 import org.estatio.module.party.app.services.siren.SirenService;
 import org.estatio.module.party.dom.Organisation;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assume.assumeThat;
 
 public class ChamberOfCommerceCodeLookUpServiceTest {
 
     @Before
     public void setup() {
-        assumeThat(isInternetReachable(), is(true));
+        Assume.assumeThat(isInternetReachable(), is(true));
     }
     
     @Test

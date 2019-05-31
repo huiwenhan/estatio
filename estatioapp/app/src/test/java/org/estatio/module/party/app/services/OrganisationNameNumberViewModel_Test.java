@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 
+import org.estatio.module.party.app.services.OrganisationNameNumberViewModel;
+
 public class OrganisationNameNumberViewModel_Test {
 
     @Test

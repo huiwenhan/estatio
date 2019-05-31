@@ -22,6 +22,9 @@ import org.apache.http.client.ClientProtocolException;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import org.estatio.module.party.app.services.siren.SirenResult;
+import org.estatio.module.party.app.services.siren.SirenService;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SirenServiceTest {

@@ -15,7 +15,7 @@ import org.apache.isis.applib.value.Blob;
 import org.isisaddons.wicket.pdfjs.cpt.applib.PdfJsViewer;
 
 import org.estatio.module.invoice.dom.docs.LookupNewestInvoiceDocumentService;
-import org.estatio.module.party.app.MissingChamberOfCommerceCodeManager;
+import org.estatio.module.lease.app.MissingChamberOfCommerceCodeManager;
 
 @Mixin(method = "prop")
 public class MissingChamberOfCommerceCodeManager_newestInvoice {
