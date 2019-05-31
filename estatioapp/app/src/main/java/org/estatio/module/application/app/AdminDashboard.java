@@ -49,6 +49,8 @@ import org.isisaddons.module.stringinterpolator.dom.StringInterpolatorService;
 import org.incode.module.slack.impl.SlackService;
 
 import org.estatio.module.coda.EstatioCodaModule;
+import org.estatio.module.coda.app.CodaCmpCodeService;
+import org.estatio.module.coda.app.CodaDocCodeService;
 import org.estatio.module.coda.dom.hwm.CodaHwm;
 import org.estatio.module.coda.dom.hwm.CodaHwmRepository;
 import org.estatio.module.lease.dom.settings.LeaseInvoicingSettingsService;
