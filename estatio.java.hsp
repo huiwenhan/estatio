@@ -101,7 +101,7 @@
                   </row>
                   <row>
                     <cell name="country" pattern="org.incode.module.country.*" vexpanded="false" illegal="false" visibility="public" drill="true" />
-                    <cell name="docrendering" pattern="org.incode.module.docrendering.*" vexpanded="false" illegal="false" visibility="public" drill="true" />
+                    <cell name="docrendering" pattern="org.estatio.module.docrendering.*" vexpanded="false" illegal="false" visibility="public" drill="true" />
                   </row>
                   <row>
                     <cell name="alias" pattern="org.incode.module.alias.*" vexpanded="false" illegal="false" visibility="public" drill="true" />

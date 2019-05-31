@@ -11,9 +11,9 @@ import org.apache.isis.applib.ModuleAbstract;
 import org.isisaddons.module.command.CommandModule;
 import org.isisaddons.module.fakedata.FakeDataModule;
 
-import org.incode.module.docrendering.freemarker.FreemarkerDocRenderingModule;
-import org.incode.module.docrendering.stringinterpolator.StringInterpolatorDocRenderingModule;
-import org.incode.module.docrendering.xdocreport.XDocReportDocRenderingModule;
+import org.estatio.module.docrendering.freemarker.FreemarkerDocRenderingModule;
+import org.estatio.module.docrendering.stringinterpolator.StringInterpolatorDocRenderingModule;
+import org.estatio.module.docrendering.xdocreport.XDocReportDocRenderingModule;
 import org.estatio.module.document.dom.impl.docs.Document;
 import org.estatio.module.document.dom.impl.docs.Document_delete;
 import org.estatio.module.document.integtests.app.DocumentAppModule;

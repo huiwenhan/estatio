@@ -8,10 +8,10 @@ import org.isisaddons.module.freemarker.dom.FreeMarkerModule;
 import org.isisaddons.module.stringinterpolator.StringInterpolatorModule;
 import org.isisaddons.module.xdocreport.dom.XDocReportModule;
 
-import org.incode.module.docrendering.freemarker.FreemarkerDocRenderingModule;
-import org.incode.module.docrendering.stringinterpolator.StringInterpolatorDocRenderingModule;
-import org.incode.module.docrendering.gotenberg.dom.GotenbergRenderingDomModule;
-import org.incode.module.docrendering.xdocreport.XDocReportDocRenderingModule;
+import org.estatio.module.docrendering.freemarker.FreemarkerDocRenderingModule;
+import org.estatio.module.docrendering.stringinterpolator.StringInterpolatorDocRenderingModule;
+import org.estatio.module.docrendering.gotenberg.dom.GotenbergRenderingDomModule;
+import org.estatio.module.docrendering.xdocreport.XDocReportDocRenderingModule;
 import org.estatio.module.document.DocumentModule;
 import org.estatio.module.document.integtests.dom.document.DocumentModuleIntegrationSubmodule;
 

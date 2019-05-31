@@ -30,7 +30,7 @@ import org.apache.isis.core.metamodel.specloader.IntrospectionMode;
 import org.apache.isis.core.metamodel.specloader.SpecificationLoader;
 import org.apache.isis.core.runtime.headless.logging.LogConfig;
 
-import org.incode.module.docrendering.gotenberg.fixture.fake.GotenbergRenderingFakeModule;
+import org.estatio.module.docrendering.gotenberg.fixture.fake.GotenbergRenderingFakeModule;
 import org.estatio.module.communications.integtests.app.services.FakeCommsServiceModule;
 
 public abstract class BaseModuleIntegTestAbstract extends IntegrationTestAbstract3 {

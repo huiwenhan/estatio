@@ -18,7 +18,7 @@ import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2;
 
 import org.isisaddons.module.freemarker.dom.service.FreeMarkerService;
 
-import org.incode.module.docrendering.freemarker.dom.impl.RendererForFreemarker;
+import org.estatio.module.docrendering.freemarker.dom.impl.RendererForFreemarker;
 import org.estatio.module.document.dom.impl.docs.Document;
 import org.estatio.module.document.dom.impl.docs.DocumentTemplate;
 import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;

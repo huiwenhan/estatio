@@ -13,7 +13,7 @@ import org.apache.isis.applib.services.factory.FactoryService;
 import org.apache.isis.applib.value.Blob;
 
 import org.incode.module.base.dom.MimeTypeData;
-import org.incode.module.docrendering.gotenberg.dom.impl.GotenbergClientService;
+import org.estatio.module.docrendering.gotenberg.dom.impl.GotenbergClientService;
 import org.estatio.module.document.dom.api.DocumentService;
 import org.estatio.module.document.dom.impl.docs.Document;
 import org.estatio.module.document.dom.impl.docs.DocumentTemplate;

@@ -9,7 +9,7 @@ import com.google.common.collect.Sets;
 import org.apache.isis.applib.Module;
 import org.apache.isis.applib.ModuleAbstract;
 
-import org.incode.module.docrendering.gotenberg.fixture.fake.GotenbergRenderingFakeModule;
+import org.estatio.module.docrendering.gotenberg.fixture.fake.GotenbergRenderingFakeModule;
 import org.incode.platform.dom.alias.integtests.AliasModuleIntegTestAbstract;
 import org.incode.platform.dom.classification.integtests.ClassificationModuleIntegTestAbstract;
 import org.estatio.module.communications.integtests.CommunicationsModuleIntegTestAbstract;

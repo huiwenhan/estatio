@@ -30,6 +30,7 @@ import org.apache.isis.applib.ModuleAbstract;
 import org.estatio.module.budgetassignment.EstatioBudgetAssignmentModule;
 import org.estatio.module.capex.EstatioCapexModule;
 import org.estatio.module.coda.EstatioCodaModule;
+import org.estatio.module.commandreplay.EstatioCommandReplayModule;
 import org.estatio.module.docflow.EstatioDocFlowModule;
 import org.estatio.module.guarantee.EstatioGuaranteeModule;
 import org.estatio.module.link.EstatioLinkModule;
@@ -54,7 +55,8 @@ public final class EstatioApplicationModule extends ModuleAbstract {
                 new EstatioLinkModule(),
                 new EstatioCodaModule(),
                 new EstatioDocFlowModule(),
-                new EstatioTurnoverModule()
+                new EstatioTurnoverModule(),
+                new EstatioCommandReplayModule()
         );
     }
 

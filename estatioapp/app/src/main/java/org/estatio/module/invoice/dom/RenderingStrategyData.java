@@ -18,13 +18,13 @@ package org.estatio.module.invoice.dom;
 
 import org.apache.isis.applib.services.registry.ServiceRegistry2;
 
-import org.incode.module.docrendering.freemarker.dom.impl.RendererForFreemarker;
-import org.incode.module.docrendering.stringinterpolator.dom.impl.RendererForStringInterpolator;
-import org.incode.module.docrendering.stringinterpolator.dom.impl.RendererForStringInterpolatorCaptureUrl;
-import org.incode.module.docrendering.stringinterpolator.dom.impl.RendererForStringInterpolatorPreviewAndCaptureUrl;
-import org.incode.module.docrendering.xdocgoten.dom.impl.RendererForXDocReportToDocxThenGotenbergToPdf;
-import org.incode.module.docrendering.xdocreport.dom.impl.RendererForXDocReportToDocx;
-import org.incode.module.docrendering.xdocreport.dom.impl.RendererForXDocReportToPdf;
+import org.estatio.module.docrendering.freemarker.dom.impl.RendererForFreemarker;
+import org.estatio.module.docrendering.stringinterpolator.dom.impl.RendererForStringInterpolator;
+import org.estatio.module.docrendering.stringinterpolator.dom.impl.RendererForStringInterpolatorCaptureUrl;
+import org.estatio.module.docrendering.stringinterpolator.dom.impl.RendererForStringInterpolatorPreviewAndCaptureUrl;
+import org.estatio.module.docrendering.xdocgoten.dom.impl.RendererForXDocReportToDocxThenGotenbergToPdf;
+import org.estatio.module.docrendering.xdocreport.dom.impl.RendererForXDocReportToDocx;
+import org.estatio.module.docrendering.xdocreport.dom.impl.RendererForXDocReportToPdf;
 import org.estatio.module.document.dom.impl.docs.DocumentNature;
 import org.estatio.module.document.dom.impl.renderers.PreviewToUrl;
 import org.estatio.module.document.dom.impl.renderers.Renderer;

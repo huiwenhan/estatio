@@ -19,7 +19,7 @@ import org.apache.isis.applib.value.Blob;
 import org.isisaddons.wicket.pdfjs.cpt.applib.PdfJsViewer;
 
 import org.incode.module.base.dom.MimeTypeData;
-import org.incode.module.docrendering.gotenberg.dom.impl.GotenbergClientService;
+import org.estatio.module.docrendering.gotenberg.dom.impl.GotenbergClientService;
 import org.estatio.module.document.dom.impl.docs.Document;
 import org.estatio.module.document.dom.impl.docs.DocumentAbstract;
 import org.estatio.module.document.dom.impl.docs.DocumentLike;
