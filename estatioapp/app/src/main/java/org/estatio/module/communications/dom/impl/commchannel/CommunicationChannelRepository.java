@@ -18,8 +18,6 @@ import org.apache.isis.applib.services.repository.RepositoryService;
 import org.incode.module.country.dom.impl.Country;
 import org.incode.module.country.dom.impl.State;
 
-import org.estatio.module.party.dom.Organisation;
-
 @DomainService(repositoryFor = CommunicationChannel.class, nature = NatureOfService.DOMAIN)
 public class CommunicationChannelRepository {
 
@@ -96,7 +94,7 @@ public class CommunicationChannelRepository {
     // //////////////////////////////////////
 
     /**
-     * @param organisation
+     * @param communicationChannelOwner
      * @param externalReferenceIfAny - if available (eg a Coda tag), can uniquely locate an address to allow an update rather than an insert.
      * @param purposeTypeIfAny - includes
      * @param description
@@ -109,7 +107,7 @@ public class CommunicationChannelRepository {
      */
     @Programmatic
     public PostalAddress upsertPostalAddress(
-            final Organisation organisation,
+            final CommunicationChannelOwner communicationChannelOwner,
             final String externalReferenceIfAny,
             final CommunicationChannelPurposeType purposeTypeIfAny,
             final String description,
@@ -125,7 +123,7 @@ public class CommunicationChannelRepository {
                 Optional.ofNullable(externalReferenceIfAny)
                 .map(externalReference ->
                         postalAddressRepository. findByOwnerAndExternalReference(
-                        organisation, externalReference))
+                        communicationChannelOwner, externalReference))
                 .orElse(null);
 
         if(postalAddress != null) {
@@ -140,7 +138,7 @@ public class CommunicationChannelRepository {
 
         } else {
 
-            postalAddress = newPostal(organisation,
+            postalAddress = newPostal(communicationChannelOwner,
                     CommunicationChannelType.POSTAL_ADDRESS,
                     address1, address2, address3, postalCode, city, state, country);
 
@@ -155,7 +153,7 @@ public class CommunicationChannelRepository {
 
     @Programmatic
     public PhoneOrFaxNumber upsertPhoneNumber(
-            final Organisation organisation,
+            final CommunicationChannelOwner communicationChannelOwner,
             final String externalReferenceIfAny,
             final CommunicationChannelPurposeType purposeTypeIfAny,
             final String description,
@@ -163,12 +161,12 @@ public class CommunicationChannelRepository {
 
         return upsertPhoneOrFaxNumber(
                 CommunicationChannelType.PHONE_NUMBER,
-                organisation, externalReferenceIfAny, purposeTypeIfAny, description, phoneNumber);
+                communicationChannelOwner, externalReferenceIfAny, purposeTypeIfAny, description, phoneNumber);
     }
 
     @Programmatic
     public PhoneOrFaxNumber upsertFaxNumber(
-            final Organisation organisation,
+            final CommunicationChannelOwner communicationChannelOwner,
             final String externalReferenceIfAny,
             final CommunicationChannelPurposeType purposeTypeIfAny,
             final String description,
@@ -176,13 +174,13 @@ public class CommunicationChannelRepository {
 
         return upsertPhoneOrFaxNumber(
                 CommunicationChannelType.FAX_NUMBER,
-                organisation, externalReferenceIfAny, purposeTypeIfAny, description, faxNumber);
+                communicationChannelOwner, externalReferenceIfAny, purposeTypeIfAny, description, faxNumber);
     }
 
     @Programmatic
     public PhoneOrFaxNumber upsertPhoneOrFaxNumber(
             final CommunicationChannelType communicationChannelType,
-            final Organisation organisation,
+            final CommunicationChannelOwner communicationChannelOwner,
             final String externalReferenceIfAny,
             final CommunicationChannelPurposeType purposeTypeIfAny,
             final String description,
@@ -192,7 +190,7 @@ public class CommunicationChannelRepository {
                 Optional.ofNullable(externalReferenceIfAny)
                         .map(externalReference ->
                                 phoneOrFaxNumberRepository.findByOwnerAndExternalReference(
-                                        communicationChannelType, organisation, externalReference))
+                                        communicationChannelType, communicationChannelOwner, externalReference))
                         .orElse(null);
 
         if (phoneOrFaxNumber != null) {
@@ -201,7 +199,7 @@ public class CommunicationChannelRepository {
 
         } else {
 
-            phoneOrFaxNumber = newPhoneOrFax(organisation,
+            phoneOrFaxNumber = newPhoneOrFax(communicationChannelOwner,
                     communicationChannelType,
                     phoneNumber);
         }
@@ -216,7 +214,7 @@ public class CommunicationChannelRepository {
 
     @Programmatic
     public EmailAddress upsertEmailAddress(
-            final Organisation organisation,
+            final CommunicationChannelOwner communicationChannelOwner,
             final String externalReferenceIfAny,
             final CommunicationChannelPurposeType purposeTypeIfAny,
             final String description,
@@ -226,7 +224,7 @@ public class CommunicationChannelRepository {
                 Optional.ofNullable(externalReferenceIfAny)
                         .map(externalReference ->
                                 emailAddressRepository.findByOwnerAndExternalReference(
-                                        organisation, externalReference))
+                                        communicationChannelOwner, externalReference))
                         .orElse(null);
 
         if(emailAddress != null) {
@@ -234,7 +232,7 @@ public class CommunicationChannelRepository {
             emailAddress.setEmailAddress(email);
 
         } else {
-            emailAddress = newEmail(organisation, CommunicationChannelType.EMAIL_ADDRESS, email);
+            emailAddress = newEmail(communicationChannelOwner, CommunicationChannelType.EMAIL_ADDRESS, email);
         }
 
         emailAddress.setDescription(description);
