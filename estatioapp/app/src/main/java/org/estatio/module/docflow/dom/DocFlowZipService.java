@@ -11,7 +11,7 @@ import org.estatio.module.document.dom.api.DocumentService;
 import org.estatio.module.document.dom.impl.types.DocumentType;
 import org.estatio.module.document.dom.impl.types.DocumentTypeRepository;
 
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 
 @DomainService(nature = NatureOfService.DOMAIN)
 public class DocFlowZipService {

@@ -105,7 +105,7 @@ import org.estatio.module.charge.dom.Charge;
 import org.estatio.module.charge.dom.ChargeRepository;
 import org.estatio.module.financial.dom.BankAccountRepository;
 import org.estatio.module.financial.dom.utils.IBANValidator;
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 import org.estatio.module.order.dom.attr.OrderAttribute;
 import org.estatio.module.order.dom.attr.OrderAttributeName;
 import org.estatio.module.order.dom.attr.OrderAttributeRepository;

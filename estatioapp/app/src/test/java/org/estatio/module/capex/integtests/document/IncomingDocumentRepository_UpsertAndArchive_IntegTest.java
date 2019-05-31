@@ -31,7 +31,7 @@ import org.estatio.module.capex.fixtures.incominginvoice.enums.IncomingInvoiceNo
 import org.estatio.module.capex.integtests.CapexModuleIntegTestAbstract;
 import org.estatio.module.capex.restapi.DocumentServiceRestApi;
 import org.estatio.module.capex.seed.DocumentTypeFSForIncoming;
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

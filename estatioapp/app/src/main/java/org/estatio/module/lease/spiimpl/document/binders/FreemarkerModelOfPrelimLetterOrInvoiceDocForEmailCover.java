@@ -30,7 +30,7 @@ import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
 
 import org.estatio.module.asset.dom.Property;
 import org.estatio.module.asset.dom.Unit;
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 import org.estatio.module.invoice.dom.Invoice;
 import org.estatio.module.lease.dom.occupancy.Occupancy;
 import org.estatio.module.lease.dom.occupancy.tags.Brand;

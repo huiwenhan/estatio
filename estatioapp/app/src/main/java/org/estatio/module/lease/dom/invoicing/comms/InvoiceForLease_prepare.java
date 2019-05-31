@@ -30,7 +30,7 @@ import org.apache.isis.applib.annotation.Mixin;
 import org.estatio.module.document.dom.impl.docs.DocumentTemplate;
 import org.estatio.module.document.dom.mixins.T_createAndAttachDocumentAndRender;
 
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 import org.estatio.module.invoice.dom.Invoice;
 import org.estatio.module.lease.dom.invoicing.InvoiceForLease;
 

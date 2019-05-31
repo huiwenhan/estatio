@@ -53,7 +53,7 @@ import org.isisaddons.module.security.dom.tenancy.ApplicationTenancy;
 import org.estatio.module.asset.dom.FixedAsset;
 import org.estatio.module.asset.dom.Property;
 import org.estatio.module.base.dom.UdoDomainRepositoryAndFactory;
-import org.estatio.module.coda.contributions.republish.InvoiceForLease_republish;
+import org.estatio.module.lease.contributions.republish.InvoiceForLease_republish;
 import org.estatio.module.currency.dom.Currency;
 import org.estatio.module.invoice.dom.Invoice;
 import org.estatio.module.invoice.dom.InvoiceRepository;

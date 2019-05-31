@@ -26,7 +26,7 @@ import org.apache.isis.applib.annotation.NatureOfService;
 import org.estatio.module.document.dom.impl.docs.Document;
 import org.estatio.module.document.dom.spi.SupportingDocumentsEvaluator;
 
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 
 @DomainService(
         nature = NatureOfService.DOMAIN,

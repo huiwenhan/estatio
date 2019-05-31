@@ -25,7 +25,7 @@ import org.apache.isis.applib.annotation.Programmatic;
 
 import org.estatio.module.document.dom.impl.docs.Document;
 
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 import org.estatio.module.invoice.dom.Invoice;
 
 @DomainService(nature = NatureOfService.DOMAIN)

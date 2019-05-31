@@ -23,7 +23,7 @@ import org.estatio.module.capex.contributions.BankAccount_attachInvoiceAsIbanPro
 import org.estatio.module.capex.dom.invoice.IncomingInvoice;
 import org.estatio.module.capex.dom.order.Order;
 import org.estatio.module.financial.dom.BankAccount;
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 
 @DomainService(nature = NatureOfService.DOMAIN)
 public class LookupAttachedPdfService {

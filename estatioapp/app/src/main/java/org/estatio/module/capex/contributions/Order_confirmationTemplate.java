@@ -14,7 +14,7 @@ import org.estatio.module.document.dom.impl.types.DocumentType;
 import org.estatio.module.document.dom.impl.types.DocumentTypeRepository;
 
 import org.estatio.module.capex.dom.order.Order;
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 
 @Mixin(method = "prop")
 public class Order_confirmationTemplate {

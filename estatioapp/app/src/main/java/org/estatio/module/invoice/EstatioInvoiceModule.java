@@ -24,15 +24,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.google.common.collect.Sets;
 
+import org.apache.isis.applib.Module;
+import org.apache.isis.applib.ModuleAbstract;
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 
 import org.incode.module.fixturesupport.dom.scripts.TeardownFixtureAbstract;
 
 import org.estatio.module.bankmandate.EstatioBankMandateModule;
-import org.apache.isis.applib.Module;
-import org.apache.isis.applib.ModuleAbstract;
 import org.estatio.module.charge.EstatioChargeModule;
 import org.estatio.module.currency.EstatioCurrencyModule;
+import org.estatio.module.invoicedoc.EstatioInvoiceDocModule;
 
 @XmlRootElement(name = "module")
 public final class EstatioInvoiceModule extends ModuleAbstract {
@@ -44,7 +45,9 @@ public final class EstatioInvoiceModule extends ModuleAbstract {
         return Sets.newHashSet(
                 new EstatioBankMandateModule(),
                 new EstatioChargeModule(),
-                new EstatioCurrencyModule());
+                new EstatioCurrencyModule(),
+                new EstatioInvoiceDocModule()
+        );
     }
 
 

@@ -45,7 +45,7 @@ import org.estatio.module.document.dom.impl.types.DocumentType;
 import org.estatio.module.document.dom.impl.types.DocumentTypeRepository;
 
 import org.estatio.module.base.platform.integtestsupport.RunBackgroundCommandsService;
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 import org.estatio.module.invoice.dom.Invoice;
 import org.estatio.module.invoice.dom.InvoiceStatus;
 import org.estatio.module.lease.dom.invoicing.InvoiceForLease;

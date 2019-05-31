@@ -74,7 +74,7 @@ import org.estatio.module.communications.integtests.app.services.fakeemail.Email
 import org.estatio.module.communications.integtests.app.services.fakeemail.FakeEmailService;
 import org.estatio.module.communications.integtests.app.services.fakesched.FakeScheduler;
 
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 import org.estatio.module.invoice.dom.Invoice;
 import org.estatio.module.invoice.dom.InvoiceStatus;
 import org.estatio.module.invoice.dom.PaymentMethod;

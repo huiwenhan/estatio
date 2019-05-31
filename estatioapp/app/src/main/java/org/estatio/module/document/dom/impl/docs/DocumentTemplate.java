@@ -55,9 +55,9 @@ import org.estatio.module.document.dom.impl.types.DocumentType;
 import org.estatio.module.document.dom.services.ClassService;
 import org.estatio.module.document.dom.types.AtPathType;
 
-import org.estatio.module.invoice.dom.DocumentTemplateData;
-import org.estatio.module.invoice.dom.DocumentTypeData;
-import org.estatio.module.invoice.dom.RenderingStrategyData;
+import org.estatio.module.invoicedoc.dom.DocumentTemplateData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.RenderingStrategyData;
 
 import lombok.Getter;
 import lombok.Setter;

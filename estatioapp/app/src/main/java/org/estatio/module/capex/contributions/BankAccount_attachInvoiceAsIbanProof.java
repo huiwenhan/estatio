@@ -21,7 +21,7 @@ import org.estatio.module.capex.dom.documents.LookupAttachedPdfService;
 import org.estatio.module.financial.dom.BankAccount;
 import org.estatio.module.capex.dom.invoice.IncomingInvoice;
 import org.estatio.module.capex.dom.invoice.IncomingInvoiceRepository;
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 
 /**
  * This cannot be inlined (needs to be a mixin) because BankAccount does not know about incoming invoices or documents.

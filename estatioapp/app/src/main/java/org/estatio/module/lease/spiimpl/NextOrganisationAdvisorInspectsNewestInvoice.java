@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 
-import org.estatio.module.invoice.dom.docs.LookupNewestInvoiceDocumentService;
+import org.estatio.module.capex.dom.docs.LookupNewestIncomingInvoiceDocumentService;
 import org.estatio.module.lease.app.MissingChamberOfCommerceCodeManager;
 import org.estatio.module.party.dom.Organisation;
 
@@ -21,6 +21,6 @@ public class NextOrganisationAdvisorInspectsNewestInvoice implements
 
     @XmlTransient
     @Inject
-    LookupNewestInvoiceDocumentService newestInvoiceService;
+    LookupNewestIncomingInvoiceDocumentService newestInvoiceService;
 
 }

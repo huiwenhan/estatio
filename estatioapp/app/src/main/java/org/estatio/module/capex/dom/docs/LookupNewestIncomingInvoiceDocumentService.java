@@ -1,4 +1,4 @@
-package org.estatio.module.invoice.dom.docs;
+package org.estatio.module.capex.dom.docs;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -21,7 +21,7 @@ import org.estatio.module.document.dom.impl.docs.DocumentAbstract;
 import org.estatio.module.party.dom.Organisation;
 
 @DomainService(nature = NatureOfService.DOMAIN)
-public class LookupNewestInvoiceDocumentService {
+public class LookupNewestIncomingInvoiceDocumentService {
 
     @Programmatic
     public Blob newestInvoiceFor(final Organisation organisation) {

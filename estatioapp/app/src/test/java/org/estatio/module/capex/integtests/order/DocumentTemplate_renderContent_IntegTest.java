@@ -28,7 +28,7 @@ import org.estatio.module.capex.seed.ordertmplt.DocumentTemplateFSForOrderConfir
 import org.estatio.module.capex.spiimpl.docs.rml.RendererModelFactoryForOrder;
 import org.estatio.module.charge.fixtures.incoming.builders.IncomingChargesFraXlsxFixture;
 import org.estatio.module.charge.fixtures.incoming.builders.IncomingChargesItaXlsxFixture;
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.incode.module.base.integtests.VT.ld;

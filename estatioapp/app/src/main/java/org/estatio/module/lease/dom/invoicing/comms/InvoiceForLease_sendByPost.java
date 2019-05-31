@@ -43,7 +43,7 @@ import org.estatio.module.document.dom.impl.docs.DocumentAbstract;
 import org.estatio.module.document.dom.impl.docs.DocumentState;
 import org.estatio.module.document.dom.impl.paperclips.Paperclip;
 
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 import org.estatio.module.lease.dom.invoicing.InvoiceForLease;
 
 /**

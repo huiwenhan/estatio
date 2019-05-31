@@ -1,4 +1,4 @@
-package org.estatio.module.coda.contributions.republish;
+package org.estatio.module.lease.contributions.republish;
 
 import javax.inject.Inject;
 

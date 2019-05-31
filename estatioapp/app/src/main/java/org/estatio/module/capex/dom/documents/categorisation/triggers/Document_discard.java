@@ -10,7 +10,7 @@ import org.apache.isis.applib.annotation.SemanticsOf;
 import org.estatio.module.document.dom.impl.docs.Document;
 
 import org.estatio.module.capex.dom.documents.categorisation.IncomingDocumentCategorisationStateTransitionType;
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 
 /**
  * This cannot be inlined (needs to be a mixin) because Document is part of the incode platform and

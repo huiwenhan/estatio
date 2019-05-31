@@ -41,7 +41,7 @@ import org.estatio.module.document.dom.impl.docs.DocumentTemplate_applicable;
 import org.estatio.module.document.dom.impl.types.DocumentType;
 import org.estatio.module.document.fixture.DocumentTemplateFSAbstract;
 
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 import org.estatio.module.invoice.dom.Invoice;
 import org.estatio.module.lease.dom.invoicing.summary.InvoiceSummaryForPropertyDueDateStatus;
 import org.estatio.module.lease.spiimpl.document.binders.AttachToNone;

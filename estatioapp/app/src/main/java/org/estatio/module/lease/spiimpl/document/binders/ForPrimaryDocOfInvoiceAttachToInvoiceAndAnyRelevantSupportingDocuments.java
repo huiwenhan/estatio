@@ -32,7 +32,7 @@ import org.estatio.module.document.dom.impl.docs.DocumentTemplate;
 import org.estatio.module.document.dom.impl.paperclips.Paperclip;
 import org.estatio.module.document.dom.impl.paperclips.PaperclipRepository;
 
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 import org.estatio.module.invoice.dom.Invoice;
 import org.estatio.module.lease.dom.invoicing.comms.PaperclipRoleNames;
 

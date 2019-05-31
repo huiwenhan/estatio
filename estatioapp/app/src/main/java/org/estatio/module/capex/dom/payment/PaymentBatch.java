@@ -100,7 +100,7 @@ import org.estatio.module.capex.platform.pdfmanipulator.ExtractSpec;
 import org.estatio.module.capex.platform.pdfmanipulator.PdfManipulator;
 import org.estatio.module.capex.platform.pdfmanipulator.Stamp;
 import org.estatio.module.financial.dom.BankAccount;
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 import org.estatio.module.party.dom.Person;
 import org.estatio.module.party.dom.PersonRepository;
 

@@ -14,7 +14,7 @@ import org.estatio.module.document.dom.impl.types.DocumentTypeForTesting;
 import org.incode.module.unittestsupport.dom.bean.AbstractBeanPropertiesTest;
 import org.incode.module.unittestsupport.dom.bean.FixtureDatumFactoriesForApplib;
 
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

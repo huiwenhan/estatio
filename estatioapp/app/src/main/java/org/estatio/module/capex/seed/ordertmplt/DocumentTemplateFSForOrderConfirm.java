@@ -41,7 +41,7 @@ import org.estatio.module.document.fixture.DocumentTemplateFSAbstract;
 import org.estatio.module.capex.dom.order.Order;
 import org.estatio.module.capex.spiimpl.docs.aa.AttachToSameForOrder;
 import org.estatio.module.capex.spiimpl.docs.rml.RendererModelFactoryForOrder;
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 
 import static org.incode.module.apptenancy.fixtures.enums.ApplicationTenancy_enum.It;
 

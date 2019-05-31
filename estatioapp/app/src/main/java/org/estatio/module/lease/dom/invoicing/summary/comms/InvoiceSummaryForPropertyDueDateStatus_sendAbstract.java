@@ -33,7 +33,7 @@ import org.estatio.module.communications.dom.mixins.DocumentPredicates;
 import org.estatio.module.document.dom.impl.docs.Document;
 import org.estatio.module.document.dom.impl.docs.DocumentState;
 
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 import org.estatio.module.invoice.dom.Invoice;
 import org.estatio.module.invoice.dom.paperclips.InvoiceDocAndCommService;
 import org.estatio.module.lease.dom.invoicing.InvoiceForLease;

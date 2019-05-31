@@ -36,7 +36,7 @@ public class DocumentServiceRestApi_uploadGeneric_Test {
 
         // expect
         expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("No enum constant org.estatio.module.invoice.dom.DocumentTypeData.NON_EXISTING_TYPE");
+        expectedException.expectMessage("No enum constant org.estatio.module.invoicedoc.dom.DocumentTypeData.NON_EXISTING_TYPE");
 
         // when
         service.uploadGeneric(null, "NON_EXISTING_TYPE", null);

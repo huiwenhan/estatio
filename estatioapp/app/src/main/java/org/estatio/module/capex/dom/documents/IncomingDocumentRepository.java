@@ -50,7 +50,7 @@ import org.estatio.module.asset.dom.PropertyRepository;
 import org.estatio.module.capex.dom.documents.categorisation.Document_categorisationState;
 import org.estatio.module.capex.dom.documents.categorisation.IncomingDocumentCategorisationState;
 import org.estatio.module.capex.dom.documents.categorisation.triggers.Document_discard;
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 
 @DomainService(
         nature = NatureOfService.DOMAIN,

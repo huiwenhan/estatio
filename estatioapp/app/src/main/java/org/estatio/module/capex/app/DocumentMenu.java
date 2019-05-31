@@ -47,7 +47,7 @@ import org.estatio.module.document.spi.DeriveBlobFromReturnedDocumentArg0;
 
 import org.estatio.module.base.dom.UdoDomainService;
 import org.estatio.module.capex.dom.documents.IncomingDocumentRepository;
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,

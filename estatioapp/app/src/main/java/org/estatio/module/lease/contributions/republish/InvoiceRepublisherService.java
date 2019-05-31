@@ -1,4 +1,4 @@
-package org.estatio.module.coda.contributions.republish;
+package org.estatio.module.lease.contributions.republish;
 
 import java.util.Collection;
 import java.util.List;

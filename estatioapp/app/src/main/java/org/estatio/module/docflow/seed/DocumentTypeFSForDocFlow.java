@@ -21,7 +21,7 @@ package org.estatio.module.docflow.seed;
 import org.estatio.module.document.dom.impl.types.DocumentType;
 import org.estatio.module.document.fixture.DocumentTemplateFSAbstract;
 
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 
 public class DocumentTypeFSForDocFlow extends DocumentTemplateFSAbstract {
 

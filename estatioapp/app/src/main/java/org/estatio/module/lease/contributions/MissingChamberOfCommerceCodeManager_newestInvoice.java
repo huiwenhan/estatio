@@ -14,7 +14,7 @@ import org.apache.isis.applib.value.Blob;
 
 import org.isisaddons.wicket.pdfjs.cpt.applib.PdfJsViewer;
 
-import org.estatio.module.invoice.dom.docs.LookupNewestInvoiceDocumentService;
+import org.estatio.module.capex.dom.docs.LookupNewestIncomingInvoiceDocumentService;
 import org.estatio.module.lease.app.MissingChamberOfCommerceCodeManager;
 
 @Mixin(method = "prop")
@@ -35,5 +35,5 @@ public class MissingChamberOfCommerceCodeManager_newestInvoice {
 
     @XmlTransient
     @Inject
-    LookupNewestInvoiceDocumentService newestInvoiceService;
+    LookupNewestIncomingInvoiceDocumentService newestInvoiceService;
 }

@@ -24,7 +24,7 @@ import org.estatio.module.coda.dom.doc.CodaDocLine;
 import org.estatio.module.coda.dom.doc.CodaDocLineRepository;
 import org.estatio.module.docflow.dom.DocFlowZip;
 import org.estatio.module.docflow.restapi.DocFlowZipServiceRestApi;
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 
 import static org.estatio.module.docflow.dom.DocFlowZipService.PAPERCLIP_ROLE_NAME_GENERATED;
 

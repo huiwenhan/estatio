@@ -14,23 +14,24 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.estatio.module.invoice.dom;
+package org.estatio.module.invoicedoc.dom;
 
 import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.services.registry.ServiceRegistry2;
 
 import org.incode.module.apptenancy.fixtures.enums.ApplicationTenancy_enum;
 import org.incode.module.base.dom.MimeTypeData;
+
+import org.estatio.module.capex.dom.order.Order;
+import org.estatio.module.capex.spiimpl.docs.aa.AttachToSameForOrder;
+import org.estatio.module.capex.spiimpl.docs.rml.RendererModelFactoryForOrder;
 import org.estatio.module.document.dom.impl.applicability.AttachmentAdvisor;
 import org.estatio.module.document.dom.impl.applicability.RendererModelFactory;
 import org.estatio.module.document.dom.impl.docs.Document;
 import org.estatio.module.document.dom.impl.docs.DocumentSort;
 import org.estatio.module.document.dom.impl.types.DocumentType;
 import org.estatio.module.document.dom.services.ClassService;
-
-import org.estatio.module.capex.dom.order.Order;
-import org.estatio.module.capex.spiimpl.docs.aa.AttachToSameForOrder;
-import org.estatio.module.capex.spiimpl.docs.rml.RendererModelFactoryForOrder;
+import org.estatio.module.invoice.dom.Invoice;
 import org.estatio.module.lease.dom.invoicing.summary.InvoiceSummaryForPropertyDueDateStatus;
 import org.estatio.module.lease.spiimpl.document.binders.AttachToNone;
 import org.estatio.module.lease.spiimpl.document.binders.ForPrimaryDocOfInvoiceAttachToInvoiceAndAnyRelevantSupportingDocuments;

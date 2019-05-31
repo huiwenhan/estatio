@@ -11,7 +11,7 @@ import org.estatio.module.document.dom.impl.docs.Document;
 import org.estatio.module.document.dom.impl.docs.Document_backgroundCommands;
 import org.estatio.module.document.dom.mixins.T_documents;
 
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 
 @DomainService(nature = NatureOfService.DOMAIN)
 public class HideSupportingDocumentsForIncomingInvoiceDocument extends AbstractSubscriber {

@@ -36,7 +36,7 @@ import org.estatio.module.communications.dom.impl.commchannel.CommunicationChann
 import org.estatio.module.communications.dom.impl.commchannel.EmailAddress;
 import org.estatio.module.document.dom.impl.docs.Document;
 
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 import org.estatio.module.invoice.dom.Invoice;
 import org.estatio.module.lease.dom.invoicing.comms.InvoiceForLease_sendByEmail;
 import org.estatio.module.lease.dom.invoicing.summary.InvoiceSummaryForPropertyDueDateStatus;

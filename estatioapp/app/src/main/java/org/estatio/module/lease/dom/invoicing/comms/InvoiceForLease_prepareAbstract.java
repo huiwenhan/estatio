@@ -39,7 +39,7 @@ import org.estatio.module.document.dom.impl.types.DocumentTypeRepository;
 import org.estatio.module.document.dom.mixins.T_createAndAttachDocumentAndRender;
 import org.estatio.module.document.dom.services.DocumentCreatorService;
 
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 import org.estatio.module.invoice.dom.Invoice;
 import org.estatio.module.lease.dom.invoicing.InvoiceForLease;
 import org.estatio.module.lease.dom.invoicing.summary.comms.InvoiceSummaryForPropertyDueDateStatus_actionAbstract;

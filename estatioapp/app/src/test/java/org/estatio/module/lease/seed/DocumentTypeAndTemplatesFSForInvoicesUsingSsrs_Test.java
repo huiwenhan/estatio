@@ -26,7 +26,7 @@ import org.estatio.module.document.dom.impl.types.DocumentType;
 
 import org.estatio.module.asset.dom.Property;
 import org.estatio.module.asset.dom.Unit;
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 import org.estatio.module.lease.dom.Lease;
 import org.estatio.module.lease.dom.invoicing.InvoiceForLease;
 import org.estatio.module.lease.dom.occupancy.Occupancy;

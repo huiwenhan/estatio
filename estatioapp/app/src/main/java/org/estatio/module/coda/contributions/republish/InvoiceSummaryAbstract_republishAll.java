@@ -12,6 +12,7 @@ import org.apache.isis.applib.annotation.Publishing;
 import org.apache.isis.applib.annotation.SemanticsOf;
 
 import org.estatio.module.invoice.dom.InvoiceRepository;
+import org.estatio.module.lease.contributions.republish.InvoiceRepublisherService;
 import org.estatio.module.lease.dom.invoicing.InvoiceForLease;
 import org.estatio.module.lease.dom.invoicing.summary.InvoiceSummaryAbstract;
 

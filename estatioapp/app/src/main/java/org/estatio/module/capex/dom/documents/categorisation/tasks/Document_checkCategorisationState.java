@@ -8,7 +8,7 @@ import org.estatio.module.capex.dom.dobj.DomainObject_checkStateAbstract;
 import org.estatio.module.capex.dom.documents.categorisation.IncomingDocumentCategorisationState;
 import org.estatio.module.capex.dom.documents.categorisation.IncomingDocumentCategorisationStateTransition;
 import org.estatio.module.capex.dom.documents.categorisation.IncomingDocumentCategorisationStateTransitionType;
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 
 /**
  * This cannot be inlined (needs to be a mixin) because Document is part of the incode platform and

@@ -21,7 +21,7 @@ import org.estatio.module.document.dom.impl.types.DocumentType;
 import org.estatio.module.document.dom.impl.types.DocumentTypeRepository;
 
 import org.estatio.module.financial.dom.BankAccount;
-import org.estatio.module.invoice.dom.DocumentTypeData;
+import org.estatio.module.invoicedoc.dom.DocumentTypeData;
 
 /**
  * This cannot be inlined (needs to be a mixin) because BankAccount does not know about incoming invoices or documents.
