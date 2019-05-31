@@ -29,11 +29,11 @@ import org.junit.Test;
 
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannel;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelRepository;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelType;
-import org.incode.module.communications.dom.impl.commchannel.PostalAddress;
-import org.incode.module.communications.dom.impl.commchannel.PostalAddressRepository;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannel;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelRepository;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelType;
+import org.estatio.module.communications.dom.impl.commchannel.PostalAddress;
+import org.estatio.module.communications.dom.impl.commchannel.PostalAddressRepository;
 
 import org.estatio.module.party.dom.Party;
 import org.estatio.module.party.fixtures.orgcomms.enums.OrganisationAndComms_enum;

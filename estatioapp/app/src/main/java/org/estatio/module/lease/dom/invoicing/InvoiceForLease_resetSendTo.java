@@ -7,7 +7,7 @@ import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.annotation.SemanticsOf;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannel;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannel;
 
 import org.estatio.module.lease.dom.Lease;
 

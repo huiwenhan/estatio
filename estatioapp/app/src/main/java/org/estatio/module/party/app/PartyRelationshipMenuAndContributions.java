@@ -34,7 +34,7 @@ import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.RestrictTo;
 import org.apache.isis.applib.annotation.SemanticsOf;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannel;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannel;
 
 import org.estatio.module.party.dom.Party;
 import org.estatio.module.party.dom.Person;

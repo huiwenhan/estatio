@@ -22,11 +22,11 @@ import javax.inject.Inject;
 
 import org.apache.isis.applib.fixturescripts.BuilderScriptAbstract;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelRepository;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelType;
-import org.incode.module.communications.dom.impl.commchannel.EmailAddress;
-import org.incode.module.communications.dom.impl.commchannel.PhoneOrFaxNumber;
-import org.incode.module.communications.dom.impl.commchannel.PostalAddress;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelRepository;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelType;
+import org.estatio.module.communications.dom.impl.commchannel.EmailAddress;
+import org.estatio.module.communications.dom.impl.commchannel.PhoneOrFaxNumber;
+import org.estatio.module.communications.dom.impl.commchannel.PostalAddress;
 import org.incode.module.country.dom.impl.Country;
 import org.incode.module.country.dom.impl.State;
 import org.incode.module.country.dom.impl.StateRepository;

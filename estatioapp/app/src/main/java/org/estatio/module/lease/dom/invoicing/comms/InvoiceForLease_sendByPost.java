@@ -35,8 +35,8 @@ import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.value.Blob;
 
 import org.incode.module.base.dom.MimeTypeData;
-import org.incode.module.communications.dom.impl.commchannel.PostalAddress;
-import org.incode.module.communications.dom.mixins.Document_sendByPost;
+import org.estatio.module.communications.dom.impl.commchannel.PostalAddress;
+import org.estatio.module.communications.dom.mixins.Document_sendByPost;
 import org.incode.module.document.DocumentModule;
 import org.incode.module.document.dom.impl.docs.Document;
 import org.incode.module.document.dom.impl.docs.DocumentAbstract;

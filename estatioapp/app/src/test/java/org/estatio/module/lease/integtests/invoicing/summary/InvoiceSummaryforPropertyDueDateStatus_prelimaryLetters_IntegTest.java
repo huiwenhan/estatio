@@ -31,9 +31,9 @@ import org.junit.Test;
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 
 import org.incode.module.base.dom.MimeTypeData;
-import org.incode.module.communications.dom.impl.commchannel.EmailAddress;
-import org.incode.module.communications.dom.impl.comms.Communication;
-import org.incode.module.communications.dom.impl.comms.CommunicationState;
+import org.estatio.module.communications.dom.impl.commchannel.EmailAddress;
+import org.estatio.module.communications.dom.impl.comms.Communication;
+import org.estatio.module.communications.dom.impl.comms.CommunicationState;
 import org.incode.module.document.dom.impl.docs.Document;
 import org.incode.module.document.dom.impl.docs.DocumentAbstract;
 import org.incode.module.document.dom.impl.docs.DocumentSort;

@@ -2,7 +2,7 @@ package org.incode.platform.dom.communications.integtests.dom.communications.dom
 
 import org.apache.isis.applib.annotation.Mixin;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelOwner_phoneNumberTitles;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelOwner_phoneNumberTitles;
 import org.incode.platform.dom.communications.integtests.demo.dom.demowithnotes.DemoObjectWithNotes;
 
 @Mixin(method = "prop")

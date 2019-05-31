@@ -27,7 +27,7 @@ import org.apache.isis.applib.annotation.SemanticsOf;
 import org.isisaddons.module.security.dom.tenancy.ApplicationTenancy;
 import org.isisaddons.module.security.dom.tenancy.ApplicationTenancyRepository;
 
-import org.incode.module.communications.dom.impl.comms.Communication;
+import org.estatio.module.communications.dom.impl.comms.Communication;
 
 @Mixin
 public class Communication_applicationTenancy {

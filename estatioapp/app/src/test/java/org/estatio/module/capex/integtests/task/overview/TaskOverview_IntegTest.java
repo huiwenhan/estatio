@@ -13,8 +13,8 @@ import org.apache.isis.applib.services.clock.ClockService;
 import org.apache.isis.applib.services.sudo.SudoService;
 import org.apache.isis.applib.services.wrapper.DisabledException;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelRepository;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelType;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelRepository;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelType;
 
 import org.estatio.module.asset.fixtures.person.enums.Person_enum;
 import org.estatio.module.capex.app.taskreminder.TaskOverview;

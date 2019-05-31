@@ -31,7 +31,7 @@ import org.apache.isis.applib.fixturescripts.FixtureScript;
 import org.apache.isis.applib.fixturescripts.teardown.TeardownFixtureAbstract2;
 
 import org.incode.module.classification.dom.ClassificationModule;
-import org.incode.module.communications.CommunicationsModule;
+import org.estatio.module.communications.CommunicationsModule;
 import org.incode.module.docfragment.DocFragmentModule;
 import org.incode.module.docrendering.freemarker.FreemarkerDocRenderingModule;
 import org.incode.module.docrendering.gotenberg.dom.GotenbergRenderingDomModule;
@@ -39,8 +39,6 @@ import org.incode.module.docrendering.stringinterpolator.StringInterpolatorDocRe
 import org.incode.module.docrendering.xdocreport.XDocReportDocRenderingModule;
 
 import org.estatio.module.assetfinancial.EstatioAssetFinancialModule;
-import org.estatio.module.capex.seed.DocumentTypeFSForIbanProof;
-import org.estatio.module.capex.seed.DocumentTypeFSForIncoming;
 import org.estatio.module.event.EstatioEventModule;
 import org.estatio.module.index.EstatioIndexModule;
 import org.estatio.module.invoice.EstatioInvoiceModule;

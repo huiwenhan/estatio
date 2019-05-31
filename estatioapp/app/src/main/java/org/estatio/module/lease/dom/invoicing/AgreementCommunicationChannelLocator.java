@@ -37,10 +37,10 @@ import org.estatio.module.agreement.dom.AgreementRoleCommunicationChannelType;
 import org.estatio.module.agreement.dom.AgreementRoleCommunicationChannelTypeRepository;
 import org.estatio.module.agreement.dom.role.AgreementRoleType;
 import org.estatio.module.agreement.dom.role.AgreementRoleTypeRepository;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannel;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelOwnerLinkRepository;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelRepository;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelType;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannel;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelOwnerLinkRepository;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelRepository;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelType;
 import org.estatio.module.party.dom.Party;
 
 /**

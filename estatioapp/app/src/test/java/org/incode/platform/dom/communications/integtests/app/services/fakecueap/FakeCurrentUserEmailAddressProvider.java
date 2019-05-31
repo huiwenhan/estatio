@@ -7,7 +7,7 @@ import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.services.user.UserService;
 
-import org.incode.module.communications.dom.spi.CurrentUserEmailAddressProvider;
+import org.estatio.module.communications.dom.spi.CurrentUserEmailAddressProvider;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,

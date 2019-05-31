@@ -60,8 +60,8 @@ import org.isisaddons.module.security.dom.tenancy.ApplicationTenancy;
 import org.incode.module.base.dom.types.NameType;
 import org.incode.module.base.dom.valuetypes.LocalDateInterval;
 import org.incode.module.base.dom.with.WithIntervalContiguous;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannel;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelRepository;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannel;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelRepository;
 
 import org.estatio.module.base.dom.UdoDomainObject2;
 import org.estatio.module.agreement.dom.role.AgreementRoleType;

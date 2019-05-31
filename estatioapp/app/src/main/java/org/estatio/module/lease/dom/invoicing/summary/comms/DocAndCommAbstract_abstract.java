@@ -22,7 +22,7 @@ import javax.inject.Inject;
 
 import org.apache.isis.applib.services.queryresultscache.QueryResultsCache;
 
-import org.incode.module.communications.dom.impl.comms.Communication;
+import org.estatio.module.communications.dom.impl.comms.Communication;
 import org.incode.module.document.dom.impl.docs.Document;
 import org.incode.module.document.dom.impl.types.DocumentType;
 import org.incode.module.document.dom.impl.types.DocumentTypeRepository;

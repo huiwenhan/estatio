@@ -24,9 +24,9 @@ import com.google.common.collect.Lists;
 
 import org.apache.isis.applib.fixturescripts.BuilderScriptAbstract;
 
-import org.incode.module.communications.dom.impl.commchannel.EmailAddress;
-import org.incode.module.communications.dom.impl.commchannel.PhoneOrFaxNumber;
-import org.incode.module.communications.dom.impl.commchannel.PostalAddress;
+import org.estatio.module.communications.dom.impl.commchannel.EmailAddress;
+import org.estatio.module.communications.dom.impl.commchannel.PhoneOrFaxNumber;
+import org.estatio.module.communications.dom.impl.commchannel.PostalAddress;
 
 import org.incode.module.country.fixtures.enums.Country_enum;
 import org.estatio.module.party.dom.Organisation;

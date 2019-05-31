@@ -2,7 +2,7 @@ package org.estatio.module.application.contributions.commchannels;
 
 import org.apache.isis.applib.annotation.Mixin;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelOwner_phoneNumberTitles;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelOwner_phoneNumberTitles;
 import org.estatio.module.party.dom.Party;
 
 @Mixin(method = "prop")

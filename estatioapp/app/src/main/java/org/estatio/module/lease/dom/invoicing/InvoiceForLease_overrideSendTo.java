@@ -27,8 +27,8 @@ import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.Mixin;
 
 import org.incode.module.base.dom.Dflt;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannel;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelType;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannel;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelType;
 
 import org.estatio.module.invoice.dom.Invoice;
 import org.estatio.module.lease.dom.LeaseAgreementRoleTypeEnum;

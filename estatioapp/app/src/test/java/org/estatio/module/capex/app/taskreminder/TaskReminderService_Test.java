@@ -18,9 +18,9 @@ import org.apache.isis.applib.services.clock.ClockService;
 import org.apache.isis.applib.services.linking.DeepLinkService;
 import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelRepository;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelType;
-import org.incode.module.communications.dom.impl.commchannel.EmailAddress;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelRepository;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelType;
+import org.estatio.module.communications.dom.impl.commchannel.EmailAddress;
 
 import org.estatio.module.application.spiimpl.email.EmailService2;
 import org.estatio.module.capex.dom.task.Task;

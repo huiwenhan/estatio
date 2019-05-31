@@ -4,8 +4,8 @@ import org.junit.Test;
 
 import org.isisaddons.module.security.dom.tenancy.ApplicationTenancy;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelOwner;
-import org.incode.module.communications.dom.impl.commchannel.EmailAddress;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelOwner;
+import org.estatio.module.communications.dom.impl.commchannel.EmailAddress;
 
 import org.incode.module.unittestsupport.dom.bean.AbstractBeanPropertiesTest;
 import org.incode.module.unittestsupport.dom.bean.PojoTester;

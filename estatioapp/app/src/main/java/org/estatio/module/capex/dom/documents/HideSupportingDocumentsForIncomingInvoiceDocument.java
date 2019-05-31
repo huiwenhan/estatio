@@ -5,8 +5,8 @@ import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.Programmatic;
 
-import org.incode.module.communications.dom.mixins.Document_communicationAttachments;
-import org.incode.module.communications.dom.mixins.Document_communications;
+import org.estatio.module.communications.dom.mixins.Document_communicationAttachments;
+import org.estatio.module.communications.dom.mixins.Document_communications;
 import org.incode.module.document.dom.impl.docs.Document;
 import org.incode.module.document.dom.impl.docs.Document_backgroundCommands;
 import org.incode.module.document.dom.mixins.T_documents;

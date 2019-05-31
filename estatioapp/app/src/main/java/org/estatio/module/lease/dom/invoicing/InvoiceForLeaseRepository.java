@@ -33,7 +33,7 @@ import org.apache.isis.applib.services.factory.FactoryService;
 
 import org.isisaddons.module.security.dom.tenancy.ApplicationTenancy;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannel;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannel;
 
 import org.estatio.module.agreement.dom.Agreement;
 import org.estatio.module.asset.dom.FixedAsset;

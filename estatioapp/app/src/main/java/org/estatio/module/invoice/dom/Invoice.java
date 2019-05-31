@@ -67,7 +67,7 @@ import org.apache.isis.schema.utils.jaxbadapters.PersistentEntityAdapter;
 import org.isisaddons.module.security.dom.tenancy.ApplicationTenancy;
 
 import org.incode.module.base.dom.types.NotesType;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannel;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannel;
 import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
 import org.incode.module.document.dom.types.AtPathType;
 

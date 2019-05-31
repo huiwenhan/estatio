@@ -10,10 +10,10 @@ import org.junit.Test;
 
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannel;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelOwner_newChannelContributions;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelType;
-import org.incode.module.communications.dom.impl.commchannel.EmailAddress;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannel;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelOwner_newChannelContributions;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelType;
+import org.estatio.module.communications.dom.impl.commchannel.EmailAddress;
 
 import org.estatio.module.application.integtests.ApplicationModuleIntegTestAbstract;
 import org.estatio.module.asset.fixtures.person.builders.PersonAndRolesBuilder;

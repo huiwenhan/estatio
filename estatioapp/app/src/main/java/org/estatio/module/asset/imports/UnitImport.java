@@ -21,8 +21,8 @@ import org.isisaddons.module.excel.dom.ExcelFixture2;
 import org.isisaddons.module.excel.dom.ExcelFixtureRowHandler;
 import org.isisaddons.module.excel.dom.FixtureAwareRowHandler;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelRepository;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelType;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelRepository;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelType;
 import org.incode.module.country.dom.impl.CountryRepository;
 import org.incode.module.country.dom.impl.StateRepository;
 

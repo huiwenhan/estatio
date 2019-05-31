@@ -13,8 +13,8 @@ import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelOwner;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelOwnerLink;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelOwner;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelOwnerLink;
 import org.incode.platform.dom.communications.integtests.demo.dom.demowithnotes.DemoObjectWithNotes;
 
 @javax.jdo.annotations.PersistenceCapable(

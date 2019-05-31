@@ -25,7 +25,7 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.SemanticsOf;
 
-import org.incode.module.communications.dom.impl.comms.Communication;
+import org.estatio.module.communications.dom.impl.comms.Communication;
 
 import org.estatio.module.invoice.dom.DocumentTypeData;
 

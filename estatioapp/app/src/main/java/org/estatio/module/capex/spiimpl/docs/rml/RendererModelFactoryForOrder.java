@@ -18,11 +18,11 @@ import org.apache.isis.applib.services.factory.FactoryService;
 
 import org.isisaddons.module.xdocreport.dom.service.XDocReportModel;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannel;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelPurposeType;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelRepository;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelType;
-import org.incode.module.communications.dom.impl.commchannel.PostalAddress;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannel;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelPurposeType;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelRepository;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelType;
+import org.estatio.module.communications.dom.impl.commchannel.PostalAddress;
 import org.incode.module.document.dom.impl.applicability.RendererModelFactoryAbstract;
 import org.incode.module.document.dom.impl.docs.DocumentTemplate;
 

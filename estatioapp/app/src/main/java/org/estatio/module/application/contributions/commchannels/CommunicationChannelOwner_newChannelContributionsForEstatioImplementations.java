@@ -21,7 +21,7 @@ package org.estatio.module.application.contributions.commchannels;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelOwner_newChannelContributions;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelOwner_newChannelContributions;
 
 @DomainService(nature = NatureOfService.VIEW_CONTRIBUTIONS_ONLY)
 public class CommunicationChannelOwner_newChannelContributionsForEstatioImplementations extends CommunicationChannelOwner_newChannelContributions {

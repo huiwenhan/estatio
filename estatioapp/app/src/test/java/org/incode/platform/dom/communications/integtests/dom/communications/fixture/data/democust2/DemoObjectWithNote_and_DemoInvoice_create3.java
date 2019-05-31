@@ -11,8 +11,8 @@ import org.apache.isis.applib.fixturescripts.FixtureScript;
 import org.apache.isis.applib.value.Blob;
 
 import org.incode.module.base.dom.MimeTypeData;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelOwner;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelType;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelOwner;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelType;
 import org.incode.module.country.dom.impl.Country;
 import org.incode.module.country.dom.impl.CountryRepository;
 import org.incode.module.country.dom.impl.State;

@@ -18,11 +18,11 @@
  */
 package org.estatio.module.lease.dom.invoicing.comms;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelType;
-import org.incode.module.communications.dom.impl.comms.Communication;
-import org.incode.module.communications.dom.mixins.DocumentConstants;
-import org.incode.module.communications.dom.mixins.Document_sendByEmail;
-import org.incode.module.communications.dom.mixins.Document_sendByPost;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelType;
+import org.estatio.module.communications.dom.impl.comms.Communication;
+import org.estatio.module.communications.dom.mixins.DocumentConstants;
+import org.estatio.module.communications.dom.mixins.Document_sendByEmail;
+import org.estatio.module.communications.dom.mixins.Document_sendByPost;
 import org.incode.module.document.dom.impl.docs.Document;
 
 import org.estatio.module.invoice.dom.Invoice;

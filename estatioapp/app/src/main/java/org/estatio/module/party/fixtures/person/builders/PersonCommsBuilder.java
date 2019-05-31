@@ -22,8 +22,8 @@ import javax.inject.Inject;
 
 import org.apache.isis.applib.fixturescripts.BuilderScriptAbstract;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelOwner_newChannelContributions;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelType;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelOwner_newChannelContributions;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelType;
 
 import org.estatio.module.party.dom.Person;
 

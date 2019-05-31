@@ -3,7 +3,7 @@ package org.estatio.module.application.canonical.v1;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 
-import org.incode.module.communications.dom.impl.commchannel.PostalAddress;
+import org.estatio.module.communications.dom.impl.commchannel.PostalAddress;
 import org.incode.module.country.dom.impl.Country;
 import org.incode.module.country.dom.impl.State;
 

@@ -27,7 +27,7 @@ import org.junit.Test;
 
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelOwner_newChannelContributions;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelOwner_newChannelContributions;
 
 import org.estatio.module.party.dom.Party;
 import org.estatio.module.party.dom.PartyRepository;

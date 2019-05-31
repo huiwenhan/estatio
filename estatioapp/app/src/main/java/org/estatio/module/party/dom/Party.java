@@ -57,7 +57,7 @@ import org.incode.module.base.dom.types.ReferenceType;
 import org.incode.module.base.dom.utils.TitleBuilder;
 import org.incode.module.base.dom.with.WithNameComparable;
 import org.incode.module.base.dom.with.WithReferenceUnique;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelOwner;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelOwner;
 
 import org.estatio.module.base.dom.UdoDomainObject2;
 import org.estatio.module.party.dom.role.IPartyRoleType;

@@ -40,10 +40,10 @@ import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.services.email.EmailService;
 import org.apache.isis.applib.services.eventbus.ActionDomainEvent;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannel;
-import org.incode.module.communications.dom.impl.commchannel.EmailAddress;
-import org.incode.module.communications.dom.impl.comms.Communication;
-import org.incode.module.communications.dom.mixins.Document_sendByEmail;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannel;
+import org.estatio.module.communications.dom.impl.commchannel.EmailAddress;
+import org.estatio.module.communications.dom.impl.comms.Communication;
+import org.estatio.module.communications.dom.mixins.Document_sendByEmail;
 import org.incode.module.document.dom.impl.docs.Document;
 import org.incode.module.document.dom.impl.docs.DocumentAbstract;
 import org.incode.module.document.dom.impl.docs.DocumentState;

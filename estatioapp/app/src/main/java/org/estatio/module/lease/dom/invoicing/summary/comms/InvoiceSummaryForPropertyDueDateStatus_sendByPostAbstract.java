@@ -37,8 +37,8 @@ import org.apache.isis.applib.value.Blob;
 import org.isisaddons.module.pdfbox.dom.service.PdfBoxService;
 
 import org.incode.module.base.dom.MimeTypeData;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelType;
-import org.incode.module.communications.dom.impl.commchannel.PostalAddress;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelType;
+import org.estatio.module.communications.dom.impl.commchannel.PostalAddress;
 import org.incode.module.document.dom.impl.docs.Document;
 
 import org.estatio.module.invoice.dom.DocumentTypeData;

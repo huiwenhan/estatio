@@ -34,11 +34,11 @@ import org.apache.isis.applib.fixturescripts.BuilderScriptAbstract;
 import org.isisaddons.module.security.dom.tenancy.ApplicationTenancy;
 
 import org.incode.module.apptenancy.fixtures.enums.ApplicationTenancy_enum;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannel;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelOwnerLink;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelOwnerLinkRepository;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelRepository;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelType;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannel;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelOwnerLink;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelOwnerLinkRepository;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelRepository;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelType;
 import org.incode.module.country.dom.impl.Country;
 
 import org.estatio.module.agreement.dom.AgreementRole;

@@ -29,8 +29,8 @@ import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.services.bookmark.BookmarkService;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelOwner;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelOwnerLink;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelOwner;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelOwnerLink;
 
 import lombok.Getter;
 import lombok.Setter;

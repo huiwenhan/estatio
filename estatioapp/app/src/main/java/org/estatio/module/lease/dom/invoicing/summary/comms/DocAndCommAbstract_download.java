@@ -36,8 +36,8 @@ import org.apache.isis.applib.value.Blob;
 import org.isisaddons.module.pdfbox.dom.service.PdfBoxService;
 
 import org.incode.module.base.dom.MimeTypeData;
-import org.incode.module.communications.dom.mixins.DocumentPredicates;
-import org.incode.module.communications.dom.mixins.Document_communicationAttachments;
+import org.estatio.module.communications.dom.mixins.DocumentPredicates;
+import org.estatio.module.communications.dom.mixins.Document_communicationAttachments;
 import org.incode.module.document.dom.impl.docs.Document;
 import org.incode.module.document.dom.impl.docs.DocumentSort;
 import org.incode.module.document.dom.impl.docs.DocumentState;

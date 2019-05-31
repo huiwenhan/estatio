@@ -41,7 +41,7 @@ import org.apache.isis.applib.value.Blob;
 
 import org.incode.module.base.dom.MimeTypeData;
 import org.incode.module.base.spi.DeriveBlobFromDummyPdfArg1;
-import org.incode.module.communications.dom.impl.comms.Communication;
+import org.estatio.module.communications.dom.impl.comms.Communication;
 import org.incode.module.document.dom.api.DocumentService;
 import org.incode.module.document.dom.impl.docs.Document;
 import org.incode.module.document.dom.impl.docs.DocumentAbstract;

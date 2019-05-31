@@ -30,7 +30,7 @@ import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 import org.apache.isis.applib.services.scratchpad.Scratchpad;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannel;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannel;
 
 import org.estatio.module.base.dom.UdoDomainService;
 import org.estatio.module.invoice.dom.Invoice;

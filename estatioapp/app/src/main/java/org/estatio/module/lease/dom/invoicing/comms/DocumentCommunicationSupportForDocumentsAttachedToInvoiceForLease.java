@@ -26,12 +26,12 @@ import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.services.queryresultscache.QueryResultsCache;
 
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannel;
-import org.incode.module.communications.dom.impl.commchannel.CommunicationChannelType;
-import org.incode.module.communications.dom.spi.CommHeaderAbstract;
-import org.incode.module.communications.dom.spi.CommHeaderForEmail;
-import org.incode.module.communications.dom.spi.CommHeaderForPost;
-import org.incode.module.communications.dom.spi.DocumentCommunicationSupport;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannel;
+import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelType;
+import org.estatio.module.communications.dom.spi.CommHeaderAbstract;
+import org.estatio.module.communications.dom.spi.CommHeaderForEmail;
+import org.estatio.module.communications.dom.spi.CommHeaderForPost;
+import org.estatio.module.communications.dom.spi.DocumentCommunicationSupport;
 import org.incode.module.document.dom.impl.docs.Document;
 import org.incode.module.document.dom.impl.paperclips.Paperclip;
 import org.incode.module.document.dom.impl.paperclips.PaperclipRepository;
