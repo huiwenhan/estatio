@@ -1,4 +1,4 @@
-package org.estatio.module.invoice.spiimpl;
+package org.estatio.module.lease.spiimpl;
 
 import javax.inject.Inject;
 import javax.xml.bind.annotation.XmlTransient;

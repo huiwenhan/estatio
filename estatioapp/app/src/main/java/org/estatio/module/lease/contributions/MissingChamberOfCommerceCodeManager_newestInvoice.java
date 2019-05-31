@@ -1,4 +1,4 @@
-package org.estatio.module.invoice.contributions;
+package org.estatio.module.lease.contributions;
 
 import javax.inject.Inject;
 import javax.xml.bind.annotation.XmlTransient;

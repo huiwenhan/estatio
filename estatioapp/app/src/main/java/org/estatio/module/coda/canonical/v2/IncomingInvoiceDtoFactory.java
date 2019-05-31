@@ -1,4 +1,4 @@
-package org.estatio.module.capex.canonical.v2;
+package org.estatio.module.coda.canonical.v2;
 
 import java.util.List;
 
