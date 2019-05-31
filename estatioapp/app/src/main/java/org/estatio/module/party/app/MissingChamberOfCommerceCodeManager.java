@@ -1,10 +1,7 @@
 package org.estatio.module.party.app;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
@@ -13,29 +10,17 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-import org.wicketstuff.pdfjs.Scale;
-
 import org.apache.isis.applib.annotation.Action;
-import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.CollectionLayout;
-import org.apache.isis.applib.annotation.Contributed;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
+import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.Editing;
+import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.SemanticsOf;
-import org.apache.isis.applib.value.Blob;
 
-import org.isisaddons.wicket.pdfjs.cpt.applib.PdfJsViewer;
-
-import org.estatio.module.document.dom.impl.docs.Document;
-import org.estatio.module.document.dom.impl.docs.DocumentAbstract;
-
-import org.estatio.module.capex.dom.documents.LookupAttachedPdfService;
-import org.estatio.module.capex.dom.invoice.IncomingInvoice;
-import org.estatio.module.capex.dom.invoice.IncomingInvoiceRepository;
 import org.estatio.module.capex.dom.invoice.IncomingInvoiceRoleTypeEnum;
-import org.estatio.module.capex.dom.invoice.approval.IncomingInvoiceApprovalState;
 import org.estatio.module.lease.dom.LeaseAgreementRoleTypeEnum;
 import org.estatio.module.party.app.services.ChamberOfCommerceCodeLookUpService;
 import org.estatio.module.party.app.services.OrganisationNameNumberViewModel;
@@ -104,21 +89,6 @@ public class MissingChamberOfCommerceCodeManager {
         return lookUpService.getChamberOfCommerceCodeCandidatesByOrganisation(organisation);
     }
 
-    @PdfJsViewer(initialPageNum = 1, initialScale = Scale.PAGE_WIDTH, initialHeight = 1500)
-    @Action(semantics = SemanticsOf.SAFE)
-    @ActionLayout(contributed = Contributed.AS_ASSOCIATION)
-    public Blob getNewestInvoice() {
-        Optional<IncomingInvoice> invoiceIfAny = incomingInvoiceRepository.findBySellerAndApprovalStates(organisation, Arrays.asList(IncomingInvoiceApprovalState.values()))
-                .stream()
-                .max(Comparator.comparing(IncomingInvoice::getInvoiceDate));
-
-        Optional<Document> documentIfAny = invoiceIfAny.isPresent() ?
-                pdfService.lookupIncomingInvoicePdfFrom(invoiceIfAny.get()) :
-                Optional.empty();
-
-        return documentIfAny.map(DocumentAbstract::getBlob).orElse(null);
-    }
-
     public MissingChamberOfCommerceCodeManager save() {
         this.organisation.setChamberOfCommerceCode(getChamberOfCommerceCode());
 
@@ -147,19 +117,51 @@ public class MissingChamberOfCommerceCodeManager {
         this.chamberOfCommerceCode = null;
 
         // not very helpful to the user, skip to next in line
-        if (getNewestInvoice() == null && getCandidateCodes().isEmpty()) {
+        if (! shouldVisitNext(this.organisation)) {
+
             this.noSuggestions.add(this.organisation);
             prepareForNextOrganisation();
         }
     }
 
-    @XmlTransient
-    @Inject
-    IncomingInvoiceRepository incomingInvoiceRepository;
+    /**
+     * We'll visit the next organisation if at least one of the advisors thinks we should.
+     */
+    private boolean shouldVisitNext(final Organisation organisation) {
+        for (final NextOrganisationAdvisor advisor : advisors) {
+            if(advisor.shouldVisitNext(organisation)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * SPI
+     */
+    public interface NextOrganisationAdvisor {
+
+        boolean shouldVisitNext(Organisation organisation);
+
+    }
+
+    @DomainService(nature = NatureOfService.DOMAIN)
+    public static class InspectCandidateCodes implements NextOrganisationAdvisor {
+
+        @Override
+        public boolean shouldVisitNext(final Organisation organisation) {
+            return !lookUpService.getChamberOfCommerceCodeCandidatesByOrganisation(organisation).isEmpty();
+        }
+
+        @XmlTransient
+        @Inject
+        ChamberOfCommerceCodeLookUpService lookUpService;
+    }
+
 
     @XmlTransient
     @Inject
-    LookupAttachedPdfService pdfService;
+    List<NextOrganisationAdvisor> advisors;
 
     @XmlTransient
     @Inject
