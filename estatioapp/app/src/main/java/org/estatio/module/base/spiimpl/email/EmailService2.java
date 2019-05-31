@@ -1,4 +1,4 @@
-package org.estatio.module.application.spiimpl.email;
+package org.estatio.module.base.spiimpl.email;
 
 import java.util.List;
 

@@ -19,7 +19,7 @@ import org.estatio.module.communications.dom.impl.commchannel.CommunicationChann
 import org.estatio.module.communications.dom.impl.commchannel.CommunicationChannelType;
 import org.estatio.module.communications.dom.impl.commchannel.EmailAddress;
 
-import org.estatio.module.application.spiimpl.email.EmailService2;
+import org.estatio.module.base.spiimpl.email.EmailService2;
 import org.estatio.module.capex.dom.task.Task;
 import org.estatio.module.capex.dom.task.TaskRepository;
 import org.estatio.module.party.dom.Person;

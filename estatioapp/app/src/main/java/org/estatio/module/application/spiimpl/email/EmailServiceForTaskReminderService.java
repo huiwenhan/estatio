@@ -7,6 +7,8 @@ import javax.activation.DataSource;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.Programmatic;
 
+import org.estatio.module.base.spiimpl.email.EmailService2;
+
 @DomainService(menuOrder = "99")
 public class EmailServiceForTaskReminderService extends EmailServiceForEstatio implements EmailService2 {
 
