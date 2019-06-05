@@ -60,6 +60,8 @@ import org.isisaddons.wicket.gmap3.cpt.applib.Location;
 import org.incode.module.base.dom.types.ProperNameType;
 import org.incode.module.country.dom.impl.Country;
 
+import org.estatio.module.asset.dom.counts.Count;
+import org.estatio.module.asset.dom.counts.CountRepository;
 import org.estatio.module.asset.dom.erv.EstimatedRentalValueRepository;
 import org.estatio.module.asset.dom.erv.Type;
 import org.estatio.module.asset.dom.location.LocationLookupService;
@@ -231,6 +233,11 @@ public class Property
 
     // //////////////////////////////////////
 
+    @Action(semantics = SemanticsOf.SAFE)
+    public List<Count> getCounts(){
+        return countRepository.findByProperty(this);
+    }
+
     /**
      * For use by Api and by fixtures.
      */
@@ -324,6 +331,8 @@ public class Property
     @Inject EstimatedRentalValueRepository estimatedRentalValueRepository;
 
     @Inject ClockService clockService;
+
+    @Inject CountRepository countRepository;
 
 
     // //////////////////////////////////////
