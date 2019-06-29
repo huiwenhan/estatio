@@ -24,6 +24,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.assertj.core.api.Assertions;
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Before;
@@ -53,6 +54,8 @@ import org.estatio.module.invoice.dom.InvoiceItem;
 import org.estatio.module.invoice.dom.InvoiceRepository;
 import org.estatio.module.invoice.dom.InvoiceStatus;
 import org.estatio.module.invoice.dom.PaymentMethod;
+import org.estatio.module.invoicegroup.dom.InvoiceGroup;
+import org.estatio.module.invoicegroup.fixtures.InvoiceGroup_enum;
 import org.estatio.module.lease.app.NumeratorForOutgoingInvoicesMenu;
 import org.estatio.module.lease.dom.Lease;
 import org.estatio.module.lease.dom.LeaseRepository;
@@ -113,15 +116,19 @@ public class InvoiceRepository_IntegTest extends LeaseModuleIntegTestAbstract {
         }
 
         private Property propertyOxf;
+        private InvoiceGroup invoiceGroupOxf;
         private Organisation seller;
         private Property propertyKal;
+        private InvoiceGroup invoiceGroupKal;
 
         private Bookmark propertyOxfBookmark;
 
         @Before
         public void setUp() {
             propertyOxf = Property_enum.OxfGb.findUsing(serviceRegistry);
+            invoiceGroupOxf = InvoiceGroup_enum.OxfGb.findUsing(serviceRegistry);
             propertyKal = Property_enum.KalNl.findUsing(serviceRegistry);
+            invoiceGroupKal = InvoiceGroup_enum.KalNl.findUsing(serviceRegistry);
             seller = PropertyAndUnitsAndOwnerAndManager_enum.OxfGb.getOwner_d().findUsing(serviceRegistry);
 
             propertyOxfBookmark = bookmarkService.bookmarkFor(propertyOxf);
@@ -131,13 +138,13 @@ public class InvoiceRepository_IntegTest extends LeaseModuleIntegTestAbstract {
         public void whenNoneForProperty() {
 
             // given
-            Numerator numerator = numeratorForOutgoingInvoicesMenu.findInvoiceNumberNumerator(propertyOxf, seller
+            Numerator numerator = numeratorForOutgoingInvoicesMenu.findInvoiceNumberNumerator(invoiceGroupOxf, seller
             );
             Assert.assertNull(numerator);
 
             // when
             numerator = numeratorForOutgoingInvoicesMenu
-                    .createInvoiceNumberNumerator(propertyOxf, seller, "OXF-%05d", BigInteger.TEN);
+                    .createInvoiceNumberNumerator(invoiceGroupOxf, seller, "OXF-%05d", BigInteger.TEN);
 
             // then
             Assert.assertNotNull(numerator);
@@ -151,12 +158,12 @@ public class InvoiceRepository_IntegTest extends LeaseModuleIntegTestAbstract {
         public void canCreateOnePerProperty() {
 
             // given
-            Numerator numerator1 = numeratorForOutgoingInvoicesMenu.createInvoiceNumberNumerator(propertyOxf, seller,
+            Numerator numerator1 = numeratorForOutgoingInvoicesMenu.createInvoiceNumberNumerator(invoiceGroupOxf, seller,
                     "OXF-%05d", BigInteger.TEN);
             Assert.assertNotNull(numerator1);
 
             // when
-            Numerator numerator2 = numeratorForOutgoingInvoicesMenu.createInvoiceNumberNumerator(propertyKal, seller,
+            Numerator numerator2 = numeratorForOutgoingInvoicesMenu.createInvoiceNumberNumerator(invoiceGroupKal, seller,
                     "KAL-%05d", BigInteger.ZERO);
 
             // then
@@ -173,19 +180,19 @@ public class InvoiceRepository_IntegTest extends LeaseModuleIntegTestAbstract {
         public void canOnlyCreateOnePerProperty_andCannotReset() {
 
             // given
-            Numerator numerator1 = numeratorForOutgoingInvoicesMenu.createInvoiceNumberNumerator(propertyOxf, seller,
+            Numerator numerator1 = numeratorForOutgoingInvoicesMenu.createInvoiceNumberNumerator(invoiceGroupOxf, seller,
                     "OXF-%05d", BigInteger.TEN);
             Assert.assertNotNull(numerator1);
 
             assertThat(numerator1.nextIncrementStr(), is("OXF-00011"));
 
             // when
-            Numerator numerator2 = numeratorForOutgoingInvoicesMenu.createInvoiceNumberNumerator(propertyOxf, seller,
+            Numerator numerator2 = numeratorForOutgoingInvoicesMenu.createInvoiceNumberNumerator(invoiceGroupOxf, seller,
                     "KAL-%05d", BigInteger.ZERO);
 
             // then
             Assert.assertNotNull(numerator2);
-            assertThat(numerator1, is(sameInstance(numerator2)));
+            Assertions.assertThat(numerator1).isSameAs(numerator2);
 
             assertThat(numerator1.nextIncrementStr(), is("OXF-00012"));
         }
@@ -206,17 +213,19 @@ public class InvoiceRepository_IntegTest extends LeaseModuleIntegTestAbstract {
 
         private Property propertyOxf;
         private Organisation seller;
+        private InvoiceGroup invoiceGroupOxf;
 
         @Before
         public void setUp() {
             propertyOxf = Property_enum.OxfGb.findUsing(serviceRegistry);
+            invoiceGroupOxf = InvoiceGroup_enum.OxfGb.findUsing(serviceRegistry);
             seller = PropertyAndUnitsAndOwnerAndManager_enum.OxfGb.getOwner_d().findUsing(serviceRegistry);
         }
 
         @Test
         public void whenNone() {
             // when
-            Numerator numerator = numeratorForOutgoingInvoicesMenu.findInvoiceNumberNumerator(propertyOxf, seller
+            Numerator numerator = numeratorForOutgoingInvoicesMenu.findInvoiceNumberNumerator(invoiceGroupOxf, seller
             );
             // then
             Assert.assertNull(numerator);

@@ -60,6 +60,7 @@ import org.apache.isis.schema.utils.jaxbadapters.PersistentEntityAdapter;
 import org.isisaddons.module.security.dom.tenancy.ApplicationTenancy;
 
 import org.estatio.module.asset.dom.FixedAsset;
+import org.estatio.module.asset.dom.Unit;
 import org.estatio.module.assetfinancial.dom.FixedAssetFinancialAccount;
 import org.estatio.module.assetfinancial.dom.FixedAssetFinancialAccountRepository;
 import org.estatio.module.base.dom.EstatioRole;
@@ -73,6 +74,8 @@ import org.estatio.module.invoice.dom.InvoiceItem;
 import org.estatio.module.invoice.dom.InvoiceRepository;
 import org.estatio.module.invoice.dom.InvoiceStatus;
 import org.estatio.module.invoice.dom.attr.InvoiceAttributeName;
+import org.estatio.module.invoicegroup.dom.InvoiceGroup;
+import org.estatio.module.invoicegroup.dom.InvoiceGroupRepository;
 import org.estatio.module.lease.dom.Lease;
 import org.estatio.module.lease.dom.invoicing.ssrs.InvoiceAttributesVM;
 import org.estatio.module.lease.dom.invoicing.ssrs.InvoiceItemAttributesVM;
@@ -466,9 +469,17 @@ public class InvoiceForLease
                 return invoiceForLease;
             }
 
-            ApplicationTenancy invoiceForLeaseApplicationTenancy = invoiceForLease.getApplicationTenancy();
+            final org.estatio.module.asset.dom.Property property = invoiceForLease.getProperty();
+            final Optional<InvoiceGroup> invoiceGroupIfAny = invoiceGroupRepository.findContainingProperty(property);
+            if (!invoiceGroupIfAny.isPresent()) {
+                // this shouldn't happen, because of the disable guard.
+                return null;
+            }
+
+            final InvoiceGroup invoiceGroup = invoiceGroupIfAny.get();
+
             final Numerator numerator = numeratorRepository
-                    .findInvoiceNumberNumerator(invoiceForLease.getFixedAsset(), invoiceForLease.getSeller()
+                    .findInvoiceNumberNumerator(invoiceGroup, invoiceForLease.getSeller()
                     );
 
             invoiceForLease.setInvoiceNumber(numerator.nextIncrementStr());
@@ -487,13 +498,25 @@ public class InvoiceForLease
             if (invoiceForLease.getInvoiceNumber() != null) {
                 return "Invoice number already assigned";
             }
-            ApplicationTenancy invoiceForLeaseApplicationTenancy = invoiceForLease.getApplicationTenancy();
-            final Numerator numerator = numeratorRepository
-                    .findInvoiceNumberNumerator(invoiceForLease.getFixedAsset(), invoiceForLease.getSeller()
-                    );
-            if (numerator == null) {
-                return "No 'invoice number' numerator found for invoice's property";
+
+            final org.estatio.module.asset.dom.Property property = invoiceForLease.getProperty();
+            final Optional<InvoiceGroup> invoiceGroupIfAny = invoiceGroupRepository
+                    .findContainingProperty(property);
+            if(!invoiceGroupIfAny.isPresent()) {
+                return String.format(
+                        "Invoice's property '%s' is not in any invoice group",
+                        titleService.titleOf(property));
             }
+            final InvoiceGroup invoiceGroup = invoiceGroupIfAny.get();
+
+            final Numerator numerator =
+                    numeratorRepository.findInvoiceNumberNumerator(invoiceGroup, invoiceForLease.getSeller());
+            if (numerator == null) {
+                return String.format(
+                        "No 'invoice number' numerator found for invoice's invoice group '%s'",
+                        titleService.titleOf(invoiceGroup));
+            }
+
             if (invoiceForLease.getStatus() != InvoiceStatus.APPROVED) {
                 return "Must be in status of 'Approved'";
             }
@@ -514,10 +537,16 @@ public class InvoiceForLease
             if (invoiceForLease.getDueDate() != null && invoiceForLease.getDueDate().compareTo(invoiceDate) < 0) {
                 return String.format("Invoice date must be on or before the due date (%s)", invoiceForLease.getDueDate().toString());
             }
-            final ApplicationTenancy applicationTenancy = invoiceForLease.getApplicationTenancy();
-            final Numerator numerator = numeratorRepository.findInvoiceNumberNumerator(invoiceForLease.getFixedAsset(),
-                    invoiceForLease.getSeller()
-            );
+            final org.estatio.module.asset.dom.Property property = invoiceForLease.getProperty();
+            final Optional<InvoiceGroup> invoiceGroupIfAny = invoiceGroupRepository.findContainingProperty(property);
+            if(!invoiceGroupIfAny.isPresent()) {
+                return String.format(
+                        "Invoice's property '%s' is not in any invoice group",
+                        titleService.titleOf(property));
+            }
+            final InvoiceGroup invoiceGroup = invoiceGroupIfAny.get();
+            final Numerator numerator =
+                    numeratorRepository.findInvoiceNumberNumerator(invoiceGroup, invoiceForLease.getSeller());
             if (numerator != null) {
                 final String invoiceNumber = numerator.lastIncrementStr();
                 if (invoiceNumber != null) {
@@ -538,6 +567,8 @@ public class InvoiceForLease
 
         @javax.inject.Inject
         NumeratorForOutgoingInvoicesRepository numeratorRepository;
+        @javax.inject.Inject
+        InvoiceGroupRepository invoiceGroupRepository;
 
         @javax.inject.Inject
         ClockService clockService;
@@ -550,6 +581,25 @@ public class InvoiceForLease
 
         @javax.inject.Inject
         TitleService titleService;
+    }
+
+    private org.estatio.module.asset.dom.Property getProperty() {
+        final FixedAsset fixedAsset = getFixedAsset();
+        if(fixedAsset == null) {
+            return null;
+        }
+
+        if (fixedAsset instanceof org.estatio.module.asset.dom.Property) {
+            return (org.estatio.module.asset.dom.Property) fixedAsset;
+        }
+        if (fixedAsset instanceof org.estatio.module.asset.dom.Unit) {
+            final Unit unit = (Unit) fixedAsset;
+            return unit.getProperty();
+        }
+
+        // shouldn't happen
+        throw new IllegalStateException(String.format("Fixed asset '%s' is of type '%s'",
+                fixedAsset.getReference(), fixedAsset.getClass().getName()));
     }
 
     /**

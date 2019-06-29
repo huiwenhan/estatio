@@ -18,23 +18,9 @@
  */
 package org.estatio.module.lease.migrations;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.fixturescripts.DiscoverableFixtureScript;
-
-import org.estatio.module.asset.dom.Property;
-import org.estatio.module.asset.dom.PropertyRepository;
-import org.estatio.module.asset.dom.role.FixedAssetRole;
-import org.estatio.module.asset.dom.role.FixedAssetRoleRepository;
-import org.estatio.module.asset.dom.role.FixedAssetRoleTypeEnum;
-import org.estatio.module.asset.fixtures.property.builders.PropertyOwnerBuilder;
-import org.estatio.module.lease.dom.invoicing.NumeratorForOutgoingInvoicesRepository;
-import org.estatio.module.numerator.dom.Numerator;
-import org.estatio.module.party.dom.Party;
-
-import static org.incode.module.base.integtests.VT.bi;
+import org.apache.isis.applib.services.message.MessageService;
 
 @DomainObject(
         objectType = "org.estatio.module.lease.migrations.CreateInvoiceNumerators"
@@ -44,34 +30,37 @@ public class CreateInvoiceNumerators extends DiscoverableFixtureScript {
 
     @Override
     protected void execute(ExecutionContext ec) {
-        final List<FixedAssetRoleTypeEnum> roleTypes = Arrays.asList(
-                FixedAssetRoleTypeEnum.PROPERTY_OWNER,
-                FixedAssetRoleTypeEnum.TENANTS_ASSOCIATION);
-
-        for (final Property property : propertyRepository.allProperties()) {
-            for (final FixedAssetRole fixedAssetRole : fixedAssetRoleRepository.findAllForProperty(property)){
-                if (roleTypes.contains(fixedAssetRole.getType())) {
-                    final Party party = fixedAssetRole.getParty();
-                    final Numerator numerator =
-                            estatioNumeratorRepository.createInvoiceNumberNumerator(
-                                    property,
-                                    party,
-                                    PropertyOwnerBuilder.numeratorReferenceFor(property),
-                                    bi(0));
-
-                    ec.addResult(this, property.getReference(), numerator);
-                }
-            }
-        }
+        messageService.warnUser("This fixture script does nothing");
+//        final List<FixedAssetRoleTypeEnum> roleTypes = Arrays.asList(
+//                FixedAssetRoleTypeEnum.PROPERTY_OWNER,
+//                FixedAssetRoleTypeEnum.TENANTS_ASSOCIATION);
+//
+//        for (final Property property : propertyRepository.allProperties()) {
+//            for (final FixedAssetRole fixedAssetRole : fixedAssetRoleRepository.findAllForProperty(property)){
+//                if (roleTypes.contains(fixedAssetRole.getType())) {
+//                    final Party party = fixedAssetRole.getParty();
+//                    final Numerator numerator =
+//                            estatioNumeratorRepository.createInvoiceNumberNumerator(
+//                                    property,
+//                                    party,
+//                                    PropertyOwnerBuilder.numeratorReferenceFor(property),
+//                                    bi(0));
+//
+//                    ec.addResult(this, property.getReference(), numerator);
+//                }
+//            }
+//        }
     }
     // //////////////////////////////////////
 
     @javax.inject.Inject
-    NumeratorForOutgoingInvoicesRepository estatioNumeratorRepository;
-
-    @javax.inject.Inject
-    PropertyRepository propertyRepository;
-
-    @javax.inject.Inject
-    FixedAssetRoleRepository fixedAssetRoleRepository;
+    MessageService messageService;
+//    @javax.inject.Inject
+//    NumeratorForOutgoingInvoicesRepository estatioNumeratorRepository;
+//
+//    @javax.inject.Inject
+//    PropertyRepository propertyRepository;
+//
+//    @javax.inject.Inject
+//    FixedAssetRoleRepository fixedAssetRoleRepository;
 }

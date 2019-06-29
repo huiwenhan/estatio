@@ -22,10 +22,8 @@ import javax.inject.Inject;
 
 import org.apache.isis.applib.fixturescripts.BuilderScriptAbstract;
 
-import org.isisaddons.module.security.dom.tenancy.ApplicationTenancy;
-
 import org.estatio.module.asset.dom.Property;
-import org.estatio.module.lease.dom.EstatioApplicationTenancyRepositoryForLease;
+import org.estatio.module.invoicegroup.dom.InvoiceGroup;
 import org.estatio.module.lease.dom.invoicing.NumeratorForOutgoingInvoicesRepository;
 import org.estatio.module.numerator.dom.Numerator;
 import org.estatio.module.party.dom.Party;
@@ -44,7 +42,7 @@ public final class PropertyOwnerNumeratorBuilder
         extends BuilderScriptAbstract<Numerator, PropertyOwnerNumeratorBuilder> {
 
     @Getter @Setter
-    private Property property;
+    private InvoiceGroup invoiceGroup;
 
     @Getter @Setter
     private Party owner;
@@ -58,26 +56,21 @@ public final class PropertyOwnerNumeratorBuilder
         checkParam("property", ec, Property.class);
         checkParam("owner", ec, Party.class);
 
-        ApplicationTenancy applicationTenancy =
-                estatioApplicationTenancyRepository.findOrCreateTenancyFor(
-                        property, owner);
         this.object =
                 estatioNumeratorRepository.createInvoiceNumberNumerator(
-                        property,
+                        invoiceGroup,
                         owner,
-                        numeratorReferenceFor(property),
+                        numeratorReferenceFor(invoiceGroup),
                         bi(0));
 
-        ec.addResult(this, property.getReference(), object);
+        ec.addResult(this, invoiceGroup.getReference(), object);
     }
 
-    public static String numeratorReferenceFor(final Property property) {
-        return property.getReference().concat("-%04d");
+    public static String numeratorReferenceFor(final InvoiceGroup invoiceGroup) {
+        return invoiceGroup.getReference().concat("-%04d");
     }
 
     @Inject
     NumeratorForOutgoingInvoicesRepository estatioNumeratorRepository;
 
-    @Inject
-    EstatioApplicationTenancyRepositoryForLease estatioApplicationTenancyRepository;
 }

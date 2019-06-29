@@ -37,6 +37,7 @@ import org.estatio.module.asset.dom.role.FixedAssetRole;
 import org.estatio.module.asset.dom.role.FixedAssetRoleRepository;
 import org.estatio.module.asset.dom.role.FixedAssetRoleTypeEnum;
 import org.estatio.module.base.dom.UdoDomainService;
+import org.estatio.module.invoicegroup.dom.InvoiceGroup;
 import org.estatio.module.lease.dom.invoicing.NumeratorForOutgoingInvoicesRepository;
 import org.estatio.module.numerator.dom.Numerator;
 import org.estatio.module.party.dom.Party;
@@ -67,9 +68,9 @@ public class NumeratorForOutgoingInvoicesMenu extends UdoDomainService<Numerator
     @Action(semantics = SemanticsOf.SAFE)
     @MemberOrder(sequence = "3")
     public Numerator findInvoiceNumberNumerator(
-            final Property property,
+            final InvoiceGroup invoiceGroup,
             final Party seller) {
-        return numeratorRepository.findInvoiceNumberNumerator(property, seller);
+        return numeratorRepository.findInvoiceNumberNumerator(invoiceGroup, seller);
     }
 
     public List<Party> choices1FindInvoiceNumberNumerator(final Property property) {
@@ -80,11 +81,11 @@ public class NumeratorForOutgoingInvoicesMenu extends UdoDomainService<Numerator
     @Action(semantics = SemanticsOf.IDEMPOTENT)
     @MemberOrder(sequence = "4")
     public Numerator createInvoiceNumberNumerator(
-            final Property property,
+            final InvoiceGroup invoiceGroup,
             final Party seller,
             final String format,
             final BigInteger lastIncrement) {
-        return numeratorRepository.findOrCreateInvoiceNumberNumerator(property, seller, format, lastIncrement);
+        return numeratorRepository.findOrCreateInvoiceNumberNumerator(invoiceGroup, seller, format, lastIncrement);
     }
 
     public List<Party> choices1CreateInvoiceNumberNumerator(final Property property) {

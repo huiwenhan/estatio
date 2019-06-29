@@ -28,6 +28,10 @@ import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.SemanticsOf;
 
+import org.incode.module.country.dom.impl.Country;
+
+import org.estatio.module.base.dom.apptenancy.EstatioApplicationTenancyRepository;
+import org.estatio.module.countryapptenancy.dom.EstatioApplicationTenancyRepositoryForCountry;
 import org.estatio.module.invoicegroup.dom.InvoiceGroup;
 import org.estatio.module.invoicegroup.dom.InvoiceGroupRepository;
 
@@ -38,8 +42,12 @@ public class InvoiceGroupMenu {
 
 
     @Action(semantics = SemanticsOf.SAFE)
-    public InvoiceGroup createInvoiceGroup(final String reference, final String name) {
-        return invoiceGroupRepository.createInvoiceGroup(reference, name);
+    public InvoiceGroup createInvoiceGroup(
+            final String reference,
+            final String name,
+            final Country country) {
+
+        return invoiceGroupRepository.createInvoiceGroup(reference, name, country);
     }
     public String validate0CreateInvoiceGroup(final String reference) {
         return invoiceGroupRepository.findByReference(reference)
@@ -64,5 +72,9 @@ public class InvoiceGroupMenu {
     @Inject
     InvoiceGroupRepository invoiceGroupRepository;
 
+    @Inject
+    EstatioApplicationTenancyRepository estatioApplicationTenancyRepository;
 
+    @Inject
+    EstatioApplicationTenancyRepositoryForCountry estatioApplicationTenancyRepositoryForCountry;
 }

@@ -36,6 +36,7 @@ import org.estatio.module.asset.dom.FixedAsset;
 import org.estatio.module.asset.dom.Property;
 import org.estatio.module.base.dom.UdoDomainService;
 import org.estatio.module.countryapptenancy.dom.EstatioApplicationTenancyRepositoryForCountry;
+import org.estatio.module.invoicegroup.dom.InvoiceGroup;
 import org.estatio.module.invoicegroup.dom.InvoiceGroupRepository;
 import org.estatio.module.numerator.dom.Numerator;
 import org.estatio.module.numerator.dom.NumeratorRepository;
@@ -51,7 +52,6 @@ public class NumeratorForOutgoingInvoicesRepository extends UdoDomainService<Num
         super(NumeratorForOutgoingInvoicesRepository.class);
     }
 
-
     public Numerator findCollectionNumberNumerator() {
         return numeratorRepository.find(COLLECTION_NUMBER, null, null, null);
     }
@@ -66,61 +66,38 @@ public class NumeratorForOutgoingInvoicesRepository extends UdoDomainService<Num
                 COLLECTION_NUMBER, null, null, null, format, lastValue, globalAppTenancy);
     }
 
-
     public Numerator findInvoiceNumberNumerator(
-            final FixedAsset fixedAsset,
+            final InvoiceGroup invoiceGroup,
             final Party seller) {
 
-        final ApplicationTenancy applicationTenancy = fixedAsset.getApplicationTenancy();
-        final Country country = countryRepository.findCountryByAtPath(applicationTenancy.getPath());
-
-        if (!(fixedAsset instanceof Property)) {
-            return null;
-        }
-
-        final Property property = (Property) fixedAsset;
-        return invoiceGroupRepository.findContainingProperty(property)
-                .map(invoiceGroup -> numeratorRepository.find(INVOICE_NUMBER, country, invoiceGroup, seller))
-                .orElse(null);
+        return numeratorRepository.find(INVOICE_NUMBER, invoiceGroup.getCountry(), invoiceGroup, seller);
     }
 
-
     public Numerator createInvoiceNumberNumerator(
-            final Property property,
+            final InvoiceGroup invoiceGroup,
             final Party seller,
             final String format,
             final BigInteger lastIncrement) {
 
-        final ApplicationTenancy applicationTenancy = property.getApplicationTenancy();
-
-        final Country country = countryRepository.findCountryByAtPath(applicationTenancy.getPath());
         final Numerator numerator = numeratorRepository.find(
-                INVOICE_NUMBER, country, property, seller);
+                INVOICE_NUMBER, invoiceGroup.getCountry(), invoiceGroup, seller);
         if (numerator != null) {
             return numerator;
         }
-        return findOrCreateInvoiceNumberNumerator(property, seller, format, lastIncrement);
+        return findOrCreateInvoiceNumberNumerator(invoiceGroup, seller, format, lastIncrement);
     }
 
     public Numerator findOrCreateInvoiceNumberNumerator(
-            final Property property,
+            final InvoiceGroup invoiceGroup,
             final Party seller,
             final String format,
             final BigInteger lastIncrement) {
 
-        final ApplicationTenancy applicationTenancy = property.getApplicationTenancy();
-        final Country country = countryRepository.findCountryByAtPath(applicationTenancy.getPath());
-        final ApplicationTenancy countryTenancy =
-                estatioApplicationTenancyRepositoryForCountry.findOrCreateTenancyFor(country);
-
         return numeratorRepository.findOrCreate(
-                INVOICE_NUMBER, country, property, seller, format, lastIncrement, countryTenancy);
+                            INVOICE_NUMBER, invoiceGroup.getCountry(), invoiceGroup, seller, format, lastIncrement, invoiceGroup.getApplicationTenancy());
     }
 
 
-
-    @javax.inject.Inject
-    EstatioApplicationTenancyRepositoryForCountry estatioApplicationTenancyRepositoryForCountry;
 
     @javax.inject.Inject
     CountryRepository countryRepository;

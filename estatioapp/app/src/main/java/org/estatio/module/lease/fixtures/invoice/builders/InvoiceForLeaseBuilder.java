@@ -20,6 +20,7 @@ package org.estatio.module.lease.fixtures.invoice.builders;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 import java.util.SortedSet;
 
 import javax.inject.Inject;
@@ -37,6 +38,8 @@ import org.incode.module.base.dom.valuetypes.LocalDateInterval;
 import org.estatio.module.asset.dom.Property;
 import org.estatio.module.currency.dom.Currency;
 import org.estatio.module.invoice.dom.PaymentMethod;
+import org.estatio.module.invoicegroup.dom.InvoiceGroup;
+import org.estatio.module.invoicegroup.dom.InvoiceGroupRepository;
 import org.estatio.module.lease.dom.Lease;
 import org.estatio.module.lease.dom.LeaseItem;
 import org.estatio.module.lease.dom.LeaseItemType;
@@ -123,8 +126,15 @@ public class InvoiceForLeaseBuilder extends BuilderScriptAbstract<InvoiceForLeas
         final String format = property.getReference() + "-%06d";
         final BigInteger lastIncrement = BigInteger.ZERO;
 
-        this.numerator = numeratorForOutgoingInvoicesRepository
-                .createInvoiceNumberNumerator(property, seller, format, lastIncrement);
+        final Optional<InvoiceGroup> invoiceGroupIfAny = invoiceGroupRepository.findContainingProperty(property);
+        if(invoiceGroupIfAny.isPresent()) {
+            this.numerator = numeratorForOutgoingInvoicesRepository
+                    .createInvoiceNumberNumerator(invoiceGroupIfAny.get(), seller, format, lastIncrement);
+        } else {
+            throw new IllegalStateException(String.format(
+                            "Could not locate InvoiceGroup for property '%s'",
+                            property.getReference()));
+        }
 
         ec.addResult(this, numerator);
 
@@ -162,6 +172,8 @@ public class InvoiceForLeaseBuilder extends BuilderScriptAbstract<InvoiceForLeas
     }
 
 
+    @Inject
+    InvoiceGroupRepository invoiceGroupRepository;
     @Inject
     InvoiceForLeaseRepository invoiceForLeaseRepository;
 

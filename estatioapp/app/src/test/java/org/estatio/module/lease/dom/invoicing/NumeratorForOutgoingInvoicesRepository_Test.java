@@ -36,7 +36,8 @@ import org.incode.module.apptenancy.fixtures.enums.ApplicationTenancy_enum;
 import org.incode.module.country.dom.impl.Country;
 import org.incode.module.country.dom.impl.CountryRepository;
 
-import org.estatio.module.asset.dom.Property;
+import org.estatio.module.invoicegroup.dom.InvoiceGroup;
+import org.estatio.module.invoicegroup.dom.InvoiceGroupRepository;
 import org.estatio.module.numerator.dom.NumeratorRepository;
 import org.estatio.module.party.dom.Organisation;
 import org.estatio.module.party.dom.Party;
@@ -54,20 +55,15 @@ public class NumeratorForOutgoingInvoicesRepository_Test {
             return ApplicationTenancy_enum.Global.getPath();
         }
     };
-    private ApplicationTenancy propertyApplicationTenancy = new ApplicationTenancy() {
-        @Override public String getPath() {
-            return ApplicationTenancy_enum.Gb.getPath();
-        }
-    };
 
-    Property stubProperty = new Property(){
-        @Override public ApplicationTenancy getApplicationTenancy() {
-            return propertyApplicationTenancy;
-        }
-    };
-
-    Country propertyCountry = new Country();
+    Country invoiceGroupCountry = new Country();
     Party stubSeller = new Organisation();
+
+    InvoiceGroup stubInvoiceGroup = new InvoiceGroup() {
+        @Override public Country getCountry() {
+            return invoiceGroupCountry;
+        }
+    };
 
     @Mock
     NumeratorRepository mockNumeratorRepository;
@@ -81,6 +77,9 @@ public class NumeratorForOutgoingInvoicesRepository_Test {
     @Mock
     CountryRepository mockCountryRepository;
 
+    @Mock
+    InvoiceGroupRepository mockInvoiceGroupRepository;
+
     NumeratorForOutgoingInvoicesRepository numeratorForOutgoingInvoicesRepository;
 
     @Before
@@ -90,6 +89,7 @@ public class NumeratorForOutgoingInvoicesRepository_Test {
         numeratorForOutgoingInvoicesRepository.numeratorRepository = mockNumeratorRepository;
         numeratorForOutgoingInvoicesRepository.serviceRegistry = mockServiceRegistry2;
         numeratorForOutgoingInvoicesRepository.countryRepository = mockCountryRepository;
+        numeratorForOutgoingInvoicesRepository.invoiceGroupRepository = mockInvoiceGroupRepository;
 
         context.checking(new Expectations() {
             {
@@ -99,10 +99,9 @@ public class NumeratorForOutgoingInvoicesRepository_Test {
                 allowing(mockApplicationTenancyRepository).findByPath(ApplicationTenancy_enum.Global.getPath());
                 will(returnValue(globalApplicationTenancy));
 
-                allowing(mockCountryRepository).findCountryByAtPath(propertyApplicationTenancy.getPath());
-                will(returnValue(propertyCountry));
             }
         });
+
     }
 
     @Test
@@ -132,10 +131,10 @@ public class NumeratorForOutgoingInvoicesRepository_Test {
         context.checking(new Expectations() {
             {
                 oneOf(mockNumeratorRepository).find(
-                        NumeratorForOutgoingInvoicesRepository.INVOICE_NUMBER, propertyCountry, stubProperty, stubSeller);
+                        NumeratorForOutgoingInvoicesRepository.INVOICE_NUMBER, invoiceGroupCountry, stubInvoiceGroup, stubSeller);
             }
         });
-        numeratorForOutgoingInvoicesRepository.findInvoiceNumberNumerator(stubProperty, stubSeller);
+        numeratorForOutgoingInvoicesRepository.findInvoiceNumberNumerator(stubInvoiceGroup, stubSeller);
     }
 
 

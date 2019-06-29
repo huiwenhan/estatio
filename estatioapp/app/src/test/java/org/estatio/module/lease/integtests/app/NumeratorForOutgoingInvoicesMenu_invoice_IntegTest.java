@@ -33,6 +33,8 @@ import org.incode.module.country.fixtures.enums.Country_enum;
 
 import org.estatio.module.asset.dom.Property;
 import org.estatio.module.asset.fixtures.property.enums.Property_enum;
+import org.estatio.module.invoicegroup.dom.InvoiceGroup;
+import org.estatio.module.invoicegroup.fixtures.InvoiceGroup_enum;
 import org.estatio.module.lease.app.NumeratorForOutgoingInvoicesMenu;
 import org.estatio.module.lease.dom.invoicing.NumeratorForOutgoingInvoicesRepository;
 import org.estatio.module.lease.integtests.LeaseModuleIntegTestAbstract;
@@ -56,7 +58,9 @@ public class NumeratorForOutgoingInvoicesMenu_invoice_IntegTest extends LeaseMod
     NumeratorRepository numeratorRepository;
 
     Property propertyRonIt;
+    InvoiceGroup invoiceGroupRonIt;
     Property propertyGraIt;
+    InvoiceGroup invoiceGroupGraIt;
     Organisation orgPartyA;
     Organisation orgPartyB;
     Country countryIta;
@@ -77,7 +81,9 @@ public class NumeratorForOutgoingInvoicesMenu_invoice_IntegTest extends LeaseMod
 
         countryIta = Country_enum.ITA.findUsing(serviceRegistry);
         propertyRonIt = Property_enum.RonIt.findUsing(serviceRegistry);
+        invoiceGroupRonIt = InvoiceGroup_enum.RonIt.findUsing(serviceRegistry);
         propertyGraIt = Property_enum.GraIt.findUsing(serviceRegistry);
+        invoiceGroupGraIt = InvoiceGroup_enum.GraIt.findUsing(serviceRegistry);
         orgPartyA = Organisation_enum.HelloWorldIt.findUsing(serviceRegistry);
         orgPartyB = Organisation_enum.HelloWorldIt01.findUsing(serviceRegistry);
     }
@@ -93,7 +99,7 @@ public class NumeratorForOutgoingInvoicesMenu_invoice_IntegTest extends LeaseMod
 
         // when
         final Numerator numeratorRonPartyA = wrap(numeratorForOutgoingInvoicesMenu)
-                .createInvoiceNumberNumerator(propertyRonIt, orgPartyA, format, lastIncrement);
+                .createInvoiceNumberNumerator(invoiceGroupRonIt, orgPartyA, format, lastIncrement);
 
         // then
         assertThat(numeratorRonPartyA).isNotNull();
@@ -114,7 +120,7 @@ public class NumeratorForOutgoingInvoicesMenu_invoice_IntegTest extends LeaseMod
         // when
         // ... create another numerator for the same property, but different owner
         final Numerator numeratorRonPartyB = wrap(numeratorForOutgoingInvoicesMenu)
-                .createInvoiceNumberNumerator(propertyRonIt, orgPartyB, format, lastIncrement);
+                .createInvoiceNumberNumerator(invoiceGroupRonIt, orgPartyB, format, lastIncrement);
 
         // then
         assertThat(numeratorRonPartyB).isNotNull();
@@ -133,7 +139,7 @@ public class NumeratorForOutgoingInvoicesMenu_invoice_IntegTest extends LeaseMod
         // when
         // ... create another numerator for the different property, same owner
         final Numerator numeratorGraPartyA = wrap(numeratorForOutgoingInvoicesMenu)
-                .createInvoiceNumberNumerator(propertyGraIt, orgPartyA, format, lastIncrement);
+                .createInvoiceNumberNumerator(invoiceGroupGraIt, orgPartyA, format, lastIncrement);
 
         // then
         assertThat(numeratorGraPartyA).isNotNull();
@@ -152,7 +158,7 @@ public class NumeratorForOutgoingInvoicesMenu_invoice_IntegTest extends LeaseMod
         // when
         // ... create attempt to create another numerator for the same property, same owner
         final Numerator numeratorGraPartyA_2 = wrap(numeratorForOutgoingInvoicesMenu)
-                .createInvoiceNumberNumerator(propertyGraIt, orgPartyA, format, lastIncrement);
+                .createInvoiceNumberNumerator(invoiceGroupGraIt, orgPartyA, format, lastIncrement);
 
         // then
         assertThat(numeratorGraPartyA_2).isNotNull();
@@ -165,7 +171,7 @@ public class NumeratorForOutgoingInvoicesMenu_invoice_IntegTest extends LeaseMod
         // when
         // ... retrieve an existing
         final Numerator numeratorGraPartyARetrieve = wrap(numeratorForOutgoingInvoicesMenu)
-                .findInvoiceNumberNumerator(propertyGraIt, orgPartyA);
+                .findInvoiceNumberNumerator(invoiceGroupGraIt, orgPartyA);
         // then
         assertThat(numeratorGraPartyARetrieve).isSameAs(numeratorGraPartyA);
 
@@ -173,7 +179,7 @@ public class NumeratorForOutgoingInvoicesMenu_invoice_IntegTest extends LeaseMod
         // when
         // ... retrieve an non-existent
         final Numerator numeratorGraPartyBRetrieve = wrap(numeratorForOutgoingInvoicesMenu)
-                .findInvoiceNumberNumerator(propertyGraIt, orgPartyB);
+                .findInvoiceNumberNumerator(invoiceGroupGraIt, orgPartyB);
         // then
         assertThat(numeratorGraPartyBRetrieve).isNull();
     }

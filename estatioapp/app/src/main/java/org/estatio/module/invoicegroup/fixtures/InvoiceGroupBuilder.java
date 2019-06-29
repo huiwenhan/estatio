@@ -27,6 +27,8 @@ import com.google.common.collect.Lists;
 import org.apache.isis.applib.fixturescripts.BuilderScriptAbstract;
 import org.apache.isis.applib.services.factory.FactoryService;
 
+import org.incode.module.country.dom.impl.Country;
+
 import org.estatio.module.asset.dom.Property;
 import org.estatio.module.invoicegroup.dom.InvoiceGroup;
 import org.estatio.module.invoicegroup.dom.InvoiceGroupRepository;
@@ -48,6 +50,8 @@ public final class InvoiceGroupBuilder
     String ref;
     @Getter @Setter
     String name;
+    @Getter @Setter
+    Country country;
 
     @Getter @Setter
     List<Property> properties = Lists.newArrayList();
@@ -61,7 +65,7 @@ public final class InvoiceGroupBuilder
         checkParam("ref", executionContext, String.class);
         defaultParam("name", executionContext, getRef());
 
-        final InvoiceGroup invoiceGroup = repository.upsert(getRef(), getName());
+        final InvoiceGroup invoiceGroup = repository.upsert(getRef(), getName(), country);
         for (final Property property : properties) {
             factoryService.mixin(InvoiceGroup_addProperty.class, invoiceGroup).act(property);
         }

@@ -52,6 +52,9 @@
                     </bs3:row>
                 </bs3:tab>
             </bs3:tabGroup>
+            <cpt:fieldSet name="Country" id="country">
+                <cpt:property id="country"/>
+            </cpt:fieldSet>
         </bs3:col>
         <bs3:col span="8">
             <cpt:collection id="properties">

@@ -24,6 +24,8 @@ import org.apache.isis.applib.fixturescripts.PersonaWithBuilderScript;
 import org.apache.isis.applib.fixturescripts.PersonaWithFinder;
 import org.apache.isis.applib.services.registry.ServiceRegistry2;
 
+import org.incode.module.country.fixtures.enums.Country_enum;
+
 import org.estatio.module.asset.dom.Property;
 import org.estatio.module.asset.fixtures.property.enums.Property_enum;
 import org.estatio.module.invoicegroup.dom.InvoiceGroup;
@@ -39,18 +41,20 @@ import lombok.experimental.Accessors;
 public enum InvoiceGroup_enum implements PersonaWithBuilderScript<InvoiceGroup, InvoiceGroupBuilder>,
         PersonaWithFinder<InvoiceGroup> {
 
-    BudNl   ("BUD", new Property_enum[] {Property_enum.BudNl}),
-    RonIt   ("RON", new Property_enum[] {Property_enum.RonIt}),
-    GraIt   ("GRA", new Property_enum[] {Property_enum.GraIt}),
-    HanSe   ("HAN", new Property_enum[] {Property_enum.HanSe}),
-    KalNl   ("KAL", new Property_enum[] {Property_enum.KalNl}),
-    MacFr   ("MAC", new Property_enum[] {Property_enum.MacFr}),
-    MnsFr   ("MNS", new Property_enum[] {Property_enum.MnsFr}),
-    OxfGb   ("OXF", new Property_enum[] {Property_enum.OxfGb}),
-    VivFr   ("VIV", new Property_enum[] {Property_enum.VivFr, Property_enum.BvvFr});
+    BudNl   ("BUD", new Property_enum[] {Property_enum.BudNl}, Country_enum.NLD),
+    RonIt   ("RON", new Property_enum[] {Property_enum.RonIt}, Country_enum.ITA),
+    GraIt   ("GRA", new Property_enum[] {Property_enum.GraIt}, Country_enum.ITA),
+    HanSe   ("HAN", new Property_enum[] {Property_enum.HanSe}, Country_enum.SWE),
+    KalNl   ("KAL", new Property_enum[] {Property_enum.KalNl}, Country_enum.NLD),
+    MacFr   ("MAC", new Property_enum[] {Property_enum.MacFr}, Country_enum.FRA),
+    MnsFr   ("MNS", new Property_enum[] {Property_enum.MnsFr}, Country_enum.FRA),
+    OxfGb   ("OXF", new Property_enum[] {Property_enum.OxfGb}, Country_enum.GBR),
+    VivFr   ("VIV", new Property_enum[] {Property_enum.VivFr,
+                                         Property_enum.BvvFr}, Country_enum.FRA);
 
     private final String ref;
     private final Property_enum[] properties_d;
+    private final Country_enum country_d;
 
     @Override
     public InvoiceGroup findUsing(final ServiceRegistry2 serviceRegistry) {

@@ -26,6 +26,8 @@ import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.Programmatic;
 
+import org.incode.module.country.dom.impl.Country;
+
 import org.estatio.module.asset.dom.Property;
 import org.estatio.module.base.dom.UdoDomainRepositoryAndFactory;
 
@@ -36,13 +38,19 @@ public class InvoiceGroupRepository extends UdoDomainRepositoryAndFactory<Invoic
         super(InvoiceGroupRepository.class, InvoiceGroup.class);
     }
 
-    public InvoiceGroup upsert(final String reference, final String description) {
+    public InvoiceGroup upsert(
+            final String reference,
+            final String description,
+            final Country country) {
         return findByReference(reference)
-                .orElseGet(() -> createInvoiceGroup(reference, description));
+                .orElseGet(() -> createInvoiceGroup(reference, description, country));
     }
 
-    public InvoiceGroup createInvoiceGroup(final String reference, final String name) {
-        return repositoryService.persist(new InvoiceGroup(reference, name));
+    public InvoiceGroup createInvoiceGroup(
+            final String reference,
+            final String name,
+            final Country country) {
+        return repositoryService.persist(new InvoiceGroup(reference, name, country));
     }
 
     public Optional<InvoiceGroup> findByReference(final String reference) {
