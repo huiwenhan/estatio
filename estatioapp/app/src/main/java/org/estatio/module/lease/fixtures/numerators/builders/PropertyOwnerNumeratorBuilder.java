@@ -22,7 +22,6 @@ import javax.inject.Inject;
 
 import org.apache.isis.applib.fixturescripts.BuilderScriptAbstract;
 
-import org.estatio.module.asset.dom.Property;
 import org.estatio.module.invoicegroup.dom.InvoiceGroup;
 import org.estatio.module.lease.dom.invoicing.NumeratorForOutgoingInvoicesRepository;
 import org.estatio.module.numerator.dom.Numerator;
@@ -53,7 +52,7 @@ public final class PropertyOwnerNumeratorBuilder
     @Override
     protected void execute(final ExecutionContext ec) {
 
-        checkParam("property", ec, Property.class);
+        checkParam("invoiceGroup", ec, InvoiceGroup.class);
         checkParam("owner", ec, Party.class);
 
         this.object =

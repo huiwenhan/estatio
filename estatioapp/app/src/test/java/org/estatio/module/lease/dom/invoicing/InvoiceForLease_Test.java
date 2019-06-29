@@ -21,6 +21,7 @@ package org.estatio.module.lease.dom.invoicing;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
@@ -43,13 +44,13 @@ import org.isisaddons.module.security.dom.tenancy.ApplicationTenancy;
 import org.estatio.module.asset.dom.FixedAsset;
 import org.estatio.module.asset.dom.Property;
 import org.estatio.module.bankmandate.dom.BankMandate;
-import org.estatio.module.base.platform.docfragment.FragmentRenderService;
 import org.estatio.module.financial.dom.BankAccount;
 import org.estatio.module.financial.dom.FinancialAccount;
 import org.estatio.module.invoice.dom.InvoiceRepository;
 import org.estatio.module.invoice.dom.InvoiceStatus;
 import org.estatio.module.invoice.dom.PaymentMethod;
 import org.estatio.module.invoicegroup.dom.InvoiceGroup;
+import org.estatio.module.invoicegroup.dom.InvoiceGroupRepository;
 import org.estatio.module.lease.dom.Lease;
 import org.estatio.module.numerator.dom.Numerator;
 import org.estatio.module.party.dom.Organisation;
@@ -73,6 +74,9 @@ public class InvoiceForLease_Test {
     NumeratorForOutgoingInvoicesRepository mockNumeratorForOutgoingInvoicesRepository;
 
     @Mock
+    InvoiceGroupRepository mockInvoiceGroupRepository;
+
+    @Mock
     ClockService mockClockService;
 
     @Mock
@@ -82,13 +86,11 @@ public class InvoiceForLease_Test {
     MessageService mockMessageService;
 
     @Mock
-    FragmentRenderService mockFragmentRenderService;
-
-    @Mock
     Lease lease;
 
-    @Mock
-    Property stubInvoiceProperty;
+    InvoiceGroup stubInvoiceGroup = new InvoiceGroup("INVOICE_GROUP", null, null);
+
+    Property stubInvoiceProperty = new Property();
 
     @Mock
     Organisation stubInvoiceSeller;
@@ -120,6 +122,12 @@ public class InvoiceForLease_Test {
             }
         });
 
+        context.checking(new Expectations() {
+            {
+                allowing(mockInvoiceGroupRepository).findContainingProperty(stubInvoiceProperty);
+                will(returnValue(Optional.of(stubInvoiceGroup)));
+            }
+        });
     }
 
     void allowingMockInvoicesToReturnNumerator(final Numerator numerator) {
@@ -199,6 +207,8 @@ public class InvoiceForLease_Test {
             // when
             final InvoiceForLease._invoice invoice_invoice = new InvoiceForLease._invoice(invoice);
             invoice_invoice.numeratorRepository = mockNumeratorForOutgoingInvoicesRepository;
+            invoice_invoice.invoiceGroupRepository = mockInvoiceGroupRepository;
+
             invoice_invoice.titleService = mockTitleService;
             invoice_invoice.messageService = mockMessageService;
             invoice_invoice.invoiceRepository = mockInvoiceRepository;
@@ -243,27 +253,26 @@ public class InvoiceForLease_Test {
             // when
             final InvoiceForLease._invoice invoice_invoice = new InvoiceForLease._invoice(this.invoice);
             invoice_invoice.numeratorRepository = mockNumeratorForOutgoingInvoicesRepository;
+            invoice_invoice.invoiceGroupRepository = mockInvoiceGroupRepository;
 
-            assertThat(invoice_invoice.disable$$()).isEqualTo("No 'invoice number' numerator found for invoice's property");
+            assertThat(invoice_invoice.disable$$()).isEqualTo("No 'invoice number' numerator found for invoice's invoice group 'INVOICE_GROUP'");
 
             invoice_invoice.$$(mockClockService.now());
             assertThat(invoice.getInvoiceNumber()).isNull();
         }
 
         @Test
-        public void whenNotInCollectedState() {
+        public void whenNotInApprovedState() {
 
-            allowingMockInvoicesToReturnNumerator(null);
-            invoice = createInvoice(InvoiceStatus.APPROVED);
+            allowingMockInvoicesToReturnNumerator(new Numerator());
+            invoice = createInvoice(InvoiceStatus.INVOICED);
 
             final InvoiceForLease._invoice invoice_invoice = new InvoiceForLease._invoice(this.invoice);
             invoice_invoice.numeratorRepository = mockNumeratorForOutgoingInvoicesRepository;
+            invoice_invoice.invoiceGroupRepository = mockInvoiceGroupRepository;
 
             // when
-            assertThat(invoice_invoice.disable$$()).isEqualTo("No 'invoice number' numerator found for invoice's property");
-
-            invoice_invoice.$$(mockClockService.now());
-            assertThat(invoice.getInvoiceNumber()).isNull();
+            assertThat(invoice_invoice.disable$$()).isEqualTo("Must be in status of 'Approved'");
         }
 
     }
@@ -467,7 +476,13 @@ public class InvoiceForLease_Test {
 
             invoice_invoice = new InvoiceForLease._invoice(this.invoice);
             invoice_invoice.numeratorRepository = mockNumeratorForOutgoingInvoicesRepository;
+            invoice_invoice.invoiceGroupRepository = mockInvoiceGroupRepository;
             invoice_invoice.invoiceRepository = mockInvoiceRepository;
+
+            context.checking(new Expectations() {{
+                allowing(mockInvoiceGroupRepository).findContainingProperty(stubInvoiceProperty);
+                will(returnValue(Optional.of(stubInvoiceGroup)));
+            }});
         }
 
         @Test

@@ -64,8 +64,9 @@ public final class InvoiceGroupBuilder
 
         checkParam("ref", executionContext, String.class);
         defaultParam("name", executionContext, getRef());
+        checkParam("country", executionContext, Country.class);
 
-        final InvoiceGroup invoiceGroup = repository.upsert(getRef(), getName(), country);
+        final InvoiceGroup invoiceGroup = repository.upsert(getRef(), getName(), getCountry());
         for (final Property property : properties) {
             factoryService.mixin(InvoiceGroup_addProperty.class, invoiceGroup).act(property);
         }

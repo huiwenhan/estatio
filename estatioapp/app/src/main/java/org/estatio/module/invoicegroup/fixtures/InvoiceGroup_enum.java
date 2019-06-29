@@ -72,7 +72,8 @@ public enum InvoiceGroup_enum implements PersonaWithBuilderScript<InvoiceGroup, 
                                 final Property property = f.objectFor(property_d, ec);
                                 f.getProperties().add(property);
                             }
-                        });
+                        })
+                        .setPrereq((f, ec) -> f.setCountry(f.objectFor(country_d, ec)));
     }
 
     @Programmatic

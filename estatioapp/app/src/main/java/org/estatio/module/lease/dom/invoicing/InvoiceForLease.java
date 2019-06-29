@@ -57,8 +57,6 @@ import org.apache.isis.applib.services.title.TitleService;
 import org.apache.isis.applib.services.user.UserService;
 import org.apache.isis.schema.utils.jaxbadapters.PersistentEntityAdapter;
 
-import org.isisaddons.module.security.dom.tenancy.ApplicationTenancy;
-
 import org.estatio.module.asset.dom.FixedAsset;
 import org.estatio.module.asset.dom.Unit;
 import org.estatio.module.assetfinancial.dom.FixedAssetFinancialAccount;
@@ -514,7 +512,7 @@ public class InvoiceForLease
             if (numerator == null) {
                 return String.format(
                         "No 'invoice number' numerator found for invoice's invoice group '%s'",
-                        titleService.titleOf(invoiceGroup));
+                        invoiceGroup.getReference());
             }
 
             if (invoiceForLease.getStatus() != InvoiceStatus.APPROVED) {
@@ -542,7 +540,7 @@ public class InvoiceForLease
             if(!invoiceGroupIfAny.isPresent()) {
                 return String.format(
                         "Invoice's property '%s' is not in any invoice group",
-                        titleService.titleOf(property));
+                        property.getReference());
             }
             final InvoiceGroup invoiceGroup = invoiceGroupIfAny.get();
             final Numerator numerator =

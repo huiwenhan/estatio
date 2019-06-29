@@ -20,9 +20,13 @@ package org.estatio.module.lease.app;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
+
+import com.google.common.collect.Lists;
 
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.DomainService;
@@ -31,7 +35,6 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.SemanticsOf;
 
-import org.estatio.module.asset.dom.FixedAsset;
 import org.estatio.module.asset.dom.Property;
 import org.estatio.module.asset.dom.role.FixedAssetRole;
 import org.estatio.module.asset.dom.role.FixedAssetRoleRepository;
@@ -73,8 +76,8 @@ public class NumeratorForOutgoingInvoicesMenu extends UdoDomainService<Numerator
         return numeratorRepository.findInvoiceNumberNumerator(invoiceGroup, seller);
     }
 
-    public List<Party> choices1FindInvoiceNumberNumerator(final Property property) {
-        return allOwnersOf(property);
+    public List<Party> choices1FindInvoiceNumberNumerator(final InvoiceGroup invoiceGroup) {
+        return allOwnersOf(invoiceGroup);
     }
 
 
@@ -88,30 +91,35 @@ public class NumeratorForOutgoingInvoicesMenu extends UdoDomainService<Numerator
         return numeratorRepository.findOrCreateInvoiceNumberNumerator(invoiceGroup, seller, format, lastIncrement);
     }
 
-    public List<Party> choices1CreateInvoiceNumberNumerator(final Property property) {
-        return allOwnersOf(property);
+    public List<Party> choices1CreateInvoiceNumberNumerator(final InvoiceGroup invoiceGroup) {
+        return allOwnersOf(invoiceGroup);
     }
 
-    public String default2CreateInvoiceNumberNumerator(final Property property) {
-        return invoiceNumberPrefixFor(property) +  "-%06d";
+    public String default2CreateInvoiceNumberNumerator(final InvoiceGroup invoiceGroup) {
+        return invoiceNumberPrefixFor(invoiceGroup) +  "-%06d";
     }
 
     public BigInteger default3CreateInvoiceNumberNumerator() {
         return BigInteger.ZERO;
     }
 
-    private static String invoiceNumberPrefixFor(final Property property) {
-        return property != null ? property.getReference() : "XXX";
+    private static String invoiceNumberPrefixFor(final InvoiceGroup invoiceGroup) {
+        return invoiceGroup != null ? invoiceGroup.getReference() : "XXX";
     }
 
 
 
 
-    private List<Party> allOwnersOf(final FixedAsset fixedAsset) {
-        return fixedAssetRoleRepository
-                .findByAssetAndType(fixedAsset, FixedAssetRoleTypeEnum.PROPERTY_OWNER).stream()
-                .map(FixedAssetRole::getParty)
-                .collect(Collectors.toList());
+    private List<Party> allOwnersOf(final InvoiceGroup invoiceGroup) {
+        final SortedSet<Party> parties = new TreeSet<>();
+        final SortedSet<Property> properties = invoiceGroup.getProperties();
+        for (Property property : properties) {
+            parties.addAll(fixedAssetRoleRepository
+                    .findByAssetAndType(property, FixedAssetRoleTypeEnum.PROPERTY_OWNER).stream()
+                    .map(FixedAssetRole::getParty)
+                    .collect(Collectors.toList()));
+        }
+        return Lists.newArrayList(parties);
     }
 
     @Inject
