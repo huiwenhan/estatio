@@ -72,7 +72,9 @@ public class NumeratorForOutgoingInvoicesMenu_invoice_IntegTest extends LeaseMod
             protected void execute(ExecutionContext ec) {
                 ec.executeChildren(this,
                         Property_enum.RonIt,
+                        InvoiceGroup_enum.RonIt,
                         Property_enum.GraIt,
+                        InvoiceGroup_enum.GraIt,
                         Organisation_enum.HelloWorldIt,
                         Organisation_enum.HelloWorldIt01
                 );
