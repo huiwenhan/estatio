@@ -14,8 +14,10 @@ import org.apache.isis.applib.services.registry.ServiceRegistry2;
 import org.apache.isis.core.commons.ensure.Ensure;
 
 import org.incode.module.apptenancy.fixtures.enums.ApplicationTenancy_enum;
+
 import org.estatio.module.currency.fixtures.enums.Currency_enum;
 import org.estatio.module.invoice.dom.PaymentMethod;
+import org.estatio.module.invoicegroup.fixtures.InvoiceGroup_enum;
 import org.estatio.module.lease.dom.Lease;
 import org.estatio.module.lease.dom.LeaseItemType;
 import org.estatio.module.lease.dom.invoicing.InvoiceForLease;
@@ -41,7 +43,9 @@ import static org.incode.module.base.integtests.VT.ldix;
 public enum InvoiceForLease_enum implements PersonaWithFinder<InvoiceForLease>, PersonaWithBuilderScript<InvoiceForLease, InvoiceForLeaseBuilder> {
 
     OxfMiracl005Gb(
-            ApplicationTenancy_enum.GbOxf, Lease_enum.OxfMiracl005Gb,
+            ApplicationTenancy_enum.GbOxf,
+            InvoiceGroup_enum.OxfGb,
+            Lease_enum.OxfMiracl005Gb,
             Organisation_enum.HelloWorldGb, Organisation_enum.MiracleGb,
             PaymentMethod.DIRECT_DEBIT, Currency_enum.EUR,
             new ItemsSpec[] {
@@ -53,7 +57,9 @@ public enum InvoiceForLease_enum implements PersonaWithFinder<InvoiceForLease>, 
             }
     ),
     KalPoison001Nl(
-            ApplicationTenancy_enum.NlKal, Lease_enum.KalPoison001Nl,
+            ApplicationTenancy_enum.NlKal,
+            InvoiceGroup_enum.KalNl,
+            Lease_enum.KalPoison001Nl,
             Organisation_enum.AcmeNl, Organisation_enum.PoisonNl,
             PaymentMethod.DIRECT_DEBIT, Currency_enum.EUR,
             new ItemsSpec[] {
@@ -65,7 +71,9 @@ public enum InvoiceForLease_enum implements PersonaWithFinder<InvoiceForLease>, 
             }
     ),
     OxfPoison003Gb(
-            ApplicationTenancy_enum.GbOxf, Lease_enum.OxfPoison003Gb,
+            ApplicationTenancy_enum.GbOxf,
+            InvoiceGroup_enum.OxfGb,
+            Lease_enum.OxfPoison003Gb,
             Organisation_enum.HelloWorldGb, Organisation_enum.PoisonGb,
             PaymentMethod.DIRECT_DEBIT, Currency_enum.EUR,
             new ItemsSpec[] {
@@ -81,6 +89,7 @@ public enum InvoiceForLease_enum implements PersonaWithFinder<InvoiceForLease>, 
     ;
 
     private final ApplicationTenancy_enum applicationTenancy_d;
+    private final InvoiceGroup_enum invoiceGroup_d;
     private final Lease_enum lease_d;
     private final Organisation_enum seller_d;
     private final Organisation_enum buyer_d;
@@ -128,6 +137,7 @@ public enum InvoiceForLease_enum implements PersonaWithFinder<InvoiceForLease>, 
                     }
                 })
                 .setPrereq((f,ec) -> f.setApplicationTenancy(f.objectFor(applicationTenancy_d, ec)))
+                .setPrereq((f, ec) -> f.setInvoiceGroup(f.objectFor(invoiceGroup_d, ec)))
                 .setPrereq((f,ec) -> f.setLease(f.objectFor(lease_d, ec)))
                 .setPrereq((f,ec) -> f.setSeller(f.objectFor(seller_d, ec)))
                 .setPrereq((f,ec) -> f.setBuyer(f.objectFor(buyer_d, ec)))

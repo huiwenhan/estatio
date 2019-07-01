@@ -68,6 +68,8 @@ public class InvoiceForLeaseBuilder extends BuilderScriptAbstract<InvoiceForLeas
     @Getter @Setter
     ApplicationTenancy applicationTenancy;
     @Getter @Setter
+    InvoiceGroup invoiceGroup;
+    @Getter @Setter
     Lease lease;
     @Getter @Setter
     Party seller;
@@ -104,6 +106,7 @@ public class InvoiceForLeaseBuilder extends BuilderScriptAbstract<InvoiceForLeas
     protected void execute(final ExecutionContext ec) {
 
         checkParam("lease", ec, Lease.class);
+        checkParam("invoiceGroup", ec, InvoiceGroup.class);
         checkParam("seller", ec, Party.class);
         checkParam("buyer", ec, Party.class);
         checkParam("paymentMethod", ec, PaymentMethod.class);
@@ -111,6 +114,12 @@ public class InvoiceForLeaseBuilder extends BuilderScriptAbstract<InvoiceForLeas
         checkParam("dueDate", ec, LocalDate.class);
 
         defaultParam("invoiceDate", ec, getDueDate());
+
+        if(!invoiceGroup.getProperties().contains(lease.getProperty())) {
+            throw new IllegalArgumentException(String.format(
+                    "The invoiceGroup '%s' does not contain the leases's property: '%s'",
+                    invoiceGroup.getReference(), lease.getProperty()));
+        }
 
         final String interactionId = null;
 

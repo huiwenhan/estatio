@@ -115,7 +115,7 @@ public class InvoiceImportLine implements Importable {
         final Party primaryParty = lease.primaryPartyAsOfElseCurrent(getDueDate());
         final Party secondaryParty = lease.secondaryPartyAsOfElseCurrent(getDueDate());
 
-        final String atPath = lease.getApplicationTenancyPath().concat("/").concat(primaryParty.getReference());
+        final String atPath = lease.getApplicationTenancyPath();
 
         ApplicationTenancy applicationTenancy = applicationTenancyRepository.findByPath(atPath);
         Invoice invoice = invoiceForLeaseRepository.newInvoice(applicationTenancy,

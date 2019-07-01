@@ -107,7 +107,7 @@ public class NumeratorForOutgoingInvoicesMenu_invoice_IntegTest extends LeaseMod
         assertThat(numeratorRonPartyA).isNotNull();
         assertThat(numeratorRonPartyA.getName()).isEqualTo(NumeratorForOutgoingInvoicesRepository.INVOICE_NUMBER);
         assertThat(numeratorRonPartyA.getCountry()).isEqualTo(countryIta);
-        assertThat(numeratorRonPartyA.getObject()).isEqualTo(propertyRonIt);
+        assertThat(numeratorRonPartyA.getObject()).isEqualTo(invoiceGroupRonIt);
         assertThat(numeratorRonPartyA.getObject2()).isEqualTo(orgPartyA);
         assertThat(numeratorRonPartyA.getFormat()).isEqualTo(format);
         assertThat(numeratorRonPartyA.getLastIncrement()).isEqualTo(lastIncrement);
@@ -128,7 +128,7 @@ public class NumeratorForOutgoingInvoicesMenu_invoice_IntegTest extends LeaseMod
         assertThat(numeratorRonPartyB).isNotNull();
         assertThat(numeratorRonPartyB.getName()).isEqualTo(NumeratorForOutgoingInvoicesRepository.INVOICE_NUMBER);
         assertThat(numeratorRonPartyB.getCountry()).isEqualTo(countryIta);
-        assertThat(numeratorRonPartyB.getObject()).isEqualTo(propertyRonIt);
+        assertThat(numeratorRonPartyB.getObject()).isEqualTo(invoiceGroupRonIt);
         assertThat(numeratorRonPartyB.getObject2()).isEqualTo(orgPartyB);
         assertThat(numeratorRonPartyB.getApplicationTenancyPath()).isEqualTo("/ITA");
 
@@ -147,7 +147,7 @@ public class NumeratorForOutgoingInvoicesMenu_invoice_IntegTest extends LeaseMod
         assertThat(numeratorGraPartyA).isNotNull();
         assertThat(numeratorGraPartyA.getName()).isEqualTo(NumeratorForOutgoingInvoicesRepository.INVOICE_NUMBER);
         assertThat(numeratorGraPartyA.getCountry()).isEqualTo(countryIta);
-        assertThat(numeratorGraPartyA.getObject()).isEqualTo(propertyGraIt);
+        assertThat(numeratorGraPartyA.getObject()).isEqualTo(invoiceGroupGraIt);
         assertThat(numeratorGraPartyA.getObject2()).isEqualTo(orgPartyA);
         assertThat(numeratorGraPartyA.getApplicationTenancyPath()).isEqualTo("/ITA");
 

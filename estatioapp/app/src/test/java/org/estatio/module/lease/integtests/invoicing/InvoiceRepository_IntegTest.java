@@ -109,29 +109,26 @@ public class InvoiceRepository_IntegTest extends LeaseModuleIntegTestAbstract {
             runFixtureScript(new FixtureScript() {
                 @Override
                 protected void execute(ExecutionContext executionContext) {
-                    executionContext.executeChild(this, PropertyAndUnitsAndOwnerAndManager_enum.OxfGb.builder());
-                    executionContext.executeChild(this, PropertyAndUnitsAndOwnerAndManager_enum.KalNl.builder());
+                    executionContext.executeChildren(this,
+                            PropertyAndUnitsAndOwnerAndManager_enum.OxfGb, InvoiceGroup_enum.OxfGb,
+                            PropertyAndUnitsAndOwnerAndManager_enum.KalNl, InvoiceGroup_enum.KalNl);
                 }
             });
         }
 
-        private Property propertyOxf;
         private InvoiceGroup invoiceGroupOxf;
         private Organisation seller;
-        private Property propertyKal;
         private InvoiceGroup invoiceGroupKal;
 
-        private Bookmark propertyOxfBookmark;
+        private Bookmark invoiceGroupOxfBookmark;
 
         @Before
         public void setUp() {
-            propertyOxf = Property_enum.OxfGb.findUsing(serviceRegistry);
             invoiceGroupOxf = InvoiceGroup_enum.OxfGb.findUsing(serviceRegistry);
-            propertyKal = Property_enum.KalNl.findUsing(serviceRegistry);
             invoiceGroupKal = InvoiceGroup_enum.KalNl.findUsing(serviceRegistry);
             seller = PropertyAndUnitsAndOwnerAndManager_enum.OxfGb.getOwner_d().findUsing(serviceRegistry);
 
-            propertyOxfBookmark = bookmarkService.bookmarkFor(propertyOxf);
+            invoiceGroupOxfBookmark = bookmarkService.bookmarkFor(invoiceGroupOxf);
         }
 
         @Test
@@ -149,8 +146,8 @@ public class InvoiceRepository_IntegTest extends LeaseModuleIntegTestAbstract {
             // then
             Assert.assertNotNull(numerator);
             assertThat(numerator.getName(), is(NumeratorForOutgoingInvoicesRepository.INVOICE_NUMBER));
-            assertThat(numerator.getObjectType(), is(propertyOxfBookmark.getObjectType()));
-            assertThat(numerator.getObjectIdentifier(), is(propertyOxfBookmark.getIdentifier()));
+            assertThat(numerator.getObjectType(), is(invoiceGroupOxfBookmark.getObjectType()));
+            assertThat(numerator.getObjectIdentifier(), is(invoiceGroupOxfBookmark.getIdentifier()));
             assertThat(numerator.getLastIncrement(), is(BigInteger.TEN));
         }
 
@@ -206,18 +203,18 @@ public class InvoiceRepository_IntegTest extends LeaseModuleIntegTestAbstract {
             runFixtureScript(new FixtureScript() {
                 @Override
                 protected void execute(ExecutionContext executionContext) {
-                    executionContext.executeChild(this, PropertyAndUnitsAndOwnerAndManager_enum.OxfGb.builder());
+                    executionContext.executeChildren(this,
+                                    PropertyAndUnitsAndOwnerAndManager_enum.OxfGb,
+                                    InvoiceGroup_enum.OxfGb);
                 }
             });
         }
 
-        private Property propertyOxf;
         private Organisation seller;
         private InvoiceGroup invoiceGroupOxf;
 
         @Before
         public void setUp() {
-            propertyOxf = Property_enum.OxfGb.findUsing(serviceRegistry);
             invoiceGroupOxf = InvoiceGroup_enum.OxfGb.findUsing(serviceRegistry);
             seller = PropertyAndUnitsAndOwnerAndManager_enum.OxfGb.getOwner_d().findUsing(serviceRegistry);
         }
@@ -241,8 +238,8 @@ public class InvoiceRepository_IntegTest extends LeaseModuleIntegTestAbstract {
             runFixtureScript(new FixtureScript() {
                 @Override
                 protected void execute(ExecutionContext executionContext) {
-                    executionContext.executeChild(this, InvoiceForLease_enum.OxfPoison003Gb.builder());
-                    executionContext.executeChild(this, InvoiceForLease_enum.KalPoison001Nl.builder());
+                    executionContext.executeChildren(this, InvoiceForLease_enum.OxfPoison003Gb,
+                                            InvoiceForLease_enum.KalPoison001Nl);
                 }
             });
         }
@@ -515,6 +512,7 @@ public class InvoiceRepository_IntegTest extends LeaseModuleIntegTestAbstract {
                 protected void execute(ExecutionContext executionContext) {
                     executionContext.executeChild(this, PropertyAndUnitsAndOwnerAndManager_enum.OxfGb.builder());
 
+                    executionContext.executeChild(this, LeaseItemForRent_enum.OxfPoison003Gb.builder());
                     executionContext.executeChild(this, LeaseItemForRent_enum.OxfPoison003Gb.builder());
                     executionContext.executeChild(this, LeaseItemForServiceCharge_enum.OxfPoison003Gb.builder());
                     executionContext.executeChild(this, LeaseItemForTurnoverRent_enum.OxfPoison003Gb.builder());
