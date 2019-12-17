@@ -195,7 +195,7 @@ public class IncomingInvoiceItemRepository_Test {
         }});
 
         // when
-        List<IncomingInvoiceItem> result = incomingInvoiceItemRepository.filterByCompletedOrLaterInvoices(items, reportedDate);
+        List<IncomingInvoiceItem> result = incomingInvoiceItemRepository.filterByCompletedOrLaterInvoices(items);
         // then
         Assertions.assertThat(result.size()).isEqualTo(1);
         Assertions.assertThat(result).contains(itemNotToBefilteredOut);

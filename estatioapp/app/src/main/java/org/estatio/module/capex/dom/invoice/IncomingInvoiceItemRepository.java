@@ -11,6 +11,7 @@ import javax.jdo.Query;
 
 import com.google.common.collect.Lists;
 
+import org.datanucleus.query.typesafe.TypesafeQuery;
 import org.joda.time.LocalDate;
 
 import org.apache.isis.applib.annotation.DomainService;
@@ -21,15 +22,14 @@ import org.apache.isis.applib.services.jdosupport.IsisJdoSupport;
 import org.apache.isis.applib.services.registry.ServiceRegistry2;
 import org.apache.isis.applib.services.repository.RepositoryService;
 
+import org.estatio.module.asset.dom.FixedAsset;
+import org.estatio.module.asset.dom.Property;
+import org.estatio.module.budget.dom.budgetitem.BudgetItem;
 import org.estatio.module.capex.dom.invoice.approval.IncomingInvoiceApprovalState;
 import org.estatio.module.capex.dom.project.Project;
 import org.estatio.module.capex.dom.project.ProjectItem;
 import org.estatio.module.capex.dom.util.PeriodUtil;
-import org.estatio.module.asset.dom.FixedAsset;
-import org.estatio.module.asset.dom.Property;
-import org.estatio.module.budget.dom.budgetitem.BudgetItem;
 import org.estatio.module.charge.dom.Charge;
-import org.estatio.module.invoice.dom.Invoice;
 import org.estatio.module.party.dom.Party;
 import org.estatio.module.tax.dom.Tax;
 
@@ -267,6 +267,17 @@ public class IncomingInvoiceItemRepository {
             final Property property,
             final LocalDate reportedDate) {
 
+        /*
+        equivalent of:
+        (but want to apply a fetchGroup hint)
+
+                @Query(
+                name = "findByFixedAssetAndReportedDate", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM org.estatio.module.capex.dom.invoice.IncomingInvoiceItem "
+                        + "WHERE fixedAsset == :fixedAsset "
+                        + "   && reportedDate == :reportedDate ",
+
         final List<IncomingInvoiceItem> items = repositoryService.allMatches(
                 new QueryDefault<>(
                         IncomingInvoiceItem.class,
@@ -274,8 +285,23 @@ public class IncomingInvoiceItemRepository {
                         "fixedAsset", property,
                         "reportedDate", reportedDate
                 ));
+         */
 
-        return filterByCompletedOrLaterInvoices(items, reportedDate);
+        final QIncomingInvoiceItem iii = QIncomingInvoiceItem.candidate();
+        final TypesafeQuery<IncomingInvoiceItem> q = isisJdoSupport.newTypesafeQuery(IncomingInvoiceItem.class);
+        q.getFetchPlan().addGroup("download_incoming_invoices");
+        q.filter(
+                iii.fixedAsset.eq(property)
+            .and(
+                iii.reportedDate.eq(reportedDate))
+        );
+        final List<IncomingInvoiceItem> items = q.executeList();
+
+        try {
+            return filterByCompletedOrLaterInvoices(items);
+        } finally {
+            q.closeAll();
+        }
     }
 
     @Programmatic
@@ -283,6 +309,18 @@ public class IncomingInvoiceItemRepository {
             final Property property,
             final IncomingInvoiceType incomingInvoiceType,
             final LocalDate reportedDate) {
+
+        /*
+        equivalent of:
+        (but want to apply a fetchGroup hint)
+
+        @Query(
+            name = "findByFixedAssetAndIncomingInvoiceTypeAndReportedDate", language = "JDOQL",
+            value = "SELECT "
+                    + "FROM org.estatio.module.capex.dom.invoice.IncomingInvoiceItem "
+                    + "WHERE fixedAsset == :fixedAsset "
+                    + "   && incomingInvoiceType == :incomingInvoiceType "
+                    + "   && reportedDate == :reportedDate "),
 
         final List<IncomingInvoiceItem> items = repositoryService.allMatches(
                 new QueryDefault<>(
@@ -292,14 +330,34 @@ public class IncomingInvoiceItemRepository {
                         "incomingInvoiceType", incomingInvoiceType,
                         "reportedDate", reportedDate
                 ));
+         */
 
-        return filterByCompletedOrLaterInvoices(items, reportedDate);
+        final QIncomingInvoiceItem iii = QIncomingInvoiceItem.candidate();
+        final TypesafeQuery<IncomingInvoiceItem> q = isisJdoSupport.newTypesafeQuery(IncomingInvoiceItem.class);
+        q.getFetchPlan().addGroup("download_incoming_invoices");
+        q.filter(
+                iii.fixedAsset.eq(property)
+                        .and(
+                                iii.incomingInvoiceType.eq(incomingInvoiceType)
+                        .and(
+                                iii.reportedDate.eq(reportedDate)
+                        )
+                        )
+        );
+        final List<IncomingInvoiceItem> items = q.executeList();
+
+        try {
+            return filterByCompletedOrLaterInvoices(items);
+        } finally {
+            q.closeAll();
+        }
     }
 
     @Programmatic
     public List<IncomingInvoiceItem> findCompletedOrLaterByReportedDate(
             final LocalDate reportedDate) {
 
+/*
         final List<IncomingInvoiceItem> items = repositoryService.allMatches(
                 new QueryDefault<>(
                         IncomingInvoiceItem.class,
@@ -307,24 +365,38 @@ public class IncomingInvoiceItemRepository {
                         "reportedDate", reportedDate
                 ));
 
-        return filterByCompletedOrLaterInvoices(items, reportedDate);
+        return filterByCompletedOrLaterInvoices(items);
+*/
+
+        final QIncomingInvoiceItem iii = QIncomingInvoiceItem.candidate();
+        final TypesafeQuery<IncomingInvoiceItem> q = isisJdoSupport.newTypesafeQuery(IncomingInvoiceItem.class);
+        q.getFetchPlan().addGroup("download_incoming_invoices");
+        q.filter(
+                iii.reportedDate.eq(reportedDate)
+        );
+        final List<IncomingInvoiceItem> items = q.executeList();
+
+        try {
+            return filterByCompletedOrLaterInvoices(items);
+        } finally {
+            q.closeAll();
+        }
+
     }
 
 
     List<IncomingInvoiceItem> filterByCompletedOrLaterInvoices(
-            final List<IncomingInvoiceItem> items,
-            final LocalDate reportedDate) {
+            final List<IncomingInvoiceItem> items) {
 
-        // we can't filter by property or incoming invoice type to filter here
-        // because individual invoice items can override
-        final List<? extends Invoice> incomingInvoices =
-                incomingInvoiceRepository.findCompletedOrLaterWithItemsByReportedDate(reportedDate);
-
-        // client-side join :-(
         return items.stream()
                 .filter(x -> {
-                    final Invoice<?> invoice = x.getInvoice();
-                    return incomingInvoices.contains(invoice);
+                    // the items are retrieved earlier using typesafe query that has a hint to eagerly retrieve the
+                    // items invoice.  So, this traversal isn't expensive.
+                    //
+                    // the client-side filtering is needed, however, because unfortunately DN only knows that the
+                    // (incoming invoice) item has a parent Invoice, not an IncomingInvoice
+                    final IncomingInvoice invoice = x.getIncomingInvoice();
+                    return invoice.getApprovalState() != IncomingInvoiceApprovalState.NEW;
                 })
                 // EST-1731: filter items of discarded invoices that are not a reversal
                 .filter(x->!(x.getReversalOf()==null && x.getIncomingInvoice().getApprovalState()== IncomingInvoiceApprovalState.DISCARDED))

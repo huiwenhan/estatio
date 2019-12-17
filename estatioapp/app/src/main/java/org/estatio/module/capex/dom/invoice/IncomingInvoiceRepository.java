@@ -274,7 +274,7 @@ public class IncomingInvoiceRepository {
                         + "FROM org.estatio.module.capex.dom.invoice.IncomingInvoice "
                         + "WHERE items.contains(ii) "
                         + "   && (ii.reportedDate == :reportedDate) "
-                        + "   && (approvalState != 'NEW' && approvalState != 'DISCARDED') "
+                        + "   && (approvalState != 'NEW') "
                         + "VARIABLES org.estatio.module.capex.dom.invoice.IncomingInvoiceItem ii "
         ),
 

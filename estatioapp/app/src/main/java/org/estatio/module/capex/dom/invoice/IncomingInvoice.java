@@ -16,6 +16,7 @@ import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.FetchGroup;
+import javax.jdo.annotations.FetchGroups;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Index;
 import javax.jdo.annotations.Indices;
@@ -262,14 +263,24 @@ import lombok.Setter;
                         + " && useAsTemplate == true"
         )
 })
-@FetchGroup(
-        name = "seller_buyer_property_bankAccount",
-        members = {
-                @Persistent(name = "seller"),
-                @Persistent(name = "buyer"),
-                @Persistent(name = "property"),
-                @Persistent(name = "bankAccount")
-        })
+@FetchGroups({
+    @FetchGroup(
+            name = "download_incoming_invoices",
+            members = {
+                    @Persistent(name = "seller"),
+                    @Persistent(name = "buyer"),
+                    @Persistent(name = "property"),
+            }),
+    @FetchGroup(
+            name = "seller_buyer_property_bankAccount",
+            members = {
+                    @Persistent(name = "seller"),
+                    @Persistent(name = "buyer"),
+                    @Persistent(name = "property"),
+                    @Persistent(name = "bankAccount")
+            })
+
+})
 @Indices({
         @Index(name = "IncomingInvoice_approvalState_IDX", members = { "approvalState" }),
         @Index(name = "IncomingInvoice_atPath_approvalState_IDX", members = { "applicationTenancyPath", "approvalState" }),

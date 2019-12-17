@@ -10,10 +10,12 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.jdo.annotations.Column;
+import javax.jdo.annotations.FetchGroup;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.NotPersistent;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.Queries;
 import javax.jdo.annotations.Query;
 import javax.validation.constraints.Digits;
@@ -34,7 +36,6 @@ import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.annotation.Where;
 import org.apache.isis.applib.services.repository.RepositoryService;
-
 import org.incode.module.base.dom.valuetypes.LocalDateInterval;
 
 import org.estatio.module.asset.dom.FixedAsset;
@@ -129,6 +130,12 @@ import lombok.Setter;
                         + "FROM org.estatio.module.capex.dom.invoice.IncomingInvoiceItem "
                         + "WHERE budgetItem == :budgetItem ")
 })
+@FetchGroup(
+        name = "download_incoming_invoices",
+        members = {
+                @Persistent(name = "reversalOf"),
+                @Persistent(name = "charge"),
+        })
 @DomainObject(
         editing = Editing.DISABLED,
         objectType = "incomingInvoice.IncomingInvoiceItem"
